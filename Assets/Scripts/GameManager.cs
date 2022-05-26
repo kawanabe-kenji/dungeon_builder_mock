@@ -48,7 +48,11 @@ namespace DungeonBuilder
         [SerializeField]
         private FieldUIView _fieldUIView;
 
+        [SerializeField]
+        private FieldView __fieldView;
+
         // View
+        /*
         [SerializeField]
         private MinoView[] _minoPrefabs;
 
@@ -64,6 +68,7 @@ namespace DungeonBuilder
 
         [SerializeField]
         private MinoView.Block[] _startBlocks;
+        */
 
         // Control
         [SerializeField]
@@ -121,11 +126,6 @@ namespace DungeonBuilder
             }
             return true;
         }
-
-        private Vector3 GetPositionMinoView((int x, int y) index)
-        {
-            return new Vector3(index.x, 0f, index.y) * CELL_SIZE;
-        }
         #endregion // CommonMethod
 
         private void Awake()
@@ -168,6 +168,8 @@ namespace DungeonBuilder
             ////////////////////////////////////////
             // View
             ////////////////////////////////////////
+            __fieldView.Initialize(new Vector2Int(_fieldX, _fieldY), new Vector2Int(startIndex.x, startIndex.y));
+            /*
             _fieldView = new MinoView.Block[_fieldX, _fieldY];
             // スタート地点の壁情報
             _fieldView[startIndex.x, startIndex.y] = _startBlocks[0];
@@ -180,6 +182,7 @@ namespace DungeonBuilder
 
             _fogs.Simulate(100f);
             _fogs.Play();
+            */
 
             ////////////////////////////////////////
             // Control
@@ -215,11 +218,7 @@ namespace DungeonBuilder
         {
             RefleshField();
             _fieldUIView.DrawMino(_current);
-
-            if(_currentView != null)
-            {
-                _currentView.transform.localPosition = GetPositionMinoView(_current.Index);
-            }
+            __fieldView.SetMinoPosition(new Vector2Int(_current.Index.x, _current.Index.y));
         }
 
         private void FixMino()
@@ -256,7 +255,6 @@ namespace DungeonBuilder
                 }
             }
 
-            int blockCount = 0;
             foreach(var kvp in _current.Blocks)
             {
                 var offset = kvp.Key;
@@ -264,12 +262,9 @@ namespace DungeonBuilder
                 int x = _current.X + offset.x;
                 int y = _current.Y + offset.y;
                 _field[x, y] = block;
-
-                var blockView = _currentView.Blocks[blockCount];
-                blockView.Fog.Play();
-                _fieldView[x, y] = blockView;
-                blockCount++;
             }
+
+            __fieldView.PutMino(_current);
 
             RefleshMino();
         }
