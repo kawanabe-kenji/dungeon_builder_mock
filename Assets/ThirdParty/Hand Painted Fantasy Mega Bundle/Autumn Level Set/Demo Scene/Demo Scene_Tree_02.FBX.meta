@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: 2ac4e5c769e46264f95f54448915edad
+timeCreated: 1470821377
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Tree_02_A_green002
+    100004: Tree_02_A_Orange002
+    100006: Tree_02_A_Orange003
+    100008: Tree_02_A_pink002
+    100010: Tree_02_A_pink003
+    100012: Tree_02_B_green002
+    100014: Tree_02_B_green003
+    100016: Tree_02_B_green004
+    100018: Tree_02_B_Orange002
+    100020: Tree_02_B_Orange003
+    100022: Tree_02_B_Orange004
+    100024: Tree_02_B_pink002
+    100026: Tree_02_C_green002
+    100028: Tree_02_C_green003
+    100030: Tree_02_C_green004
+    100032: Tree_02_C_green005
+    100034: Tree_02_C_green006
+    100036: Tree_02_C_Orange002
+    100038: Tree_02_C_Orange003
+    100040: Tree_02_C_Orange004
+    100042: Tree_02_C_pink002
+    100044: Tree_02_C_pink003
+    400000: //RootNode
+    400002: Tree_02_A_green002
+    400004: Tree_02_A_Orange002
+    400006: Tree_02_A_Orange003
+    400008: Tree_02_A_pink002
+    400010: Tree_02_A_pink003
+    400012: Tree_02_B_green002
+    400014: Tree_02_B_green003
+    400016: Tree_02_B_green004
+    400018: Tree_02_B_Orange002
+    400020: Tree_02_B_Orange003
+    400022: Tree_02_B_Orange004
+    400024: Tree_02_B_pink002
+    400026: Tree_02_C_green002
+    400028: Tree_02_C_green003
+    400030: Tree_02_C_green004
+    400032: Tree_02_C_green005
+    400034: Tree_02_C_green006
+    400036: Tree_02_C_Orange002
+    400038: Tree_02_C_Orange003
+    400040: Tree_02_C_Orange004
+    400042: Tree_02_C_pink002
+    400044: Tree_02_C_pink003
+    2300000: Tree_02_A_green002
+    2300002: Tree_02_A_Orange002
+    2300004: Tree_02_A_Orange003
+    2300006: Tree_02_A_pink002
+    2300008: Tree_02_A_pink003
+    2300010: Tree_02_B_green002
+    2300012: Tree_02_B_green003
+    2300014: Tree_02_B_green004
+    2300016: Tree_02_B_Orange002
+    2300018: Tree_02_B_Orange003
+    2300020: Tree_02_B_Orange004
+    2300022: Tree_02_B_pink002
+    2300024: Tree_02_C_green002
+    2300026: Tree_02_C_green003
+    2300028: Tree_02_C_green004
+    2300030: Tree_02_C_green005
+    2300032: Tree_02_C_green006
+    2300034: Tree_02_C_Orange002
+    2300036: Tree_02_C_Orange003
+    2300038: Tree_02_C_Orange004
+    2300040: Tree_02_C_pink002
+    2300042: Tree_02_C_pink003
+    3300000: Tree_02_A_green002
+    3300002: Tree_02_A_Orange002
+    3300004: Tree_02_A_Orange003
+    3300006: Tree_02_A_pink002
+    3300008: Tree_02_A_pink003
+    3300010: Tree_02_B_green002
+    3300012: Tree_02_B_green003
+    3300014: Tree_02_B_green004
+    3300016: Tree_02_B_Orange002
+    3300018: Tree_02_B_Orange003
+    3300020: Tree_02_B_Orange004
+    3300022: Tree_02_B_pink002
+    3300024: Tree_02_C_green002
+    3300026: Tree_02_C_green003
+    3300028: Tree_02_C_green004
+    3300030: Tree_02_C_green005
+    3300032: Tree_02_C_green006
+    3300034: Tree_02_C_Orange002
+    3300036: Tree_02_C_Orange003
+    3300038: Tree_02_C_Orange004
+    3300040: Tree_02_C_pink002
+    3300042: Tree_02_C_pink003
+    4300000: Tree_02_A_pink002
+    4300002: Tree_02_B_Orange002
+    4300004: Tree_02_A_Orange002
+    4300006: Tree_02_C_Orange002
+    4300008: Tree_02_C_Orange003
+    4300010: Tree_02_C_pink002
+    4300012: Tree_02_A_green002
+    4300014: Tree_02_B_Orange003
+    4300016: Tree_02_C_Orange004
+    4300018: Tree_02_A_Orange003
+    4300020: Tree_02_B_Orange004
+    4300022: Tree_02_C_green002
+    4300024: Tree_02_B_green002
+    4300026: Tree_02_C_green003
+    4300028: Tree_02_B_green003
+    4300030: Tree_02_C_green004
+    4300032: Tree_02_A_pink003
+    4300034: Tree_02_C_pink003
+    4300036: Tree_02_B_pink002
+    4300038: Tree_02_B_green004
+    4300040: Tree_02_C_green005
+    4300042: Tree_02_C_green006
+    6400000: Tree_02_A_green002
+    6400002: Tree_02_A_Orange002
+    6400004: Tree_02_A_Orange003
+    6400006: Tree_02_A_pink002
+    6400008: Tree_02_A_pink003
+    6400010: Tree_02_B_green002
+    6400012: Tree_02_B_green003
+    6400014: Tree_02_B_green004
+    6400016: Tree_02_B_Orange002
+    6400018: Tree_02_B_Orange003
+    6400020: Tree_02_B_Orange004
+    6400022: Tree_02_B_pink002
+    6400024: Tree_02_C_green002
+    6400026: Tree_02_C_green003
+    6400028: Tree_02_C_green004
+    6400030: Tree_02_C_green005
+    6400032: Tree_02_C_green006
+    6400034: Tree_02_C_Orange002
+    6400036: Tree_02_C_Orange003
+    6400038: Tree_02_C_Orange004
+    6400040: Tree_02_C_pink002
+    6400042: Tree_02_C_pink003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

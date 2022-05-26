@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: ff8da10c64d159546af541e713a5cd65
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: fence_convex_corner003
+    100002: fence_convex_corner004
+    100004: fence_convex_corner005
+    100006: fence_convex_corner006
+    100008: fence_tile003
+    100010: fence_tile004
+    100012: fence_tile005
+    100014: fence_tile006
+    100016: floor_red001
+    100018: floor_red002
+    100020: floor_red003
+    100022: floor_red004
+    100024: //RootNode
+    100026: step_wall_red_003
+    100028: step_wall_red_004
+    100030: step_wall_red_005
+    100032: step_wall_red_006
+    100034: step_wall_red_007
+    100036: step_wall_red_008
+    100038: step_wall_red_009
+    100040: step_wall_red_010
+    100042: step_wall_red_convex_corner013
+    100044: step_wall_red_convex_corner014
+    100046: step_wall_red_convex_corner015
+    100048: step_wall_red_convex_corner016
+    400000: fence_convex_corner003
+    400002: fence_convex_corner004
+    400004: fence_convex_corner005
+    400006: fence_convex_corner006
+    400008: fence_tile003
+    400010: fence_tile004
+    400012: fence_tile005
+    400014: fence_tile006
+    400016: floor_red001
+    400018: floor_red002
+    400020: floor_red003
+    400022: floor_red004
+    400024: //RootNode
+    400026: step_wall_red_003
+    400028: step_wall_red_004
+    400030: step_wall_red_005
+    400032: step_wall_red_006
+    400034: step_wall_red_007
+    400036: step_wall_red_008
+    400038: step_wall_red_009
+    400040: step_wall_red_010
+    400042: step_wall_red_convex_corner013
+    400044: step_wall_red_convex_corner014
+    400046: step_wall_red_convex_corner015
+    400048: step_wall_red_convex_corner016
+    2300000: fence_convex_corner003
+    2300002: fence_convex_corner004
+    2300004: fence_convex_corner005
+    2300006: fence_convex_corner006
+    2300008: fence_tile003
+    2300010: fence_tile004
+    2300012: fence_tile005
+    2300014: fence_tile006
+    2300016: floor_red001
+    2300018: floor_red002
+    2300020: floor_red003
+    2300022: floor_red004
+    2300024: step_wall_red_003
+    2300026: step_wall_red_004
+    2300028: step_wall_red_005
+    2300030: step_wall_red_006
+    2300032: step_wall_red_007
+    2300034: step_wall_red_008
+    2300036: step_wall_red_009
+    2300038: step_wall_red_010
+    2300040: step_wall_red_convex_corner013
+    2300042: step_wall_red_convex_corner014
+    2300044: step_wall_red_convex_corner015
+    2300046: step_wall_red_convex_corner016
+    3300000: fence_convex_corner003
+    3300002: fence_convex_corner004
+    3300004: fence_convex_corner005
+    3300006: fence_convex_corner006
+    3300008: fence_tile003
+    3300010: fence_tile004
+    3300012: fence_tile005
+    3300014: fence_tile006
+    3300016: floor_red001
+    3300018: floor_red002
+    3300020: floor_red003
+    3300022: floor_red004
+    3300024: step_wall_red_003
+    3300026: step_wall_red_004
+    3300028: step_wall_red_005
+    3300030: step_wall_red_006
+    3300032: step_wall_red_007
+    3300034: step_wall_red_008
+    3300036: step_wall_red_009
+    3300038: step_wall_red_010
+    3300040: step_wall_red_convex_corner013
+    3300042: step_wall_red_convex_corner014
+    3300044: step_wall_red_convex_corner015
+    3300046: step_wall_red_convex_corner016
+    4300000: step_wall_red_convex_corner016
+    4300002: step_wall_red_003
+    4300004: step_wall_red_004
+    4300006: step_wall_red_convex_corner014
+    4300008: fence_convex_corner004
+    4300010: fence_convex_corner003
+    4300012: fence_tile004
+    4300014: fence_tile003
+    4300016: fence_tile005
+    4300018: step_wall_red_convex_corner015
+    4300020: fence_tile006
+    4300022: fence_convex_corner006
+    4300024: floor_red004
+    4300026: floor_red003
+    4300028: floor_red002
+    4300030: step_wall_red_010
+    4300032: step_wall_red_009
+    4300034: step_wall_red_008
+    4300036: step_wall_red_007
+    4300038: step_wall_red_006
+    4300040: step_wall_red_005
+    4300042: floor_red001
+    4300044: fence_convex_corner005
+    4300046: step_wall_red_convex_corner013
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

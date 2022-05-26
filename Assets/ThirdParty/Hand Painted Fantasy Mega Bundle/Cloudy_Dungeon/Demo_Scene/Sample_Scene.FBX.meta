@@ -1,0 +1,2208 @@
+fileFormatVersion: 2
+guid: 90aa862855877d1459200b37ecd2d9da
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: archway_large001
+    100002: archway_small001
+    100004: door004
+    100006: door_a001
+    100008: door_b001
+    100010: entrance003
+    100012: exit004
+    100014: fence
+    100016: fence 1
+    100018: fence 2
+    100020: fence 3
+    100022: fence 4
+    100024: fence 5
+    100026: fence 6
+    100028: fence 7
+    100030: fence_concave_corner001
+    100032: fence_concave_corner002
+    100034: fence_convex_corner001
+    100036: fence_convex_corner002
+    100038: fence_convex_corner003
+    100040: fence_convex_corner004
+    100042: fence_tile002
+    100044: fence_tile003
+    100046: fence_tile004
+    100048: fence_tile005
+    100050: fence_tile006
+    100052: fence_tile007
+    100054: fence_tile008
+    100056: fence_tile009
+    100058: fence_tile010
+    100060: fence_tile011
+    100062: floor015
+    100064: floor016
+    100066: floor017
+    100068: floor018
+    100070: floor019
+    100072: floor020
+    100074: floor021
+    100076: floor022
+    100078: floor023
+    100080: floor024
+    100082: floor025
+    100084: floor026
+    100086: floor027
+    100088: floor028
+    100090: floor029
+    100092: floor030
+    100094: floor031
+    100096: floor032
+    100098: floor033
+    100100: floor034
+    100102: floor035
+    100104: floor036
+    100106: floor037
+    100108: floor038
+    100110: floor039
+    100112: floor040
+    100114: floor041
+    100116: floor042
+    100118: floor043
+    100120: floor044
+    100122: floor045
+    100124: floor046
+    100126: floor047
+    100128: floor048
+    100130: floor049
+    100132: floor050
+    100134: floor051
+    100136: floor052
+    100138: floor053
+    100140: floor054
+    100142: floor055
+    100144: floor056
+    100146: floor057
+    100148: floor058
+    100150: floor_red005
+    100152: floor_red006
+    100154: floor_red007
+    100156: floor_red008
+    100158: lower_wall_concave005
+    100160: lower_wall_concave008
+    100162: lower_wall_concave009
+    100164: lower_wall_concave010
+    100166: lower_wall_convex001
+    100168: lower_wall_convex002
+    100170: lower_wall_convex003
+    100172: lower_wall_convex004
+    100174: lower_wall_convex005
+    100176: lower_wall_convex006
+    100178: lower_wall_convex007
+    100180: lower_wall_convex008
+    100182: lower_wall_convex009
+    100184: lower_wall_convex010
+    100186: lower_wall_convex011
+    100188: lower_wall_convex012
+    100190: lower_wall_floor002
+    100192: lower_wall_floor003
+    100194: lower_wall_floor004
+    100196: lower_wall_floor005
+    100198: lower_wall_floor006
+    100200: lower_wall_floor007
+    100202: lower_wall_floor008
+    100204: lower_wall_floor009
+    100206: lower_wall_floor010
+    100208: lower_wall_tile
+    100210: lower_wall_tile 1
+    100212: lower_wall_tile 10
+    100214: lower_wall_tile 11
+    100216: lower_wall_tile 2
+    100218: lower_wall_tile 3
+    100220: lower_wall_tile 4
+    100222: lower_wall_tile 5
+    100224: lower_wall_tile 6
+    100226: lower_wall_tile 7
+    100228: lower_wall_tile 8
+    100230: lower_wall_tile 9
+    100232: pillar
+    100234: pillar 1
+    100236: pillar 10
+    100238: pillar 11
+    100240: pillar 12
+    100242: pillar 13
+    100244: pillar 14
+    100246: pillar 15
+    100248: pillar 2
+    100250: pillar 3
+    100252: pillar 4
+    100254: pillar 5
+    100256: pillar 6
+    100258: pillar 7
+    100260: pillar 8
+    100262: pillar 9
+    100264: pillar013
+    100266: pillar014
+    100268: pillar015
+    100270: pillar016
+    100272: pillar017
+    100274: pillar018
+    100276: pillar019
+    100278: pillar020
+    100280: pillar021
+    100282: pillar022
+    100284: pillar023
+    100286: pillar024
+    100288: pillar025
+    100290: pillar026
+    100292: pillar_b
+    100294: pillar_b 1
+    100296: pillar_b 2
+    100298: pillar_b 3
+    100300: //RootNode
+    100302: stair_short_wide_b001
+    100304: stairs011
+    100306: stairs012
+    100308: stairs013
+    100310: stairs014
+    100312: stairs015
+    100314: stairs_long005
+    100316: stairs_small001
+    100318: stairs_small002
+    100320: stairs_small003
+    100322: stairs_small004
+    100324: step_wall
+    100326: step_wall 1
+    100328: step_wall 10
+    100330: step_wall 11
+    100332: step_wall 12
+    100334: step_wall 13
+    100336: step_wall 14
+    100338: step_wall 15
+    100340: step_wall 16
+    100342: step_wall 17
+    100344: step_wall 18
+    100346: step_wall 19
+    100348: step_wall 2
+    100350: step_wall 20
+    100352: step_wall 21
+    100354: step_wall 22
+    100356: step_wall 23
+    100358: step_wall 24
+    100360: step_wall 25
+    100362: step_wall 26
+    100364: step_wall 27
+    100366: step_wall 28
+    100368: step_wall 29
+    100370: step_wall 3
+    100372: step_wall 30
+    100374: step_wall 31
+    100376: step_wall 32
+    100378: step_wall 33
+    100380: step_wall 34
+    100382: step_wall 35
+    100384: step_wall 36
+    100386: step_wall 37
+    100388: step_wall 38
+    100390: step_wall 39
+    100392: step_wall 4
+    100394: step_wall 5
+    100396: step_wall 6
+    100398: step_wall 7
+    100400: step_wall 8
+    100402: step_wall 9
+    100404: step_wall_concave_corner
+    100406: step_wall_concave_corner 1
+    100408: step_wall_concave_corner 10
+    100410: step_wall_concave_corner 11
+    100412: step_wall_concave_corner 2
+    100414: step_wall_concave_corner 3
+    100416: step_wall_concave_corner 4
+    100418: step_wall_concave_corner 5
+    100420: step_wall_concave_corner 6
+    100422: step_wall_concave_corner 7
+    100424: step_wall_concave_corner 8
+    100426: step_wall_concave_corner 9
+    100428: step_wall_convex_corner
+    100430: step_wall_convex_corner 1
+    100432: step_wall_convex_corner 10
+    100434: step_wall_convex_corner 11
+    100436: step_wall_convex_corner 12
+    100438: step_wall_convex_corner 13
+    100440: step_wall_convex_corner 14
+    100442: step_wall_convex_corner 15
+    100444: step_wall_convex_corner 16
+    100446: step_wall_convex_corner 17
+    100448: step_wall_convex_corner 18
+    100450: step_wall_convex_corner 19
+    100452: step_wall_convex_corner 2
+    100454: step_wall_convex_corner 20
+    100456: step_wall_convex_corner 21
+    100458: step_wall_convex_corner 22
+    100460: step_wall_convex_corner 23
+    100462: step_wall_convex_corner 24
+    100464: step_wall_convex_corner 25
+    100466: step_wall_convex_corner 26
+    100468: step_wall_convex_corner 27
+    100470: step_wall_convex_corner 28
+    100472: step_wall_convex_corner 29
+    100474: step_wall_convex_corner 3
+    100476: step_wall_convex_corner 30
+    100478: step_wall_convex_corner 31
+    100480: step_wall_convex_corner 32
+    100482: step_wall_convex_corner 33
+    100484: step_wall_convex_corner 34
+    100486: step_wall_convex_corner 35
+    100488: step_wall_convex_corner 36
+    100490: step_wall_convex_corner 37
+    100492: step_wall_convex_corner 38
+    100494: step_wall_convex_corner 39
+    100496: step_wall_convex_corner 4
+    100498: step_wall_convex_corner 40
+    100500: step_wall_convex_corner 41
+    100502: step_wall_convex_corner 42
+    100504: step_wall_convex_corner 43
+    100506: step_wall_convex_corner 44
+    100508: step_wall_convex_corner 45
+    100510: step_wall_convex_corner 46
+    100512: step_wall_convex_corner 47
+    100514: step_wall_convex_corner 48
+    100516: step_wall_convex_corner 49
+    100518: step_wall_convex_corner 5
+    100520: step_wall_convex_corner 50
+    100522: step_wall_convex_corner 51
+    100524: step_wall_convex_corner 52
+    100526: step_wall_convex_corner 53
+    100528: step_wall_convex_corner 54
+    100530: step_wall_convex_corner 55
+    100532: step_wall_convex_corner 56
+    100534: step_wall_convex_corner 57
+    100536: step_wall_convex_corner 58
+    100538: step_wall_convex_corner 6
+    100540: step_wall_convex_corner 7
+    100542: step_wall_convex_corner 8
+    100544: step_wall_convex_corner 9
+    100546: step_wall_convex_corner019
+    100548: step_wall_red_010
+    100550: step_wall_red_011
+    100552: step_wall_red_012
+    100554: step_wall_red_013
+    100556: step_wall_red_014
+    100558: step_wall_red_015
+    100560: step_wall_red_016
+    100562: step_wall_red_017
+    100564: step_wall_red_convex_corner
+    100566: step_wall_red_convex_corner 1
+    100568: step_wall_red_convex_corner 10
+    100570: step_wall_red_convex_corner 11
+    100572: step_wall_red_convex_corner 12
+    100574: step_wall_red_convex_corner 13
+    100576: step_wall_red_convex_corner 14
+    100578: step_wall_red_convex_corner 15
+    100580: step_wall_red_convex_corner 2
+    100582: step_wall_red_convex_corner 3
+    100584: step_wall_red_convex_corner 4
+    100586: step_wall_red_convex_corner 5
+    100588: step_wall_red_convex_corner 6
+    100590: step_wall_red_convex_corner 7
+    100592: step_wall_red_convex_corner 8
+    100594: step_wall_red_convex_corner 9
+    100596: step_wall_red_convex_corner005
+    100598: step_wall_red_convex_corner006
+    100600: step_wall_red_convex_corner007
+    100602: step_wall_red_convex_corner008
+    100604: torch
+    100606: torch 1
+    100608: torch 2
+    100610: torch 3
+    100612: torch 4
+    100614: torch 5
+    100616: torch 6
+    100618: torch 7
+    100620: tower002
+    100622: tower003
+    100624: tower_small002
+    100626: wall_concave_corner
+    100628: wall_concave_corner 1
+    100630: wall_concave_corner 2
+    100632: wall_concave_corner 3
+    100634: wall_concave_corner 4
+    100636: wall_concave_corner 5
+    100638: wall_concave_corner 6
+    100640: wall_concave_corner 7
+    100642: wall_concave_corner 8
+    100644: wall_concave_corner 9
+    100646: wall_convex_corner
+    100648: wall_convex_corner 1
+    100650: wall_convex_corner 2
+    100652: wall_convex_corner 3
+    100654: wall_convex_corner 4
+    100656: wall_convex_corner 5
+    100658: wall_convex_corner 6
+    100660: wall_convex_corner 7
+    100662: wall_tile
+    100664: wall_tile 1
+    100666: wall_tile 10
+    100668: wall_tile 11
+    100670: wall_tile 12
+    100672: wall_tile 13
+    100674: wall_tile 14
+    100676: wall_tile 15
+    100678: wall_tile 16
+    100680: wall_tile 17
+    100682: wall_tile 18
+    100684: wall_tile 19
+    100686: wall_tile 2
+    100688: wall_tile 20
+    100690: wall_tile 21
+    100692: wall_tile 22
+    100694: wall_tile 23
+    100696: wall_tile 24
+    100698: wall_tile 25
+    100700: wall_tile 3
+    100702: wall_tile 4
+    100704: wall_tile 5
+    100706: wall_tile 6
+    100708: wall_tile 7
+    100710: wall_tile 8
+    100712: wall_tile 9
+    400000: archway_large001
+    400002: archway_small001
+    400004: door004
+    400006: door_a001
+    400008: door_b001
+    400010: entrance003
+    400012: exit004
+    400014: fence
+    400016: fence 1
+    400018: fence 2
+    400020: fence 3
+    400022: fence 4
+    400024: fence 5
+    400026: fence 6
+    400028: fence 7
+    400030: fence_concave_corner001
+    400032: fence_concave_corner002
+    400034: fence_convex_corner001
+    400036: fence_convex_corner002
+    400038: fence_convex_corner003
+    400040: fence_convex_corner004
+    400042: fence_tile002
+    400044: fence_tile003
+    400046: fence_tile004
+    400048: fence_tile005
+    400050: fence_tile006
+    400052: fence_tile007
+    400054: fence_tile008
+    400056: fence_tile009
+    400058: fence_tile010
+    400060: fence_tile011
+    400062: floor015
+    400064: floor016
+    400066: floor017
+    400068: floor018
+    400070: floor019
+    400072: floor020
+    400074: floor021
+    400076: floor022
+    400078: floor023
+    400080: floor024
+    400082: floor025
+    400084: floor026
+    400086: floor027
+    400088: floor028
+    400090: floor029
+    400092: floor030
+    400094: floor031
+    400096: floor032
+    400098: floor033
+    400100: floor034
+    400102: floor035
+    400104: floor036
+    400106: floor037
+    400108: floor038
+    400110: floor039
+    400112: floor040
+    400114: floor041
+    400116: floor042
+    400118: floor043
+    400120: floor044
+    400122: floor045
+    400124: floor046
+    400126: floor047
+    400128: floor048
+    400130: floor049
+    400132: floor050
+    400134: floor051
+    400136: floor052
+    400138: floor053
+    400140: floor054
+    400142: floor055
+    400144: floor056
+    400146: floor057
+    400148: floor058
+    400150: floor_red005
+    400152: floor_red006
+    400154: floor_red007
+    400156: floor_red008
+    400158: lower_wall_concave005
+    400160: lower_wall_concave008
+    400162: lower_wall_concave009
+    400164: lower_wall_concave010
+    400166: lower_wall_convex001
+    400168: lower_wall_convex002
+    400170: lower_wall_convex003
+    400172: lower_wall_convex004
+    400174: lower_wall_convex005
+    400176: lower_wall_convex006
+    400178: lower_wall_convex007
+    400180: lower_wall_convex008
+    400182: lower_wall_convex009
+    400184: lower_wall_convex010
+    400186: lower_wall_convex011
+    400188: lower_wall_convex012
+    400190: lower_wall_floor002
+    400192: lower_wall_floor003
+    400194: lower_wall_floor004
+    400196: lower_wall_floor005
+    400198: lower_wall_floor006
+    400200: lower_wall_floor007
+    400202: lower_wall_floor008
+    400204: lower_wall_floor009
+    400206: lower_wall_floor010
+    400208: lower_wall_tile
+    400210: lower_wall_tile 1
+    400212: lower_wall_tile 10
+    400214: lower_wall_tile 11
+    400216: lower_wall_tile 2
+    400218: lower_wall_tile 3
+    400220: lower_wall_tile 4
+    400222: lower_wall_tile 5
+    400224: lower_wall_tile 6
+    400226: lower_wall_tile 7
+    400228: lower_wall_tile 8
+    400230: lower_wall_tile 9
+    400232: pillar
+    400234: pillar 1
+    400236: pillar 10
+    400238: pillar 11
+    400240: pillar 12
+    400242: pillar 13
+    400244: pillar 14
+    400246: pillar 15
+    400248: pillar 2
+    400250: pillar 3
+    400252: pillar 4
+    400254: pillar 5
+    400256: pillar 6
+    400258: pillar 7
+    400260: pillar 8
+    400262: pillar 9
+    400264: pillar013
+    400266: pillar014
+    400268: pillar015
+    400270: pillar016
+    400272: pillar017
+    400274: pillar018
+    400276: pillar019
+    400278: pillar020
+    400280: pillar021
+    400282: pillar022
+    400284: pillar023
+    400286: pillar024
+    400288: pillar025
+    400290: pillar026
+    400292: pillar_b
+    400294: pillar_b 1
+    400296: pillar_b 2
+    400298: pillar_b 3
+    400300: //RootNode
+    400302: stair_short_wide_b001
+    400304: stairs011
+    400306: stairs012
+    400308: stairs013
+    400310: stairs014
+    400312: stairs015
+    400314: stairs_long005
+    400316: stairs_small001
+    400318: stairs_small002
+    400320: stairs_small003
+    400322: stairs_small004
+    400324: step_wall
+    400326: step_wall 1
+    400328: step_wall 10
+    400330: step_wall 11
+    400332: step_wall 12
+    400334: step_wall 13
+    400336: step_wall 14
+    400338: step_wall 15
+    400340: step_wall 16
+    400342: step_wall 17
+    400344: step_wall 18
+    400346: step_wall 19
+    400348: step_wall 2
+    400350: step_wall 20
+    400352: step_wall 21
+    400354: step_wall 22
+    400356: step_wall 23
+    400358: step_wall 24
+    400360: step_wall 25
+    400362: step_wall 26
+    400364: step_wall 27
+    400366: step_wall 28
+    400368: step_wall 29
+    400370: step_wall 3
+    400372: step_wall 30
+    400374: step_wall 31
+    400376: step_wall 32
+    400378: step_wall 33
+    400380: step_wall 34
+    400382: step_wall 35
+    400384: step_wall 36
+    400386: step_wall 37
+    400388: step_wall 38
+    400390: step_wall 39
+    400392: step_wall 4
+    400394: step_wall 5
+    400396: step_wall 6
+    400398: step_wall 7
+    400400: step_wall 8
+    400402: step_wall 9
+    400404: step_wall_concave_corner
+    400406: step_wall_concave_corner 1
+    400408: step_wall_concave_corner 10
+    400410: step_wall_concave_corner 11
+    400412: step_wall_concave_corner 2
+    400414: step_wall_concave_corner 3
+    400416: step_wall_concave_corner 4
+    400418: step_wall_concave_corner 5
+    400420: step_wall_concave_corner 6
+    400422: step_wall_concave_corner 7
+    400424: step_wall_concave_corner 8
+    400426: step_wall_concave_corner 9
+    400428: step_wall_convex_corner
+    400430: step_wall_convex_corner 1
+    400432: step_wall_convex_corner 10
+    400434: step_wall_convex_corner 11
+    400436: step_wall_convex_corner 12
+    400438: step_wall_convex_corner 13
+    400440: step_wall_convex_corner 14
+    400442: step_wall_convex_corner 15
+    400444: step_wall_convex_corner 16
+    400446: step_wall_convex_corner 17
+    400448: step_wall_convex_corner 18
+    400450: step_wall_convex_corner 19
+    400452: step_wall_convex_corner 2
+    400454: step_wall_convex_corner 20
+    400456: step_wall_convex_corner 21
+    400458: step_wall_convex_corner 22
+    400460: step_wall_convex_corner 23
+    400462: step_wall_convex_corner 24
+    400464: step_wall_convex_corner 25
+    400466: step_wall_convex_corner 26
+    400468: step_wall_convex_corner 27
+    400470: step_wall_convex_corner 28
+    400472: step_wall_convex_corner 29
+    400474: step_wall_convex_corner 3
+    400476: step_wall_convex_corner 30
+    400478: step_wall_convex_corner 31
+    400480: step_wall_convex_corner 32
+    400482: step_wall_convex_corner 33
+    400484: step_wall_convex_corner 34
+    400486: step_wall_convex_corner 35
+    400488: step_wall_convex_corner 36
+    400490: step_wall_convex_corner 37
+    400492: step_wall_convex_corner 38
+    400494: step_wall_convex_corner 39
+    400496: step_wall_convex_corner 4
+    400498: step_wall_convex_corner 40
+    400500: step_wall_convex_corner 41
+    400502: step_wall_convex_corner 42
+    400504: step_wall_convex_corner 43
+    400506: step_wall_convex_corner 44
+    400508: step_wall_convex_corner 45
+    400510: step_wall_convex_corner 46
+    400512: step_wall_convex_corner 47
+    400514: step_wall_convex_corner 48
+    400516: step_wall_convex_corner 49
+    400518: step_wall_convex_corner 5
+    400520: step_wall_convex_corner 50
+    400522: step_wall_convex_corner 51
+    400524: step_wall_convex_corner 52
+    400526: step_wall_convex_corner 53
+    400528: step_wall_convex_corner 54
+    400530: step_wall_convex_corner 55
+    400532: step_wall_convex_corner 56
+    400534: step_wall_convex_corner 57
+    400536: step_wall_convex_corner 58
+    400538: step_wall_convex_corner 6
+    400540: step_wall_convex_corner 7
+    400542: step_wall_convex_corner 8
+    400544: step_wall_convex_corner 9
+    400546: step_wall_convex_corner019
+    400548: step_wall_red_010
+    400550: step_wall_red_011
+    400552: step_wall_red_012
+    400554: step_wall_red_013
+    400556: step_wall_red_014
+    400558: step_wall_red_015
+    400560: step_wall_red_016
+    400562: step_wall_red_017
+    400564: step_wall_red_convex_corner
+    400566: step_wall_red_convex_corner 1
+    400568: step_wall_red_convex_corner 10
+    400570: step_wall_red_convex_corner 11
+    400572: step_wall_red_convex_corner 12
+    400574: step_wall_red_convex_corner 13
+    400576: step_wall_red_convex_corner 14
+    400578: step_wall_red_convex_corner 15
+    400580: step_wall_red_convex_corner 2
+    400582: step_wall_red_convex_corner 3
+    400584: step_wall_red_convex_corner 4
+    400586: step_wall_red_convex_corner 5
+    400588: step_wall_red_convex_corner 6
+    400590: step_wall_red_convex_corner 7
+    400592: step_wall_red_convex_corner 8
+    400594: step_wall_red_convex_corner 9
+    400596: step_wall_red_convex_corner005
+    400598: step_wall_red_convex_corner006
+    400600: step_wall_red_convex_corner007
+    400602: step_wall_red_convex_corner008
+    400604: torch
+    400606: torch 1
+    400608: torch 2
+    400610: torch 3
+    400612: torch 4
+    400614: torch 5
+    400616: torch 6
+    400618: torch 7
+    400620: tower002
+    400622: tower003
+    400624: tower_small002
+    400626: wall_concave_corner
+    400628: wall_concave_corner 1
+    400630: wall_concave_corner 2
+    400632: wall_concave_corner 3
+    400634: wall_concave_corner 4
+    400636: wall_concave_corner 5
+    400638: wall_concave_corner 6
+    400640: wall_concave_corner 7
+    400642: wall_concave_corner 8
+    400644: wall_concave_corner 9
+    400646: wall_convex_corner
+    400648: wall_convex_corner 1
+    400650: wall_convex_corner 2
+    400652: wall_convex_corner 3
+    400654: wall_convex_corner 4
+    400656: wall_convex_corner 5
+    400658: wall_convex_corner 6
+    400660: wall_convex_corner 7
+    400662: wall_tile
+    400664: wall_tile 1
+    400666: wall_tile 10
+    400668: wall_tile 11
+    400670: wall_tile 12
+    400672: wall_tile 13
+    400674: wall_tile 14
+    400676: wall_tile 15
+    400678: wall_tile 16
+    400680: wall_tile 17
+    400682: wall_tile 18
+    400684: wall_tile 19
+    400686: wall_tile 2
+    400688: wall_tile 20
+    400690: wall_tile 21
+    400692: wall_tile 22
+    400694: wall_tile 23
+    400696: wall_tile 24
+    400698: wall_tile 25
+    400700: wall_tile 3
+    400702: wall_tile 4
+    400704: wall_tile 5
+    400706: wall_tile 6
+    400708: wall_tile 7
+    400710: wall_tile 8
+    400712: wall_tile 9
+    2300000: archway_large001
+    2300002: archway_small001
+    2300004: door004
+    2300006: door_a001
+    2300008: door_b001
+    2300010: entrance003
+    2300012: exit004
+    2300014: fence
+    2300016: fence 1
+    2300018: fence 2
+    2300020: fence 3
+    2300022: fence 4
+    2300024: fence 5
+    2300026: fence 6
+    2300028: fence 7
+    2300030: fence_concave_corner001
+    2300032: fence_concave_corner002
+    2300034: fence_convex_corner001
+    2300036: fence_convex_corner002
+    2300038: fence_convex_corner003
+    2300040: fence_convex_corner004
+    2300042: fence_tile002
+    2300044: fence_tile003
+    2300046: fence_tile004
+    2300048: fence_tile005
+    2300050: fence_tile006
+    2300052: fence_tile007
+    2300054: fence_tile008
+    2300056: fence_tile009
+    2300058: fence_tile010
+    2300060: fence_tile011
+    2300062: floor015
+    2300064: floor016
+    2300066: floor017
+    2300068: floor018
+    2300070: floor019
+    2300072: floor020
+    2300074: floor021
+    2300076: floor022
+    2300078: floor023
+    2300080: floor024
+    2300082: floor025
+    2300084: floor026
+    2300086: floor027
+    2300088: floor028
+    2300090: floor029
+    2300092: floor030
+    2300094: floor031
+    2300096: floor032
+    2300098: floor033
+    2300100: floor034
+    2300102: floor035
+    2300104: floor036
+    2300106: floor037
+    2300108: floor038
+    2300110: floor039
+    2300112: floor040
+    2300114: floor041
+    2300116: floor042
+    2300118: floor043
+    2300120: floor044
+    2300122: floor045
+    2300124: floor046
+    2300126: floor047
+    2300128: floor048
+    2300130: floor049
+    2300132: floor050
+    2300134: floor051
+    2300136: floor052
+    2300138: floor053
+    2300140: floor054
+    2300142: floor055
+    2300144: floor056
+    2300146: floor057
+    2300148: floor058
+    2300150: floor_red005
+    2300152: floor_red006
+    2300154: floor_red007
+    2300156: floor_red008
+    2300158: lower_wall_concave005
+    2300160: lower_wall_concave008
+    2300162: lower_wall_concave009
+    2300164: lower_wall_concave010
+    2300166: lower_wall_convex001
+    2300168: lower_wall_convex002
+    2300170: lower_wall_convex003
+    2300172: lower_wall_convex004
+    2300174: lower_wall_convex005
+    2300176: lower_wall_convex006
+    2300178: lower_wall_convex007
+    2300180: lower_wall_convex008
+    2300182: lower_wall_convex009
+    2300184: lower_wall_convex010
+    2300186: lower_wall_convex011
+    2300188: lower_wall_convex012
+    2300190: lower_wall_floor002
+    2300192: lower_wall_floor003
+    2300194: lower_wall_floor004
+    2300196: lower_wall_floor005
+    2300198: lower_wall_floor006
+    2300200: lower_wall_floor007
+    2300202: lower_wall_floor008
+    2300204: lower_wall_floor009
+    2300206: lower_wall_floor010
+    2300208: lower_wall_tile
+    2300210: lower_wall_tile 1
+    2300212: lower_wall_tile 10
+    2300214: lower_wall_tile 11
+    2300216: lower_wall_tile 2
+    2300218: lower_wall_tile 3
+    2300220: lower_wall_tile 4
+    2300222: lower_wall_tile 5
+    2300224: lower_wall_tile 6
+    2300226: lower_wall_tile 7
+    2300228: lower_wall_tile 8
+    2300230: lower_wall_tile 9
+    2300232: pillar
+    2300234: pillar 1
+    2300236: pillar 10
+    2300238: pillar 11
+    2300240: pillar 12
+    2300242: pillar 13
+    2300244: pillar 14
+    2300246: pillar 15
+    2300248: pillar 2
+    2300250: pillar 3
+    2300252: pillar 4
+    2300254: pillar 5
+    2300256: pillar 6
+    2300258: pillar 7
+    2300260: pillar 8
+    2300262: pillar 9
+    2300264: pillar013
+    2300266: pillar014
+    2300268: pillar015
+    2300270: pillar016
+    2300272: pillar017
+    2300274: pillar018
+    2300276: pillar019
+    2300278: pillar020
+    2300280: pillar021
+    2300282: pillar022
+    2300284: pillar023
+    2300286: pillar024
+    2300288: pillar025
+    2300290: pillar026
+    2300292: pillar_b
+    2300294: pillar_b 1
+    2300296: pillar_b 2
+    2300298: pillar_b 3
+    2300300: stair_short_wide_b001
+    2300302: stairs011
+    2300304: stairs012
+    2300306: stairs013
+    2300308: stairs014
+    2300310: stairs015
+    2300312: stairs_long005
+    2300314: stairs_small001
+    2300316: stairs_small002
+    2300318: stairs_small003
+    2300320: stairs_small004
+    2300322: step_wall
+    2300324: step_wall 1
+    2300326: step_wall 10
+    2300328: step_wall 11
+    2300330: step_wall 12
+    2300332: step_wall 13
+    2300334: step_wall 14
+    2300336: step_wall 15
+    2300338: step_wall 16
+    2300340: step_wall 17
+    2300342: step_wall 18
+    2300344: step_wall 19
+    2300346: step_wall 2
+    2300348: step_wall 20
+    2300350: step_wall 21
+    2300352: step_wall 22
+    2300354: step_wall 23
+    2300356: step_wall 24
+    2300358: step_wall 25
+    2300360: step_wall 26
+    2300362: step_wall 27
+    2300364: step_wall 28
+    2300366: step_wall 29
+    2300368: step_wall 3
+    2300370: step_wall 30
+    2300372: step_wall 31
+    2300374: step_wall 32
+    2300376: step_wall 33
+    2300378: step_wall 34
+    2300380: step_wall 35
+    2300382: step_wall 36
+    2300384: step_wall 37
+    2300386: step_wall 38
+    2300388: step_wall 39
+    2300390: step_wall 4
+    2300392: step_wall 5
+    2300394: step_wall 6
+    2300396: step_wall 7
+    2300398: step_wall 8
+    2300400: step_wall 9
+    2300402: step_wall_concave_corner
+    2300404: step_wall_concave_corner 1
+    2300406: step_wall_concave_corner 10
+    2300408: step_wall_concave_corner 11
+    2300410: step_wall_concave_corner 2
+    2300412: step_wall_concave_corner 3
+    2300414: step_wall_concave_corner 4
+    2300416: step_wall_concave_corner 5
+    2300418: step_wall_concave_corner 6
+    2300420: step_wall_concave_corner 7
+    2300422: step_wall_concave_corner 8
+    2300424: step_wall_concave_corner 9
+    2300426: step_wall_convex_corner
+    2300428: step_wall_convex_corner 1
+    2300430: step_wall_convex_corner 10
+    2300432: step_wall_convex_corner 11
+    2300434: step_wall_convex_corner 12
+    2300436: step_wall_convex_corner 13
+    2300438: step_wall_convex_corner 14
+    2300440: step_wall_convex_corner 15
+    2300442: step_wall_convex_corner 16
+    2300444: step_wall_convex_corner 17
+    2300446: step_wall_convex_corner 18
+    2300448: step_wall_convex_corner 19
+    2300450: step_wall_convex_corner 2
+    2300452: step_wall_convex_corner 20
+    2300454: step_wall_convex_corner 21
+    2300456: step_wall_convex_corner 22
+    2300458: step_wall_convex_corner 23
+    2300460: step_wall_convex_corner 24
+    2300462: step_wall_convex_corner 25
+    2300464: step_wall_convex_corner 26
+    2300466: step_wall_convex_corner 27
+    2300468: step_wall_convex_corner 28
+    2300470: step_wall_convex_corner 29
+    2300472: step_wall_convex_corner 3
+    2300474: step_wall_convex_corner 30
+    2300476: step_wall_convex_corner 31
+    2300478: step_wall_convex_corner 32
+    2300480: step_wall_convex_corner 33
+    2300482: step_wall_convex_corner 34
+    2300484: step_wall_convex_corner 35
+    2300486: step_wall_convex_corner 36
+    2300488: step_wall_convex_corner 37
+    2300490: step_wall_convex_corner 38
+    2300492: step_wall_convex_corner 39
+    2300494: step_wall_convex_corner 4
+    2300496: step_wall_convex_corner 40
+    2300498: step_wall_convex_corner 41
+    2300500: step_wall_convex_corner 42
+    2300502: step_wall_convex_corner 43
+    2300504: step_wall_convex_corner 44
+    2300506: step_wall_convex_corner 45
+    2300508: step_wall_convex_corner 46
+    2300510: step_wall_convex_corner 47
+    2300512: step_wall_convex_corner 48
+    2300514: step_wall_convex_corner 49
+    2300516: step_wall_convex_corner 5
+    2300518: step_wall_convex_corner 50
+    2300520: step_wall_convex_corner 51
+    2300522: step_wall_convex_corner 52
+    2300524: step_wall_convex_corner 53
+    2300526: step_wall_convex_corner 54
+    2300528: step_wall_convex_corner 55
+    2300530: step_wall_convex_corner 56
+    2300532: step_wall_convex_corner 57
+    2300534: step_wall_convex_corner 58
+    2300536: step_wall_convex_corner 6
+    2300538: step_wall_convex_corner 7
+    2300540: step_wall_convex_corner 8
+    2300542: step_wall_convex_corner 9
+    2300544: step_wall_convex_corner019
+    2300546: step_wall_red_010
+    2300548: step_wall_red_011
+    2300550: step_wall_red_012
+    2300552: step_wall_red_013
+    2300554: step_wall_red_014
+    2300556: step_wall_red_015
+    2300558: step_wall_red_016
+    2300560: step_wall_red_017
+    2300562: step_wall_red_convex_corner
+    2300564: step_wall_red_convex_corner 1
+    2300566: step_wall_red_convex_corner 10
+    2300568: step_wall_red_convex_corner 11
+    2300570: step_wall_red_convex_corner 12
+    2300572: step_wall_red_convex_corner 13
+    2300574: step_wall_red_convex_corner 14
+    2300576: step_wall_red_convex_corner 15
+    2300578: step_wall_red_convex_corner 2
+    2300580: step_wall_red_convex_corner 3
+    2300582: step_wall_red_convex_corner 4
+    2300584: step_wall_red_convex_corner 5
+    2300586: step_wall_red_convex_corner 6
+    2300588: step_wall_red_convex_corner 7
+    2300590: step_wall_red_convex_corner 8
+    2300592: step_wall_red_convex_corner 9
+    2300594: step_wall_red_convex_corner005
+    2300596: step_wall_red_convex_corner006
+    2300598: step_wall_red_convex_corner007
+    2300600: step_wall_red_convex_corner008
+    2300602: torch
+    2300604: torch 1
+    2300606: torch 2
+    2300608: torch 3
+    2300610: torch 4
+    2300612: torch 5
+    2300614: torch 6
+    2300616: torch 7
+    2300618: tower002
+    2300620: tower003
+    2300622: tower_small002
+    2300624: wall_concave_corner
+    2300626: wall_concave_corner 1
+    2300628: wall_concave_corner 2
+    2300630: wall_concave_corner 3
+    2300632: wall_concave_corner 4
+    2300634: wall_concave_corner 5
+    2300636: wall_concave_corner 6
+    2300638: wall_concave_corner 7
+    2300640: wall_concave_corner 8
+    2300642: wall_concave_corner 9
+    2300644: wall_convex_corner
+    2300646: wall_convex_corner 1
+    2300648: wall_convex_corner 2
+    2300650: wall_convex_corner 3
+    2300652: wall_convex_corner 4
+    2300654: wall_convex_corner 5
+    2300656: wall_convex_corner 6
+    2300658: wall_convex_corner 7
+    2300660: wall_tile
+    2300662: wall_tile 1
+    2300664: wall_tile 10
+    2300666: wall_tile 11
+    2300668: wall_tile 12
+    2300670: wall_tile 13
+    2300672: wall_tile 14
+    2300674: wall_tile 15
+    2300676: wall_tile 16
+    2300678: wall_tile 17
+    2300680: wall_tile 18
+    2300682: wall_tile 19
+    2300684: wall_tile 2
+    2300686: wall_tile 20
+    2300688: wall_tile 21
+    2300690: wall_tile 22
+    2300692: wall_tile 23
+    2300694: wall_tile 24
+    2300696: wall_tile 25
+    2300698: wall_tile 3
+    2300700: wall_tile 4
+    2300702: wall_tile 5
+    2300704: wall_tile 6
+    2300706: wall_tile 7
+    2300708: wall_tile 8
+    2300710: wall_tile 9
+    3300000: archway_large001
+    3300002: archway_small001
+    3300004: door004
+    3300006: door_a001
+    3300008: door_b001
+    3300010: entrance003
+    3300012: exit004
+    3300014: fence
+    3300016: fence 1
+    3300018: fence 2
+    3300020: fence 3
+    3300022: fence 4
+    3300024: fence 5
+    3300026: fence 6
+    3300028: fence 7
+    3300030: fence_concave_corner001
+    3300032: fence_concave_corner002
+    3300034: fence_convex_corner001
+    3300036: fence_convex_corner002
+    3300038: fence_convex_corner003
+    3300040: fence_convex_corner004
+    3300042: fence_tile002
+    3300044: fence_tile003
+    3300046: fence_tile004
+    3300048: fence_tile005
+    3300050: fence_tile006
+    3300052: fence_tile007
+    3300054: fence_tile008
+    3300056: fence_tile009
+    3300058: fence_tile010
+    3300060: fence_tile011
+    3300062: floor015
+    3300064: floor016
+    3300066: floor017
+    3300068: floor018
+    3300070: floor019
+    3300072: floor020
+    3300074: floor021
+    3300076: floor022
+    3300078: floor023
+    3300080: floor024
+    3300082: floor025
+    3300084: floor026
+    3300086: floor027
+    3300088: floor028
+    3300090: floor029
+    3300092: floor030
+    3300094: floor031
+    3300096: floor032
+    3300098: floor033
+    3300100: floor034
+    3300102: floor035
+    3300104: floor036
+    3300106: floor037
+    3300108: floor038
+    3300110: floor039
+    3300112: floor040
+    3300114: floor041
+    3300116: floor042
+    3300118: floor043
+    3300120: floor044
+    3300122: floor045
+    3300124: floor046
+    3300126: floor047
+    3300128: floor048
+    3300130: floor049
+    3300132: floor050
+    3300134: floor051
+    3300136: floor052
+    3300138: floor053
+    3300140: floor054
+    3300142: floor055
+    3300144: floor056
+    3300146: floor057
+    3300148: floor058
+    3300150: floor_red005
+    3300152: floor_red006
+    3300154: floor_red007
+    3300156: floor_red008
+    3300158: lower_wall_concave005
+    3300160: lower_wall_concave008
+    3300162: lower_wall_concave009
+    3300164: lower_wall_concave010
+    3300166: lower_wall_convex001
+    3300168: lower_wall_convex002
+    3300170: lower_wall_convex003
+    3300172: lower_wall_convex004
+    3300174: lower_wall_convex005
+    3300176: lower_wall_convex006
+    3300178: lower_wall_convex007
+    3300180: lower_wall_convex008
+    3300182: lower_wall_convex009
+    3300184: lower_wall_convex010
+    3300186: lower_wall_convex011
+    3300188: lower_wall_convex012
+    3300190: lower_wall_floor002
+    3300192: lower_wall_floor003
+    3300194: lower_wall_floor004
+    3300196: lower_wall_floor005
+    3300198: lower_wall_floor006
+    3300200: lower_wall_floor007
+    3300202: lower_wall_floor008
+    3300204: lower_wall_floor009
+    3300206: lower_wall_floor010
+    3300208: lower_wall_tile
+    3300210: lower_wall_tile 1
+    3300212: lower_wall_tile 10
+    3300214: lower_wall_tile 11
+    3300216: lower_wall_tile 2
+    3300218: lower_wall_tile 3
+    3300220: lower_wall_tile 4
+    3300222: lower_wall_tile 5
+    3300224: lower_wall_tile 6
+    3300226: lower_wall_tile 7
+    3300228: lower_wall_tile 8
+    3300230: lower_wall_tile 9
+    3300232: pillar
+    3300234: pillar 1
+    3300236: pillar 10
+    3300238: pillar 11
+    3300240: pillar 12
+    3300242: pillar 13
+    3300244: pillar 14
+    3300246: pillar 15
+    3300248: pillar 2
+    3300250: pillar 3
+    3300252: pillar 4
+    3300254: pillar 5
+    3300256: pillar 6
+    3300258: pillar 7
+    3300260: pillar 8
+    3300262: pillar 9
+    3300264: pillar013
+    3300266: pillar014
+    3300268: pillar015
+    3300270: pillar016
+    3300272: pillar017
+    3300274: pillar018
+    3300276: pillar019
+    3300278: pillar020
+    3300280: pillar021
+    3300282: pillar022
+    3300284: pillar023
+    3300286: pillar024
+    3300288: pillar025
+    3300290: pillar026
+    3300292: pillar_b
+    3300294: pillar_b 1
+    3300296: pillar_b 2
+    3300298: pillar_b 3
+    3300300: stair_short_wide_b001
+    3300302: stairs011
+    3300304: stairs012
+    3300306: stairs013
+    3300308: stairs014
+    3300310: stairs015
+    3300312: stairs_long005
+    3300314: stairs_small001
+    3300316: stairs_small002
+    3300318: stairs_small003
+    3300320: stairs_small004
+    3300322: step_wall
+    3300324: step_wall 1
+    3300326: step_wall 10
+    3300328: step_wall 11
+    3300330: step_wall 12
+    3300332: step_wall 13
+    3300334: step_wall 14
+    3300336: step_wall 15
+    3300338: step_wall 16
+    3300340: step_wall 17
+    3300342: step_wall 18
+    3300344: step_wall 19
+    3300346: step_wall 2
+    3300348: step_wall 20
+    3300350: step_wall 21
+    3300352: step_wall 22
+    3300354: step_wall 23
+    3300356: step_wall 24
+    3300358: step_wall 25
+    3300360: step_wall 26
+    3300362: step_wall 27
+    3300364: step_wall 28
+    3300366: step_wall 29
+    3300368: step_wall 3
+    3300370: step_wall 30
+    3300372: step_wall 31
+    3300374: step_wall 32
+    3300376: step_wall 33
+    3300378: step_wall 34
+    3300380: step_wall 35
+    3300382: step_wall 36
+    3300384: step_wall 37
+    3300386: step_wall 38
+    3300388: step_wall 39
+    3300390: step_wall 4
+    3300392: step_wall 5
+    3300394: step_wall 6
+    3300396: step_wall 7
+    3300398: step_wall 8
+    3300400: step_wall 9
+    3300402: step_wall_concave_corner
+    3300404: step_wall_concave_corner 1
+    3300406: step_wall_concave_corner 10
+    3300408: step_wall_concave_corner 11
+    3300410: step_wall_concave_corner 2
+    3300412: step_wall_concave_corner 3
+    3300414: step_wall_concave_corner 4
+    3300416: step_wall_concave_corner 5
+    3300418: step_wall_concave_corner 6
+    3300420: step_wall_concave_corner 7
+    3300422: step_wall_concave_corner 8
+    3300424: step_wall_concave_corner 9
+    3300426: step_wall_convex_corner
+    3300428: step_wall_convex_corner 1
+    3300430: step_wall_convex_corner 10
+    3300432: step_wall_convex_corner 11
+    3300434: step_wall_convex_corner 12
+    3300436: step_wall_convex_corner 13
+    3300438: step_wall_convex_corner 14
+    3300440: step_wall_convex_corner 15
+    3300442: step_wall_convex_corner 16
+    3300444: step_wall_convex_corner 17
+    3300446: step_wall_convex_corner 18
+    3300448: step_wall_convex_corner 19
+    3300450: step_wall_convex_corner 2
+    3300452: step_wall_convex_corner 20
+    3300454: step_wall_convex_corner 21
+    3300456: step_wall_convex_corner 22
+    3300458: step_wall_convex_corner 23
+    3300460: step_wall_convex_corner 24
+    3300462: step_wall_convex_corner 25
+    3300464: step_wall_convex_corner 26
+    3300466: step_wall_convex_corner 27
+    3300468: step_wall_convex_corner 28
+    3300470: step_wall_convex_corner 29
+    3300472: step_wall_convex_corner 3
+    3300474: step_wall_convex_corner 30
+    3300476: step_wall_convex_corner 31
+    3300478: step_wall_convex_corner 32
+    3300480: step_wall_convex_corner 33
+    3300482: step_wall_convex_corner 34
+    3300484: step_wall_convex_corner 35
+    3300486: step_wall_convex_corner 36
+    3300488: step_wall_convex_corner 37
+    3300490: step_wall_convex_corner 38
+    3300492: step_wall_convex_corner 39
+    3300494: step_wall_convex_corner 4
+    3300496: step_wall_convex_corner 40
+    3300498: step_wall_convex_corner 41
+    3300500: step_wall_convex_corner 42
+    3300502: step_wall_convex_corner 43
+    3300504: step_wall_convex_corner 44
+    3300506: step_wall_convex_corner 45
+    3300508: step_wall_convex_corner 46
+    3300510: step_wall_convex_corner 47
+    3300512: step_wall_convex_corner 48
+    3300514: step_wall_convex_corner 49
+    3300516: step_wall_convex_corner 5
+    3300518: step_wall_convex_corner 50
+    3300520: step_wall_convex_corner 51
+    3300522: step_wall_convex_corner 52
+    3300524: step_wall_convex_corner 53
+    3300526: step_wall_convex_corner 54
+    3300528: step_wall_convex_corner 55
+    3300530: step_wall_convex_corner 56
+    3300532: step_wall_convex_corner 57
+    3300534: step_wall_convex_corner 58
+    3300536: step_wall_convex_corner 6
+    3300538: step_wall_convex_corner 7
+    3300540: step_wall_convex_corner 8
+    3300542: step_wall_convex_corner 9
+    3300544: step_wall_convex_corner019
+    3300546: step_wall_red_010
+    3300548: step_wall_red_011
+    3300550: step_wall_red_012
+    3300552: step_wall_red_013
+    3300554: step_wall_red_014
+    3300556: step_wall_red_015
+    3300558: step_wall_red_016
+    3300560: step_wall_red_017
+    3300562: step_wall_red_convex_corner
+    3300564: step_wall_red_convex_corner 1
+    3300566: step_wall_red_convex_corner 10
+    3300568: step_wall_red_convex_corner 11
+    3300570: step_wall_red_convex_corner 12
+    3300572: step_wall_red_convex_corner 13
+    3300574: step_wall_red_convex_corner 14
+    3300576: step_wall_red_convex_corner 15
+    3300578: step_wall_red_convex_corner 2
+    3300580: step_wall_red_convex_corner 3
+    3300582: step_wall_red_convex_corner 4
+    3300584: step_wall_red_convex_corner 5
+    3300586: step_wall_red_convex_corner 6
+    3300588: step_wall_red_convex_corner 7
+    3300590: step_wall_red_convex_corner 8
+    3300592: step_wall_red_convex_corner 9
+    3300594: step_wall_red_convex_corner005
+    3300596: step_wall_red_convex_corner006
+    3300598: step_wall_red_convex_corner007
+    3300600: step_wall_red_convex_corner008
+    3300602: torch
+    3300604: torch 1
+    3300606: torch 2
+    3300608: torch 3
+    3300610: torch 4
+    3300612: torch 5
+    3300614: torch 6
+    3300616: torch 7
+    3300618: tower002
+    3300620: tower003
+    3300622: tower_small002
+    3300624: wall_concave_corner
+    3300626: wall_concave_corner 1
+    3300628: wall_concave_corner 2
+    3300630: wall_concave_corner 3
+    3300632: wall_concave_corner 4
+    3300634: wall_concave_corner 5
+    3300636: wall_concave_corner 6
+    3300638: wall_concave_corner 7
+    3300640: wall_concave_corner 8
+    3300642: wall_concave_corner 9
+    3300644: wall_convex_corner
+    3300646: wall_convex_corner 1
+    3300648: wall_convex_corner 2
+    3300650: wall_convex_corner 3
+    3300652: wall_convex_corner 4
+    3300654: wall_convex_corner 5
+    3300656: wall_convex_corner 6
+    3300658: wall_convex_corner 7
+    3300660: wall_tile
+    3300662: wall_tile 1
+    3300664: wall_tile 10
+    3300666: wall_tile 11
+    3300668: wall_tile 12
+    3300670: wall_tile 13
+    3300672: wall_tile 14
+    3300674: wall_tile 15
+    3300676: wall_tile 16
+    3300678: wall_tile 17
+    3300680: wall_tile 18
+    3300682: wall_tile 19
+    3300684: wall_tile 2
+    3300686: wall_tile 20
+    3300688: wall_tile 21
+    3300690: wall_tile 22
+    3300692: wall_tile 23
+    3300694: wall_tile 24
+    3300696: wall_tile 25
+    3300698: wall_tile 3
+    3300700: wall_tile 4
+    3300702: wall_tile 5
+    3300704: wall_tile 6
+    3300706: wall_tile 7
+    3300708: wall_tile 8
+    3300710: wall_tile 9
+    4300000: step_wall_concave_corner
+    4300002: step_wall_concave_corner
+    4300004: step_wall_concave_corner
+    4300006: step_wall_concave_corner
+    4300008: step_wall
+    4300010: step_wall
+    4300012: floor039
+    4300014: floor040
+    4300016: step_wall
+    4300018: step_wall
+    4300020: floor041
+    4300022: floor042
+    4300024: step_wall
+    4300026: step_wall
+    4300028: floor043
+    4300030: floor044
+    4300032: step_wall
+    4300034: step_wall
+    4300036: floor045
+    4300038: floor046
+    4300040: floor047
+    4300042: floor048
+    4300044: floor049
+    4300046: floor050
+    4300048: floor051
+    4300050: floor052
+    4300052: floor053
+    4300054: floor054
+    4300056: step_wall_convex_corner
+    4300058: step_wall
+    4300060: floor055
+    4300062: floor056
+    4300064: step_wall
+    4300066: step_wall
+    4300068: step_wall
+    4300070: step_wall
+    4300072: step_wall
+    4300074: step_wall_convex_corner
+    4300076: step_wall
+    4300078: step_wall
+    4300080: floor057
+    4300082: floor058
+    4300084: step_wall
+    4300086: step_wall
+    4300088: step_wall
+    4300090: step_wall
+    4300092: step_wall
+    4300094: step_wall_convex_corner
+    4300096: step_wall
+    4300098: step_wall
+    4300100: step_wall_convex_corner
+    4300102: step_wall
+    4300104: wall_concave_corner
+    4300106: wall_concave_corner
+    4300108: wall_concave_corner
+    4300110: wall_concave_corner
+    4300112: archway_large001
+    4300114: wall_concave_corner
+    4300116: wall_convex_corner
+    4300118: wall_tile
+    4300120: wall_tile
+    4300122: wall_tile
+    4300124: wall_tile
+    4300126: wall_convex_corner
+    4300128: wall_tile
+    4300130: wall_tile
+    4300132: wall_concave_corner
+    4300134: wall_tile
+    4300136: wall_tile
+    4300138: wall_convex_corner
+    4300140: wall_tile
+    4300142: wall_tile
+    4300144: wall_tile
+    4300146: wall_tile
+    4300148: wall_convex_corner
+    4300150: stairs_long005
+    4300152: wall_tile
+    4300154: wall_tile
+    4300156: wall_tile
+    4300158: wall_tile
+    4300160: wall_convex_corner
+    4300162: wall_tile
+    4300164: wall_tile
+    4300166: wall_tile
+    4300168: wall_tile
+    4300170: wall_tile
+    4300172: wall_tile
+    4300174: wall_tile
+    4300176: wall_tile
+    4300178: wall_convex_corner
+    4300180: wall_tile
+    4300182: wall_tile
+    4300184: pillar_b
+    4300186: pillar_b
+    4300188: pillar_b
+    4300190: pillar_b
+    4300192: pillar
+    4300194: pillar
+    4300196: pillar
+    4300198: pillar
+    4300200: pillar
+    4300202: pillar
+    4300204: pillar
+    4300206: pillar
+    4300208: pillar
+    4300210: pillar
+    4300212: pillar
+    4300214: pillar
+    4300216: stairs011
+    4300218: stairs012
+    4300220: stairs013
+    4300222: tower_small002
+    4300224: pillar
+    4300226: pillar
+    4300228: pillar
+    4300230: pillar
+    4300232: tower002
+    4300234: wall_concave_corner
+    4300236: wall_convex_corner
+    4300238: wall_convex_corner
+    4300240: fence
+    4300242: fence
+    4300244: wall_concave_corner
+    4300246: wall_concave_corner
+    4300248: wall_concave_corner
+    4300250: tower003
+    4300252: fence
+    4300254: fence
+    4300256: fence
+    4300258: fence
+    4300260: fence
+    4300262: fence
+    4300264: stairs014
+    4300266: stairs015
+    4300268: fence_concave_corner001
+    4300270: fence_convex_corner001
+    4300272: fence_tile002
+    4300274: fence_convex_corner002
+    4300276: fence_tile003
+    4300278: fence_tile004
+    4300280: fence_convex_corner003
+    4300282: fence_tile005
+    4300284: fence_concave_corner002
+    4300286: fence_convex_corner004
+    4300288: fence_tile006
+    4300290: fence_tile007
+    4300292: fence_tile008
+    4300294: fence_tile009
+    4300296: fence_tile010
+    4300298: fence_tile011
+    4300300: exit004
+    4300302: entrance003
+    4300304: lower_wall_floor010
+    4300306: lower_wall_floor002
+    4300308: lower_wall_floor009
+    4300310: lower_wall_floor003
+    4300312: lower_wall_tile
+    4300314: lower_wall_floor004
+    4300316: lower_wall_tile
+    4300318: lower_wall_convex002
+    4300320: lower_wall_floor006
+    4300322: lower_wall_tile
+    4300324: lower_wall_tile
+    4300326: lower_wall_floor007
+    4300328: lower_wall_floor005
+    4300330: lower_wall_tile
+    4300332: lower_wall_tile
+    4300334: lower_wall_floor008
+    4300336: lower_wall_tile
+    4300338: lower_wall_tile
+    4300340: lower_wall_tile
+    4300342: lower_wall_tile
+    4300344: lower_wall_convex003
+    4300346: lower_wall_tile
+    4300348: lower_wall_tile
+    4300350: lower_wall_convex001
+    4300352: lower_wall_convex004
+    4300354: stairs_small001
+    4300356: stairs_small002
+    4300358: stairs_small003
+    4300360: stairs_small004
+    4300362: step_wall
+    4300364: step_wall_convex_corner
+    4300366: step_wall_convex_corner
+    4300368: step_wall_concave_corner
+    4300370: step_wall
+    4300372: floor015
+    4300374: floor016
+    4300376: step_wall
+    4300378: step_wall_convex_corner019
+    4300380: step_wall
+    4300382: step_wall
+    4300384: step_wall_convex_corner
+    4300386: step_wall_concave_corner
+    4300388: step_wall_convex_corner
+    4300390: step_wall
+    4300392: step_wall_convex_corner
+    4300394: step_wall_concave_corner
+    4300396: step_wall_concave_corner
+    4300398: step_wall
+    4300400: step_wall
+    4300402: floor017
+    4300404: floor018
+    4300406: floor019
+    4300408: floor020
+    4300410: step_wall
+    4300412: step_wall
+    4300414: step_wall
+    4300416: step_wall
+    4300418: floor021
+    4300420: floor022
+    4300422: floor023
+    4300424: floor024
+    4300426: step_wall
+    4300428: step_wall
+    4300430: step_wall
+    4300432: step_wall_convex_corner
+    4300434: step_wall_convex_corner
+    4300436: step_wall
+    4300438: floor025
+    4300440: floor026
+    4300442: floor027
+    4300444: floor028
+    4300446: floor029
+    4300448: floor030
+    4300450: floor031
+    4300452: floor032
+    4300454: floor033
+    4300456: floor034
+    4300458: floor035
+    4300460: floor036
+    4300462: floor037
+    4300464: floor038
+    4300466: step_wall_convex_corner
+    4300468: step_wall_convex_corner
+    4300470: step_wall_convex_corner
+    4300472: step_wall_convex_corner
+    4300474: step_wall_convex_corner
+    4300476: step_wall_convex_corner
+    4300478: step_wall_convex_corner
+    4300480: step_wall_convex_corner
+    4300482: step_wall_red_convex_corner
+    4300484: step_wall_red_convex_corner
+    4300486: step_wall_red_convex_corner
+    4300488: step_wall_red_convex_corner
+    4300490: step_wall_concave_corner
+    4300492: step_wall_concave_corner
+    4300494: step_wall_concave_corner
+    4300496: step_wall_concave_corner
+    4300498: step_wall_convex_corner
+    4300500: step_wall_convex_corner
+    4300502: step_wall_convex_corner
+    4300504: step_wall_convex_corner
+    4300506: step_wall_convex_corner
+    4300508: step_wall_convex_corner
+    4300510: step_wall_convex_corner
+    4300512: step_wall_convex_corner
+    4300514: step_wall_convex_corner
+    4300516: step_wall_convex_corner
+    4300518: step_wall_convex_corner
+    4300520: step_wall_convex_corner
+    4300522: step_wall_convex_corner
+    4300524: step_wall_convex_corner
+    4300526: step_wall_convex_corner
+    4300528: step_wall_convex_corner
+    4300530: step_wall_convex_corner
+    4300532: step_wall_convex_corner
+    4300534: step_wall_convex_corner
+    4300536: step_wall_convex_corner
+    4300538: step_wall_convex_corner
+    4300540: step_wall_convex_corner
+    4300542: step_wall_convex_corner
+    4300544: step_wall_convex_corner
+    4300546: lower_wall_convex005
+    4300548: lower_wall_convex006
+    4300550: lower_wall_convex007
+    4300552: lower_wall_convex008
+    4300554: lower_wall_convex009
+    4300556: lower_wall_convex010
+    4300558: lower_wall_convex011
+    4300560: lower_wall_convex012
+    4300562: step_wall_red_convex_corner
+    4300564: step_wall_red_convex_corner
+    4300566: step_wall_red_convex_corner
+    4300568: step_wall_red_convex_corner
+    4300570: step_wall_red_convex_corner
+    4300572: step_wall_red_convex_corner
+    4300574: step_wall_red_convex_corner
+    4300576: step_wall_red_convex_corner
+    4300578: step_wall_red_convex_corner
+    4300580: step_wall_red_convex_corner
+    4300582: step_wall_red_convex_corner
+    4300584: step_wall_red_convex_corner
+    4300586: step_wall_convex_corner
+    4300588: step_wall_convex_corner
+    4300590: step_wall_convex_corner
+    4300592: step_wall_convex_corner
+    4300594: step_wall_convex_corner
+    4300596: step_wall_convex_corner
+    4300598: step_wall_convex_corner
+    4300600: step_wall_convex_corner
+    4300602: step_wall_convex_corner
+    4300604: step_wall_convex_corner
+    4300606: step_wall_convex_corner
+    4300608: step_wall_convex_corner
+    4300610: step_wall_convex_corner
+    4300612: step_wall_convex_corner
+    4300614: step_wall_convex_corner
+    4300616: step_wall_convex_corner
+    4300618: lower_wall_concave008
+    4300620: lower_wall_concave005
+    4300622: lower_wall_concave009
+    4300624: lower_wall_concave010
+    4300626: pillar013
+    4300628: pillar014
+    4300630: pillar015
+    4300632: pillar016
+    4300634: pillar017
+    4300636: pillar018
+    4300638: pillar019
+    4300640: pillar020
+    4300642: torch
+    4300644: torch
+    4300646: torch
+    4300648: torch
+    4300650: torch
+    4300652: torch
+    4300654: torch
+    4300656: torch
+    4300658: archway_small001
+    4300660: stair_short_wide_b001
+    4300662: step_wall_red_016
+    4300664: floor_red007
+    4300666: floor_red006
+    4300668: floor_red005
+    4300670: step_wall_red_017
+    4300672: step_wall_red_convex_corner007
+    4300674: step_wall_red_014
+    4300676: step_wall_red_015
+    4300678: floor_red008
+    4300680: step_wall_red_012
+    4300682: step_wall_red_convex_corner006
+    4300684: step_wall_red_convex_corner005
+    4300686: step_wall_red_011
+    4300688: step_wall_red_013
+    4300690: step_wall_red_010
+    4300692: step_wall_red_convex_corner008
+    4300694: door004
+    4300696: door_a001
+    4300698: door_b001
+    4300700: pillar021
+    4300702: pillar022
+    4300704: pillar023
+    4300706: pillar024
+    4300708: pillar025
+    4300710: pillar026
+    6400000: archway_large001
+    6400002: archway_small001
+    6400004: door004
+    6400006: door_a001
+    6400008: door_b001
+    6400010: entrance003
+    6400012: exit004
+    6400014: fence
+    6400016: fence 1
+    6400018: fence 2
+    6400020: fence 3
+    6400022: fence 4
+    6400024: fence 5
+    6400026: fence 6
+    6400028: fence 7
+    6400030: fence_concave_corner001
+    6400032: fence_concave_corner002
+    6400034: fence_convex_corner001
+    6400036: fence_convex_corner002
+    6400038: fence_convex_corner003
+    6400040: fence_convex_corner004
+    6400042: fence_tile002
+    6400044: fence_tile003
+    6400046: fence_tile004
+    6400048: fence_tile005
+    6400050: fence_tile006
+    6400052: fence_tile007
+    6400054: fence_tile008
+    6400056: fence_tile009
+    6400058: fence_tile010
+    6400060: fence_tile011
+    6400062: floor015
+    6400064: floor016
+    6400066: floor017
+    6400068: floor018
+    6400070: floor019
+    6400072: floor020
+    6400074: floor021
+    6400076: floor022
+    6400078: floor023
+    6400080: floor024
+    6400082: floor025
+    6400084: floor026
+    6400086: floor027
+    6400088: floor028
+    6400090: floor029
+    6400092: floor030
+    6400094: floor031
+    6400096: floor032
+    6400098: floor033
+    6400100: floor034
+    6400102: floor035
+    6400104: floor036
+    6400106: floor037
+    6400108: floor038
+    6400110: floor039
+    6400112: floor040
+    6400114: floor041
+    6400116: floor042
+    6400118: floor043
+    6400120: floor044
+    6400122: floor045
+    6400124: floor046
+    6400126: floor047
+    6400128: floor048
+    6400130: floor049
+    6400132: floor050
+    6400134: floor051
+    6400136: floor052
+    6400138: floor053
+    6400140: floor054
+    6400142: floor055
+    6400144: floor056
+    6400146: floor057
+    6400148: floor058
+    6400150: floor_red005
+    6400152: floor_red006
+    6400154: floor_red007
+    6400156: floor_red008
+    6400158: lower_wall_concave005
+    6400160: lower_wall_concave008
+    6400162: lower_wall_concave009
+    6400164: lower_wall_concave010
+    6400166: lower_wall_convex001
+    6400168: lower_wall_convex002
+    6400170: lower_wall_convex003
+    6400172: lower_wall_convex004
+    6400174: lower_wall_convex005
+    6400176: lower_wall_convex006
+    6400178: lower_wall_convex007
+    6400180: lower_wall_convex008
+    6400182: lower_wall_convex009
+    6400184: lower_wall_convex010
+    6400186: lower_wall_convex011
+    6400188: lower_wall_convex012
+    6400190: lower_wall_floor002
+    6400192: lower_wall_floor003
+    6400194: lower_wall_floor004
+    6400196: lower_wall_floor005
+    6400198: lower_wall_floor006
+    6400200: lower_wall_floor007
+    6400202: lower_wall_floor008
+    6400204: lower_wall_floor009
+    6400206: lower_wall_floor010
+    6400208: lower_wall_tile
+    6400210: lower_wall_tile 1
+    6400212: lower_wall_tile 10
+    6400214: lower_wall_tile 11
+    6400216: lower_wall_tile 2
+    6400218: lower_wall_tile 3
+    6400220: lower_wall_tile 4
+    6400222: lower_wall_tile 5
+    6400224: lower_wall_tile 6
+    6400226: lower_wall_tile 7
+    6400228: lower_wall_tile 8
+    6400230: lower_wall_tile 9
+    6400232: pillar
+    6400234: pillar 1
+    6400236: pillar 10
+    6400238: pillar 11
+    6400240: pillar 12
+    6400242: pillar 13
+    6400244: pillar 14
+    6400246: pillar 15
+    6400248: pillar 2
+    6400250: pillar 3
+    6400252: pillar 4
+    6400254: pillar 5
+    6400256: pillar 6
+    6400258: pillar 7
+    6400260: pillar 8
+    6400262: pillar 9
+    6400264: pillar013
+    6400266: pillar014
+    6400268: pillar015
+    6400270: pillar016
+    6400272: pillar017
+    6400274: pillar018
+    6400276: pillar019
+    6400278: pillar020
+    6400280: pillar021
+    6400282: pillar022
+    6400284: pillar023
+    6400286: pillar024
+    6400288: pillar025
+    6400290: pillar026
+    6400292: pillar_b
+    6400294: pillar_b 1
+    6400296: pillar_b 2
+    6400298: pillar_b 3
+    6400300: stair_short_wide_b001
+    6400302: stairs011
+    6400304: stairs012
+    6400306: stairs013
+    6400308: stairs014
+    6400310: stairs015
+    6400312: stairs_long005
+    6400314: stairs_small001
+    6400316: stairs_small002
+    6400318: stairs_small003
+    6400320: stairs_small004
+    6400322: step_wall
+    6400324: step_wall 1
+    6400326: step_wall 10
+    6400328: step_wall 11
+    6400330: step_wall 12
+    6400332: step_wall 13
+    6400334: step_wall 14
+    6400336: step_wall 15
+    6400338: step_wall 16
+    6400340: step_wall 17
+    6400342: step_wall 18
+    6400344: step_wall 19
+    6400346: step_wall 2
+    6400348: step_wall 20
+    6400350: step_wall 21
+    6400352: step_wall 22
+    6400354: step_wall 23
+    6400356: step_wall 24
+    6400358: step_wall 25
+    6400360: step_wall 26
+    6400362: step_wall 27
+    6400364: step_wall 28
+    6400366: step_wall 29
+    6400368: step_wall 3
+    6400370: step_wall 30
+    6400372: step_wall 31
+    6400374: step_wall 32
+    6400376: step_wall 33
+    6400378: step_wall 34
+    6400380: step_wall 35
+    6400382: step_wall 36
+    6400384: step_wall 37
+    6400386: step_wall 38
+    6400388: step_wall 39
+    6400390: step_wall 4
+    6400392: step_wall 5
+    6400394: step_wall 6
+    6400396: step_wall 7
+    6400398: step_wall 8
+    6400400: step_wall 9
+    6400402: step_wall_concave_corner
+    6400404: step_wall_concave_corner 1
+    6400406: step_wall_concave_corner 10
+    6400408: step_wall_concave_corner 11
+    6400410: step_wall_concave_corner 2
+    6400412: step_wall_concave_corner 3
+    6400414: step_wall_concave_corner 4
+    6400416: step_wall_concave_corner 5
+    6400418: step_wall_concave_corner 6
+    6400420: step_wall_concave_corner 7
+    6400422: step_wall_concave_corner 8
+    6400424: step_wall_concave_corner 9
+    6400426: step_wall_convex_corner
+    6400428: step_wall_convex_corner 1
+    6400430: step_wall_convex_corner 10
+    6400432: step_wall_convex_corner 11
+    6400434: step_wall_convex_corner 12
+    6400436: step_wall_convex_corner 13
+    6400438: step_wall_convex_corner 14
+    6400440: step_wall_convex_corner 15
+    6400442: step_wall_convex_corner 16
+    6400444: step_wall_convex_corner 17
+    6400446: step_wall_convex_corner 18
+    6400448: step_wall_convex_corner 19
+    6400450: step_wall_convex_corner 2
+    6400452: step_wall_convex_corner 20
+    6400454: step_wall_convex_corner 21
+    6400456: step_wall_convex_corner 22
+    6400458: step_wall_convex_corner 23
+    6400460: step_wall_convex_corner 24
+    6400462: step_wall_convex_corner 25
+    6400464: step_wall_convex_corner 26
+    6400466: step_wall_convex_corner 27
+    6400468: step_wall_convex_corner 28
+    6400470: step_wall_convex_corner 29
+    6400472: step_wall_convex_corner 3
+    6400474: step_wall_convex_corner 30
+    6400476: step_wall_convex_corner 31
+    6400478: step_wall_convex_corner 32
+    6400480: step_wall_convex_corner 33
+    6400482: step_wall_convex_corner 34
+    6400484: step_wall_convex_corner 35
+    6400486: step_wall_convex_corner 36
+    6400488: step_wall_convex_corner 37
+    6400490: step_wall_convex_corner 38
+    6400492: step_wall_convex_corner 39
+    6400494: step_wall_convex_corner 4
+    6400496: step_wall_convex_corner 40
+    6400498: step_wall_convex_corner 41
+    6400500: step_wall_convex_corner 42
+    6400502: step_wall_convex_corner 43
+    6400504: step_wall_convex_corner 44
+    6400506: step_wall_convex_corner 45
+    6400508: step_wall_convex_corner 46
+    6400510: step_wall_convex_corner 47
+    6400512: step_wall_convex_corner 48
+    6400514: step_wall_convex_corner 49
+    6400516: step_wall_convex_corner 5
+    6400518: step_wall_convex_corner 50
+    6400520: step_wall_convex_corner 51
+    6400522: step_wall_convex_corner 52
+    6400524: step_wall_convex_corner 53
+    6400526: step_wall_convex_corner 54
+    6400528: step_wall_convex_corner 55
+    6400530: step_wall_convex_corner 56
+    6400532: step_wall_convex_corner 57
+    6400534: step_wall_convex_corner 58
+    6400536: step_wall_convex_corner 6
+    6400538: step_wall_convex_corner 7
+    6400540: step_wall_convex_corner 8
+    6400542: step_wall_convex_corner 9
+    6400544: step_wall_convex_corner019
+    6400546: step_wall_red_010
+    6400548: step_wall_red_011
+    6400550: step_wall_red_012
+    6400552: step_wall_red_013
+    6400554: step_wall_red_014
+    6400556: step_wall_red_015
+    6400558: step_wall_red_016
+    6400560: step_wall_red_017
+    6400562: step_wall_red_convex_corner
+    6400564: step_wall_red_convex_corner 1
+    6400566: step_wall_red_convex_corner 10
+    6400568: step_wall_red_convex_corner 11
+    6400570: step_wall_red_convex_corner 12
+    6400572: step_wall_red_convex_corner 13
+    6400574: step_wall_red_convex_corner 14
+    6400576: step_wall_red_convex_corner 15
+    6400578: step_wall_red_convex_corner 2
+    6400580: step_wall_red_convex_corner 3
+    6400582: step_wall_red_convex_corner 4
+    6400584: step_wall_red_convex_corner 5
+    6400586: step_wall_red_convex_corner 6
+    6400588: step_wall_red_convex_corner 7
+    6400590: step_wall_red_convex_corner 8
+    6400592: step_wall_red_convex_corner 9
+    6400594: step_wall_red_convex_corner005
+    6400596: step_wall_red_convex_corner006
+    6400598: step_wall_red_convex_corner007
+    6400600: step_wall_red_convex_corner008
+    6400602: torch
+    6400604: torch 1
+    6400606: torch 2
+    6400608: torch 3
+    6400610: torch 4
+    6400612: torch 5
+    6400614: torch 6
+    6400616: torch 7
+    6400618: tower002
+    6400620: tower003
+    6400622: tower_small002
+    6400624: wall_concave_corner
+    6400626: wall_concave_corner 1
+    6400628: wall_concave_corner 2
+    6400630: wall_concave_corner 3
+    6400632: wall_concave_corner 4
+    6400634: wall_concave_corner 5
+    6400636: wall_concave_corner 6
+    6400638: wall_concave_corner 7
+    6400640: wall_concave_corner 8
+    6400642: wall_concave_corner 9
+    6400644: wall_convex_corner
+    6400646: wall_convex_corner 1
+    6400648: wall_convex_corner 2
+    6400650: wall_convex_corner 3
+    6400652: wall_convex_corner 4
+    6400654: wall_convex_corner 5
+    6400656: wall_convex_corner 6
+    6400658: wall_convex_corner 7
+    6400660: wall_tile
+    6400662: wall_tile 1
+    6400664: wall_tile 10
+    6400666: wall_tile 11
+    6400668: wall_tile 12
+    6400670: wall_tile 13
+    6400672: wall_tile 14
+    6400674: wall_tile 15
+    6400676: wall_tile 16
+    6400678: wall_tile 17
+    6400680: wall_tile 18
+    6400682: wall_tile 19
+    6400684: wall_tile 2
+    6400686: wall_tile 20
+    6400688: wall_tile 21
+    6400690: wall_tile 22
+    6400692: wall_tile 23
+    6400694: wall_tile 24
+    6400696: wall_tile 25
+    6400698: wall_tile 3
+    6400700: wall_tile 4
+    6400702: wall_tile 5
+    6400704: wall_tile 6
+    6400706: wall_tile 7
+    6400708: wall_tile 8
+    6400710: wall_tile 9
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

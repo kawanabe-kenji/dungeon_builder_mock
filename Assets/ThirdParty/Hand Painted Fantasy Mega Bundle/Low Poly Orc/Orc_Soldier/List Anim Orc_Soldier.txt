@@ -1,0 +1,7 @@
+Attack:0-40
+Frenzied attack:41-93
+Die:94-124
+Idle:125-155
+Hit:156-176
+Run:177-197
+walk:198-228

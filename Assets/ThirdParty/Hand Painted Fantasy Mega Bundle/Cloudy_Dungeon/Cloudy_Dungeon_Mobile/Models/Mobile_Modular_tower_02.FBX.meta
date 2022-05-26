@@ -1,0 +1,155 @@
+fileFormatVersion: 2
+guid: 7cbc16351f6ac7643af438feeae09fde
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: mobile_lower_wall_concave001
+    100002: mobile_lower_wall_concave002
+    100004: mobile_lower_wall_concave003
+    100006: mobile_lower_wall_concave004
+    100008: mobile_lower_wall_convex005
+    100010: mobile_lower_wall_convex006
+    100012: mobile_lower_wall_convex007
+    100014: mobile_lower_wall_convex008
+    100016: mobile_lower_wall_convex009
+    100018: mobile_lower_wall_convex010
+    100020: mobile_lower_wall_convex011
+    100022: mobile_lower_wall_convex012
+    100024: //RootNode
+    100026: mobile_pillar02_b001
+    100028: mobile_pillar02_b002
+    100030: mobile_pillar02_b003
+    100032: mobile_pillar02_b004
+    100034: mobile_tower_small001
+    400000: mobile_lower_wall_concave001
+    400002: mobile_lower_wall_concave002
+    400004: mobile_lower_wall_concave003
+    400006: mobile_lower_wall_concave004
+    400008: mobile_lower_wall_convex005
+    400010: mobile_lower_wall_convex006
+    400012: mobile_lower_wall_convex007
+    400014: mobile_lower_wall_convex008
+    400016: mobile_lower_wall_convex009
+    400018: mobile_lower_wall_convex010
+    400020: mobile_lower_wall_convex011
+    400022: mobile_lower_wall_convex012
+    400024: //RootNode
+    400026: mobile_pillar02_b001
+    400028: mobile_pillar02_b002
+    400030: mobile_pillar02_b003
+    400032: mobile_pillar02_b004
+    400034: mobile_tower_small001
+    2300000: mobile_lower_wall_concave001
+    2300002: mobile_lower_wall_concave002
+    2300004: mobile_lower_wall_concave003
+    2300006: mobile_lower_wall_concave004
+    2300008: mobile_lower_wall_convex005
+    2300010: mobile_lower_wall_convex006
+    2300012: mobile_lower_wall_convex007
+    2300014: mobile_lower_wall_convex008
+    2300016: mobile_lower_wall_convex009
+    2300018: mobile_lower_wall_convex010
+    2300020: mobile_lower_wall_convex011
+    2300022: mobile_lower_wall_convex012
+    2300024: mobile_pillar02_b001
+    2300026: mobile_pillar02_b002
+    2300028: mobile_pillar02_b003
+    2300030: mobile_pillar02_b004
+    2300032: mobile_tower_small001
+    3300000: mobile_lower_wall_concave001
+    3300002: mobile_lower_wall_concave002
+    3300004: mobile_lower_wall_concave003
+    3300006: mobile_lower_wall_concave004
+    3300008: mobile_lower_wall_convex005
+    3300010: mobile_lower_wall_convex006
+    3300012: mobile_lower_wall_convex007
+    3300014: mobile_lower_wall_convex008
+    3300016: mobile_lower_wall_convex009
+    3300018: mobile_lower_wall_convex010
+    3300020: mobile_lower_wall_convex011
+    3300022: mobile_lower_wall_convex012
+    3300024: mobile_pillar02_b001
+    3300026: mobile_pillar02_b002
+    3300028: mobile_pillar02_b003
+    3300030: mobile_pillar02_b004
+    3300032: mobile_tower_small001
+    4300000: mobile_lower_wall_concave001
+    4300002: mobile_lower_wall_convex005
+    4300004: mobile_lower_wall_convex006
+    4300006: mobile_lower_wall_convex007
+    4300008: mobile_lower_wall_convex008
+    4300010: mobile_lower_wall_concave002
+    4300012: mobile_lower_wall_convex009
+    4300014: mobile_lower_wall_convex010
+    4300016: mobile_lower_wall_convex011
+    4300018: mobile_lower_wall_concave003
+    4300020: mobile_lower_wall_concave004
+    4300022: mobile_lower_wall_convex012
+    4300024: mobile_pillar02_b001
+    4300026: mobile_pillar02_b002
+    4300028: mobile_pillar02_b003
+    4300030: mobile_pillar02_b004
+    4300032: mobile_tower_small001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

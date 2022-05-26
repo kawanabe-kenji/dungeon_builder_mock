@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: e32966b7d62ec2b4f801123eaa9e61ee
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: mobile_fence_convex_corner004
+    100002: mobile_fence_convex_corner005
+    100004: mobile_fence_convex_corner006
+    100006: mobile_fence_convex_corner007
+    100008: mobile_fence_tile017
+    100010: mobile_fence_tile018
+    100012: mobile_fence_tile019
+    100014: mobile_fence_tile020
+    100016: mobile_floor_red001
+    100018: mobile_floor_red002
+    100020: mobile_floor_red003
+    100022: mobile_floor_red004
+    100024: //RootNode
+    100026: mobile_step_wall_red_003
+    100028: mobile_step_wall_red_004
+    100030: mobile_step_wall_red_005
+    100032: mobile_step_wall_red_006
+    100034: mobile_step_wall_red_007
+    100036: mobile_step_wall_red_008
+    100038: mobile_step_wall_red_009
+    100040: mobile_step_wall_red_010
+    100042: mobile_step_wall_red_convex_corner009
+    100044: mobile_step_wall_red_convex_corner010
+    100046: mobile_step_wall_red_convex_corner011
+    100048: mobile_step_wall_red_convex_corner012
+    400000: mobile_fence_convex_corner004
+    400002: mobile_fence_convex_corner005
+    400004: mobile_fence_convex_corner006
+    400006: mobile_fence_convex_corner007
+    400008: mobile_fence_tile017
+    400010: mobile_fence_tile018
+    400012: mobile_fence_tile019
+    400014: mobile_fence_tile020
+    400016: mobile_floor_red001
+    400018: mobile_floor_red002
+    400020: mobile_floor_red003
+    400022: mobile_floor_red004
+    400024: //RootNode
+    400026: mobile_step_wall_red_003
+    400028: mobile_step_wall_red_004
+    400030: mobile_step_wall_red_005
+    400032: mobile_step_wall_red_006
+    400034: mobile_step_wall_red_007
+    400036: mobile_step_wall_red_008
+    400038: mobile_step_wall_red_009
+    400040: mobile_step_wall_red_010
+    400042: mobile_step_wall_red_convex_corner009
+    400044: mobile_step_wall_red_convex_corner010
+    400046: mobile_step_wall_red_convex_corner011
+    400048: mobile_step_wall_red_convex_corner012
+    2300000: mobile_fence_convex_corner004
+    2300002: mobile_fence_convex_corner005
+    2300004: mobile_fence_convex_corner006
+    2300006: mobile_fence_convex_corner007
+    2300008: mobile_fence_tile017
+    2300010: mobile_fence_tile018
+    2300012: mobile_fence_tile019
+    2300014: mobile_fence_tile020
+    2300016: mobile_floor_red001
+    2300018: mobile_floor_red002
+    2300020: mobile_floor_red003
+    2300022: mobile_floor_red004
+    2300024: mobile_step_wall_red_003
+    2300026: mobile_step_wall_red_004
+    2300028: mobile_step_wall_red_005
+    2300030: mobile_step_wall_red_006
+    2300032: mobile_step_wall_red_007
+    2300034: mobile_step_wall_red_008
+    2300036: mobile_step_wall_red_009
+    2300038: mobile_step_wall_red_010
+    2300040: mobile_step_wall_red_convex_corner009
+    2300042: mobile_step_wall_red_convex_corner010
+    2300044: mobile_step_wall_red_convex_corner011
+    2300046: mobile_step_wall_red_convex_corner012
+    3300000: mobile_fence_convex_corner004
+    3300002: mobile_fence_convex_corner005
+    3300004: mobile_fence_convex_corner006
+    3300006: mobile_fence_convex_corner007
+    3300008: mobile_fence_tile017
+    3300010: mobile_fence_tile018
+    3300012: mobile_fence_tile019
+    3300014: mobile_fence_tile020
+    3300016: mobile_floor_red001
+    3300018: mobile_floor_red002
+    3300020: mobile_floor_red003
+    3300022: mobile_floor_red004
+    3300024: mobile_step_wall_red_003
+    3300026: mobile_step_wall_red_004
+    3300028: mobile_step_wall_red_005
+    3300030: mobile_step_wall_red_006
+    3300032: mobile_step_wall_red_007
+    3300034: mobile_step_wall_red_008
+    3300036: mobile_step_wall_red_009
+    3300038: mobile_step_wall_red_010
+    3300040: mobile_step_wall_red_convex_corner009
+    3300042: mobile_step_wall_red_convex_corner010
+    3300044: mobile_step_wall_red_convex_corner011
+    3300046: mobile_step_wall_red_convex_corner012
+    4300000: mobile_step_wall_red_010
+    4300002: mobile_fence_tile020
+    4300004: mobile_floor_red001
+    4300006: mobile_fence_tile019
+    4300008: mobile_fence_convex_corner006
+    4300010: mobile_step_wall_red_convex_corner011
+    4300012: mobile_step_wall_red_005
+    4300014: mobile_step_wall_red_006
+    4300016: mobile_step_wall_red_convex_corner012
+    4300018: mobile_step_wall_red_007
+    4300020: mobile_step_wall_red_008
+    4300022: mobile_step_wall_red_009
+    4300024: mobile_fence_convex_corner007
+    4300026: mobile_floor_red002
+    4300028: mobile_floor_red003
+    4300030: mobile_floor_red004
+    4300032: mobile_fence_convex_corner004
+    4300034: mobile_fence_tile017
+    4300036: mobile_fence_tile018
+    4300038: mobile_fence_convex_corner005
+    4300040: mobile_step_wall_red_convex_corner009
+    4300042: mobile_step_wall_red_004
+    4300044: mobile_step_wall_red_003
+    4300046: mobile_step_wall_red_convex_corner010
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

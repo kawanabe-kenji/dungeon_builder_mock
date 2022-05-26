@@ -1,0 +1,8 @@
+Animations List:
+Arrow Attack: 0-50
+Multiple Shots Attack: 51-141
+Dead: 142-172
+Hit: 173-193
+Idle: 194-218
+Run: 219-239
+Walk: 240-270

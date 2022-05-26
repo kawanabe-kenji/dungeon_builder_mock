@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 2628e5b23ce49eb4ebe1ffe0c79efcc7
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: archway_small001
+    100002: //RootNode
+    100004: pillar032
+    100006: pillar033
+    100008: pillar034
+    100010: pillar035
+    100012: step_wall_red_concave_corner001
+    100014: step_wall_red_concave_corner002
+    100016: step_wall_red_concave_corner003
+    100018: step_wall_red_concave_corner004
+    100020: step_wall_red_convex_corner005
+    100022: step_wall_red_convex_corner006
+    100024: step_wall_red_convex_corner007
+    100026: step_wall_red_convex_corner008
+    100028: step_wall_red_convex_corner009
+    100030: step_wall_red_convex_corner010
+    100032: step_wall_red_convex_corner011
+    100034: step_wall_red_convex_corner012
+    100036: wall_concave_corner009
+    100038: wall_concave_corner010
+    100040: wall_concave_corner011
+    100042: wall_concave_corner012
+    100044: wall_convex_corner023
+    100046: wall_convex_corner024
+    400000: archway_small001
+    400002: //RootNode
+    400004: pillar032
+    400006: pillar033
+    400008: pillar034
+    400010: pillar035
+    400012: step_wall_red_concave_corner001
+    400014: step_wall_red_concave_corner002
+    400016: step_wall_red_concave_corner003
+    400018: step_wall_red_concave_corner004
+    400020: step_wall_red_convex_corner005
+    400022: step_wall_red_convex_corner006
+    400024: step_wall_red_convex_corner007
+    400026: step_wall_red_convex_corner008
+    400028: step_wall_red_convex_corner009
+    400030: step_wall_red_convex_corner010
+    400032: step_wall_red_convex_corner011
+    400034: step_wall_red_convex_corner012
+    400036: wall_concave_corner009
+    400038: wall_concave_corner010
+    400040: wall_concave_corner011
+    400042: wall_concave_corner012
+    400044: wall_convex_corner023
+    400046: wall_convex_corner024
+    2300000: archway_small001
+    2300002: pillar032
+    2300004: pillar033
+    2300006: pillar034
+    2300008: pillar035
+    2300010: step_wall_red_concave_corner001
+    2300012: step_wall_red_concave_corner002
+    2300014: step_wall_red_concave_corner003
+    2300016: step_wall_red_concave_corner004
+    2300018: step_wall_red_convex_corner005
+    2300020: step_wall_red_convex_corner006
+    2300022: step_wall_red_convex_corner007
+    2300024: step_wall_red_convex_corner008
+    2300026: step_wall_red_convex_corner009
+    2300028: step_wall_red_convex_corner010
+    2300030: step_wall_red_convex_corner011
+    2300032: step_wall_red_convex_corner012
+    2300034: wall_concave_corner009
+    2300036: wall_concave_corner010
+    2300038: wall_concave_corner011
+    2300040: wall_concave_corner012
+    2300042: wall_convex_corner023
+    2300044: wall_convex_corner024
+    3300000: archway_small001
+    3300002: pillar032
+    3300004: pillar033
+    3300006: pillar034
+    3300008: pillar035
+    3300010: step_wall_red_concave_corner001
+    3300012: step_wall_red_concave_corner002
+    3300014: step_wall_red_concave_corner003
+    3300016: step_wall_red_concave_corner004
+    3300018: step_wall_red_convex_corner005
+    3300020: step_wall_red_convex_corner006
+    3300022: step_wall_red_convex_corner007
+    3300024: step_wall_red_convex_corner008
+    3300026: step_wall_red_convex_corner009
+    3300028: step_wall_red_convex_corner010
+    3300030: step_wall_red_convex_corner011
+    3300032: step_wall_red_convex_corner012
+    3300034: wall_concave_corner009
+    3300036: wall_concave_corner010
+    3300038: wall_concave_corner011
+    3300040: wall_concave_corner012
+    3300042: wall_convex_corner023
+    3300044: wall_convex_corner024
+    4300000: step_wall_red_convex_corner008
+    4300002: step_wall_red_convex_corner007
+    4300004: step_wall_red_concave_corner002
+    4300006: pillar033
+    4300008: pillar032
+    4300010: pillar035
+    4300012: wall_concave_corner011
+    4300014: wall_concave_corner010
+    4300016: wall_convex_corner024
+    4300018: wall_convex_corner023
+    4300020: wall_concave_corner009
+    4300022: step_wall_red_convex_corner012
+    4300024: step_wall_red_convex_corner011
+    4300026: step_wall_red_convex_corner010
+    4300028: step_wall_red_convex_corner009
+    4300030: wall_concave_corner012
+    4300032: archway_small001
+    4300034: step_wall_red_convex_corner006
+    4300036: step_wall_red_convex_corner005
+    4300038: step_wall_red_concave_corner004
+    4300040: step_wall_red_concave_corner003
+    4300042: pillar034
+    4300044: step_wall_red_concave_corner001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

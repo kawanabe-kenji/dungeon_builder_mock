@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 7fdca8b4f99f430409f3c2d018ce0dd9
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: mobile_archway_small001
+    100002: //RootNode
+    100004: mobile_pillar046
+    100006: mobile_pillar047
+    100008: mobile_pillar048
+    100010: mobile_pillar049
+    100012: mobile_step_wall_red_concave_corner001
+    100014: mobile_step_wall_red_concave_corner002
+    100016: mobile_step_wall_red_concave_corner003
+    100018: mobile_step_wall_red_concave_corner004
+    100020: mobile_step_wall_red_convex_corner001
+    100022: mobile_step_wall_red_convex_corner002
+    100024: mobile_step_wall_red_convex_corner003
+    100026: mobile_step_wall_red_convex_corner004
+    100028: mobile_step_wall_red_convex_corner005
+    100030: mobile_step_wall_red_convex_corner006
+    100032: mobile_step_wall_red_convex_corner007
+    100034: mobile_step_wall_red_convex_corner008
+    100036: mobile_wall_concave_corner009
+    100038: mobile_wall_concave_corner010
+    100040: mobile_wall_concave_corner011
+    100042: mobile_wall_concave_corner012
+    100044: mobile_wall_convex_corner023
+    100046: mobile_wall_convex_corner030
+    400000: mobile_archway_small001
+    400002: //RootNode
+    400004: mobile_pillar046
+    400006: mobile_pillar047
+    400008: mobile_pillar048
+    400010: mobile_pillar049
+    400012: mobile_step_wall_red_concave_corner001
+    400014: mobile_step_wall_red_concave_corner002
+    400016: mobile_step_wall_red_concave_corner003
+    400018: mobile_step_wall_red_concave_corner004
+    400020: mobile_step_wall_red_convex_corner001
+    400022: mobile_step_wall_red_convex_corner002
+    400024: mobile_step_wall_red_convex_corner003
+    400026: mobile_step_wall_red_convex_corner004
+    400028: mobile_step_wall_red_convex_corner005
+    400030: mobile_step_wall_red_convex_corner006
+    400032: mobile_step_wall_red_convex_corner007
+    400034: mobile_step_wall_red_convex_corner008
+    400036: mobile_wall_concave_corner009
+    400038: mobile_wall_concave_corner010
+    400040: mobile_wall_concave_corner011
+    400042: mobile_wall_concave_corner012
+    400044: mobile_wall_convex_corner023
+    400046: mobile_wall_convex_corner030
+    2300000: mobile_archway_small001
+    2300002: mobile_pillar046
+    2300004: mobile_pillar047
+    2300006: mobile_pillar048
+    2300008: mobile_pillar049
+    2300010: mobile_step_wall_red_concave_corner001
+    2300012: mobile_step_wall_red_concave_corner002
+    2300014: mobile_step_wall_red_concave_corner003
+    2300016: mobile_step_wall_red_concave_corner004
+    2300018: mobile_step_wall_red_convex_corner001
+    2300020: mobile_step_wall_red_convex_corner002
+    2300022: mobile_step_wall_red_convex_corner003
+    2300024: mobile_step_wall_red_convex_corner004
+    2300026: mobile_step_wall_red_convex_corner005
+    2300028: mobile_step_wall_red_convex_corner006
+    2300030: mobile_step_wall_red_convex_corner007
+    2300032: mobile_step_wall_red_convex_corner008
+    2300034: mobile_wall_concave_corner009
+    2300036: mobile_wall_concave_corner010
+    2300038: mobile_wall_concave_corner011
+    2300040: mobile_wall_concave_corner012
+    2300042: mobile_wall_convex_corner023
+    2300044: mobile_wall_convex_corner030
+    3300000: mobile_archway_small001
+    3300002: mobile_pillar046
+    3300004: mobile_pillar047
+    3300006: mobile_pillar048
+    3300008: mobile_pillar049
+    3300010: mobile_step_wall_red_concave_corner001
+    3300012: mobile_step_wall_red_concave_corner002
+    3300014: mobile_step_wall_red_concave_corner003
+    3300016: mobile_step_wall_red_concave_corner004
+    3300018: mobile_step_wall_red_convex_corner001
+    3300020: mobile_step_wall_red_convex_corner002
+    3300022: mobile_step_wall_red_convex_corner003
+    3300024: mobile_step_wall_red_convex_corner004
+    3300026: mobile_step_wall_red_convex_corner005
+    3300028: mobile_step_wall_red_convex_corner006
+    3300030: mobile_step_wall_red_convex_corner007
+    3300032: mobile_step_wall_red_convex_corner008
+    3300034: mobile_wall_concave_corner009
+    3300036: mobile_wall_concave_corner010
+    3300038: mobile_wall_concave_corner011
+    3300040: mobile_wall_concave_corner012
+    3300042: mobile_wall_convex_corner023
+    3300044: mobile_wall_convex_corner030
+    4300000: mobile_step_wall_red_concave_corner001
+    4300002: mobile_step_wall_red_concave_corner002
+    4300004: mobile_step_wall_red_concave_corner003
+    4300006: mobile_step_wall_red_concave_corner004
+    4300008: mobile_pillar049
+    4300010: mobile_pillar048
+    4300012: mobile_step_wall_red_convex_corner003
+    4300014: mobile_step_wall_red_convex_corner004
+    4300016: mobile_wall_convex_corner030
+    4300018: mobile_wall_concave_corner012
+    4300020: mobile_step_wall_red_convex_corner007
+    4300022: mobile_step_wall_red_convex_corner008
+    4300024: mobile_wall_concave_corner009
+    4300026: mobile_wall_convex_corner023
+    4300028: mobile_wall_concave_corner010
+    4300030: mobile_wall_concave_corner011
+    4300032: mobile_archway_small001
+    4300034: mobile_pillar046
+    4300036: mobile_pillar047
+    4300038: mobile_step_wall_red_convex_corner002
+    4300040: mobile_step_wall_red_convex_corner001
+    4300042: mobile_step_wall_red_convex_corner005
+    4300044: mobile_step_wall_red_convex_corner006
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
