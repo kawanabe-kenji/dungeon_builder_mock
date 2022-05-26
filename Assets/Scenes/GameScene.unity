@@ -13373,9 +13373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fieldX: 7
   _fieldY: 12
-  fieldUIView: {fileID: 1696340545}
-  _debugField: {fileID: 729906261}
-  _debugBlock: {fileID: 0}
+  _fieldUIView: {fileID: 1696340545}
+  __fieldView: {fileID: 0}
   _minoPrefabs:
   - {fileID: 6708146365437269724, guid: 04525610b408b4e78aa9521e7de022be, type: 3}
   - {fileID: 3772255742458757667, guid: dfa91f6af54d2471e89f9da456338347, type: 3}
