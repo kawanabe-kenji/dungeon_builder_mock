@@ -45,18 +45,8 @@ namespace DungeonBuilder
 
         private bool _putKey;
 
-        private bool _hasKey;
-
-        // Debug
         [SerializeField]
-        private GridLayoutGroup _debugField;
-
-        [SerializeField]
-        private Image _debugBlock;
-
-        private Image[] _debugBlocks;
-
-        private Dictionary<Image, Image[]> _debugWalls = new Dictionary<Image, Image[]>();
+        private FieldUIView _fieldUIView;
 
         // View
         [SerializeField]
@@ -140,30 +130,7 @@ namespace DungeonBuilder
 
         private void Awake()
         {
-            ////////////////////////////////////////
-            // Debug
-            ////////////////////////////////////////
-            _debugBlocks = new Image[_fieldX * _fieldY];
-            _debugBlocks[0] = _debugBlock;
-            _debugWalls.Add(_debugBlock, GetComponentsInChildrenWithoutSelf<Image>(_debugBlock.gameObject));
-            for(int i = 1; i < _debugBlocks.Length; i++)
-            {
-                var debugBlock = Instantiate(_debugBlock, _debugField.transform);
-                debugBlock.name = string.Format("Block ({0})", i);
-                _debugBlocks[i] = debugBlock;
-                _debugWalls.Add(debugBlock, GetComponentsInChildrenWithoutSelf<Image>(debugBlock.gameObject));
-            }
-            foreach(var debugBlock in _debugBlocks)
-            {
-                debugBlock.enabled = false;
-                foreach(var debugWall in _debugWalls[debugBlock]) debugWall.enabled = false;
-            }
-            // デバッグ表示盤面のサイズ自動調整
-            var rect = _debugField.GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(
-                _fieldX * (_debugField.cellSize.x + _debugField.spacing.x) + _debugField.padding.left,
-                _fieldY * (_debugField.cellSize.y + _debugField.spacing.y) + _debugField.padding.bottom
-            );
+            _fieldUIView.Initialize(new Vector2Int(_fieldX, _fieldY));
 
             ////////////////////////////////////////
             // Data
@@ -247,30 +214,7 @@ namespace DungeonBuilder
         private void RefleshMino()
         {
             RefleshField();
-
-            if(_current != null)
-            {
-                foreach(var kvp in _current.Blocks)
-                {
-                    var offset = kvp.Key;
-                    Block block = kvp.Value;
-                    int x = _current.X + offset.x;
-                    int y = _current.Y + offset.y;
-
-                    int index = _fieldX * y + x;
-                    if(index < 0 || index >= _debugBlocks.Length)
-                    {
-                        continue;
-                    }
-                    var debugBlock = _debugBlocks[index];
-                    debugBlock.enabled = block != null;
-                    var debugWalls = _debugWalls[debugBlock];
-                    for(int i = 0; i < debugWalls.Length; i++)
-                    {
-                        debugWalls[i].enabled = debugBlock.enabled && block.Walls[i];
-                    }
-                }
-            }
+            _fieldUIView.DrawMino(_current);
 
             if(_currentView != null)
             {
@@ -332,23 +276,20 @@ namespace DungeonBuilder
 
         private void RefleshField()
         {
-            for(int x = 0; x < _fieldX; x++)
+            _fieldUIView.Reflesh(_field);
+
+            for (int x = 0; x < _fieldX; x++)
             {
                 for(int y = 0; y < _fieldY; y++)
                 {
                     Block block = GetBlock((x, y));
                     var blockView = _fieldView[x, y];
+                    if (blockView == null || blockView.Walls == null) continue;
 
-                    Image debugBlock = _debugBlocks[_fieldX * y + x];
-                    debugBlock.enabled = block != null;
-                    var debugWalls = _debugWalls[debugBlock];
-                    for(int i = 0; i < debugWalls.Length; i++)
+                    for (int i = 0; i < blockView.Walls.Length; i++)
                     {
-                        debugWalls[i].enabled = debugBlock.enabled && block.Walls[i];
-                        if(blockView != null && blockView.Walls != null && blockView.Walls[i] != null)
-                        {
-                            blockView.Walls[i].gameObject.SetActive(debugWalls[i].enabled);
-                        }
+                        if (blockView.Walls[i] == null) continue;
+                        blockView.Walls[i].gameObject.SetActive(block.Walls[i]);
                     }
                 }
             }
