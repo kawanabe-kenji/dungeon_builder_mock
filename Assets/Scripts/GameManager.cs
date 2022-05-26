@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -244,79 +242,6 @@ namespace DungeonBuilder
             }
 
             _touchPanelLayer = LayerMask.GetMask("UI");
-        }
-
-        private void Update()
-        {
-        }
-
-        private void ControlKeyboard()
-        {
-            // 左移動
-            if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                int placeX = _current.X - 1;
-                if(CanPlaced(_current, placeX, _current.Y))
-                {
-                    _current.X = placeX;
-                    RefleshMino();
-                }
-            }
-
-            // 右移動
-            else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                int placeX = _current.X + 1;
-                if(CanPlaced(_current, placeX, _current.Y))
-                {
-                    _current.X = placeX;
-                    RefleshMino();
-                }
-            }
-
-            // 1マス下に移動
-            else if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                int placeY = _current.Y - 1;
-                if(!CanPlaced(_current, _current.X, _current.Y))
-                {
-                    // 既にミノが設置済みブロックと接していたら確定
-                    FixMino();
-                }
-                else if(CanPlaced(_current, _current.X, placeY))
-                {
-                    _current.Y = placeY;
-                    RefleshMino();
-                }
-            }
-
-            // 一気に下に移動＆確定
-            else if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                int placeY = _current.Y - 1;
-                while(CanPlaced(_current, _current.X, placeY) && placeY >= 0)
-                {
-                    placeY--;
-                }
-                placeY++; // ぶつかる1つ前に戻す
-                _current.Index = (_current.X, placeY);
-                _currentView.transform.localPosition = GetPositionMinoView(_current.Index);
-                FixMino();
-            }
-            // 回転
-            else if(Input.GetKeyDown(KeyCode.Space))
-            {
-                _current.Rotate();
-                _currentView.Rotate();
-                int count = 1;
-                while(!CanPlaced(_current, _current.X, _current.Y) && count < 4)
-                {
-                    _current.Rotate();
-                    _currentView.transform.localEulerAngles = new Vector3(0f, _currentView.transform.localEulerAngles.y + 90f, 0f);
-                    count++;
-                }
-                RefleshMino();
-            }
         }
 
         private void RefleshMino()
@@ -762,7 +687,6 @@ namespace DungeonBuilder
             {
                 int blockCount = 0;
                 foreach(var block in _field) if(block != null) blockCount++;
-                Debug.LogError(blockCount);
                 if(blockCount > _fieldX * _fieldY * 0.3f)
                 {
                     _putMinoPatterns[index].PutKey();
