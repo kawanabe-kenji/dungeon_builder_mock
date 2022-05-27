@@ -9,8 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: sf_chest_GOLD_standart
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _METALLICGLOSSMAP _METALLICSPECGLOSSMAP
-    _NORMALMAP
+  m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _METALLICSPECGLOSSMAP _NORMALMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -45,15 +44,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7a9bb16e5bc54864eaf7f874e59bebb7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0f8ea3321f6fc4e4eba12d2ab3689515, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: 416f71613b19fdd4384a1b31f63e9734, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 915a7effe2a5fbd4387709f510baa463, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -73,7 +72,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 0.8
+    - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
@@ -93,7 +92,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 1.7207954, g: 0, b: 0.6486768, a: 1}
+    - _EmissionColor: {r: 3.0672052, g: 0.080293305, b: 1.1422536, a: 1}
     - _SpecColor: {r: 0.19999993, g: 0.19999993, b: 0.19999993, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &1983284167147965639
