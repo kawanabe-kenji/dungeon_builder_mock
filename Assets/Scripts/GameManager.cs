@@ -9,6 +9,7 @@ namespace DungeonBuilder
 {
     public class GameManager : MonoBehaviour
     {
+        /*
         private static readonly Dictionary<(int x, int y), Block.DirectionType[]> BASE_SPACE = new Dictionary<(int x, int y), Block.DirectionType[]>() {
             { (-1, -1), new Block.DirectionType[] { Block.DirectionType.BACK, Block.DirectionType.LEFT } },
             { (0, -1), null },
@@ -20,10 +21,16 @@ namespace DungeonBuilder
             { (0, 1), null },
             { (1, 1), new Block.DirectionType[] { Block.DirectionType.FRONT, Block.DirectionType.RIGHT } },
         };
+        */
 
         private const float CELL_SIZE = 4f;
 
         #region Variables
+        [SerializeField]
+        private Vector2Int _fieldSize = new Vector2Int(7, 12);
+
+        private FieldManager _fieldMgr;
+        /*
         // Data
         [SerializeField]
         private int _fieldX = 7;
@@ -34,10 +41,11 @@ namespace DungeonBuilder
         private Block[,] _field;
 
         private Mino _current;
+        */
 
         private Vector2Int _playerPos;
 
-        private Mino[] _putMinoPatterns;
+        //private Mino[] _putMinoPatterns;
 
         private int[] _putMinoRotateCounts;
 
@@ -53,12 +61,15 @@ namespace DungeonBuilder
 
         // Control
         [SerializeField]
-        private TouchHandler _touchHandler;
+        private ControlManager _controlMgr;
 
         [SerializeField]
-        private Camera _camera;
+        private TouchHandler _touchHandler;
 
-        private int _touchPanelLayer;
+        //[SerializeField]
+        //private Camera _camera;
+
+        //private int _touchPanelLayer;
 
         [SerializeField]
         private Transform _player;
@@ -82,6 +93,7 @@ namespace DungeonBuilder
             return self.GetComponentsInChildren<T>().Where(c => self != c.gameObject).ToArray();
         }
 
+        /*
         private bool CanPlaced(Mino mino, int x, int y)
         {
             foreach(var kvp in mino.Blocks)
@@ -102,27 +114,27 @@ namespace DungeonBuilder
             }
             return true;
         }
+        */
         #endregion // CommonMethod
 
         private void Awake()
         {
             ////////////////////////////////////////
-            // UI View
-            ////////////////////////////////////////
-            _fieldUIView.Initialize(new Vector2Int(_fieldX, _fieldY));
-
-            ////////////////////////////////////////
             // Data
             ////////////////////////////////////////
+            // ゲーム開始のフィールド座標
+            Vector2Int startPos = new Vector2Int(Mathf.CeilToInt(_fieldSize.x / 2), 1);
+            _fieldMgr = new FieldManager(_fieldSize, startPos, _minoViewPanels.Length);
+            /*
             _field = new Block[_fieldX, _fieldY];
             _putMinoPatterns = new Mino[_minoViewPanels.Length];
+            */
             _putMinoRotateCounts = new int[_minoViewPanels.Length];
+            /*
             for(int i = 0; i < _putMinoPatterns.Length; i++)
             {
                 _putMinoPatterns[i] = Mino.Create(Mino.RandomShapeType());
             }
-            // ゲーム開始スペース
-            Vector2Int startIndex = new Vector2Int(Mathf.CeilToInt(_fieldX / 2), 1);
             foreach(var kvp in BASE_SPACE)
             {
                 var offset = kvp.Key;
@@ -134,18 +146,24 @@ namespace DungeonBuilder
                     block.Walls[(int)dir] = true;
                 }
             }
-            _playerPos = startIndex;
+            */
+            _playerPos = startPos;
 
-            _routeCalc = new RouteCalculator(new Vector2Int(_fieldX, _fieldY));
+            // UI View
+            _fieldUIView.Initialize(_fieldMgr.FieldSize);
+
+            _routeCalc = new RouteCalculator(_fieldMgr.FieldSize);
 
             ////////////////////////////////////////
             // View
             ////////////////////////////////////////
-            _fieldView.Initialize(new Vector2Int(_fieldX, _fieldY), startIndex);
+            _fieldView.Initialize(_fieldMgr.FieldSize, startPos);
 
             ////////////////////////////////////////
             // Control
             ////////////////////////////////////////
+            _controlMgr.Initialize();
+
             _touchHandler.OnPointerUpEvent = TouchBlock;
             _isDragMinoViewPanels = new bool[_minoViewPanels.Length];
             for(int i = 0; i < _minoViewPanels.Length; i++)
@@ -155,10 +173,10 @@ namespace DungeonBuilder
                 _minoViewPanels[i].OnDragEvent = e => DragMino(e, index);
                 _minoViewPanels[i].OnEndDragEvent = e => ReleaseMino(index);
                 _minoViewPanels[i].OnPointerClickEvent = e => RotateMino(index);
-                var minoView = Instantiate(_minoViewPrefabs[(int)_putMinoPatterns[i].Type], _minoViewPanels[i].transform);
+                var minoView = Instantiate(_minoViewPrefabs[(int)_fieldMgr.PickableMinos[i].Type], _minoViewPanels[i].transform);
 
                 int count = 0;
-                foreach(var kvp in _putMinoPatterns[i].Blocks)
+                foreach(var kvp in _fieldMgr.PickableMinos[i].Blocks)
                 {
                     var block = kvp.Value;
                     var blockView = minoView.GetChild(count);
@@ -169,22 +187,23 @@ namespace DungeonBuilder
                     count++;
                 }
             }
-
-            _touchPanelLayer = LayerMask.GetMask("UI");
         }
 
         private void RefreshMino()
         {
             RefreshField();
-            _fieldUIView.DrawMino(_current);
-            if(_current != null)
+            _fieldUIView.DrawMino(_fieldMgr.PickedMino);
+            if(_fieldMgr.PickedMino != null)
             {
-                _fieldView.SetMinoPosition(new Vector2Int(_current.Index.x, _current.Index.y));
+                var minoPosition = _fieldMgr.PickedMino.Index;
+                _fieldView.SetMinoPosition(new Vector2Int(minoPosition.x, minoPosition.y));
             }
         }
 
         private void FixMino()
         {
+            _fieldMgr.PutMino(_fieldMgr.PickedMino);
+            /*
             // ミノと隣接するブロックの壁チェック
             foreach(var kvp in _current.Blocks)
             {
@@ -225,21 +244,24 @@ namespace DungeonBuilder
                 int y = _current.Y + offset.y;
                 _field[x, y] = block;
             }
+            */
 
-            _fieldView.PutMino(_current);
+            _fieldView.PutMino(_fieldMgr.PickedMino);
 
             RefreshMino();
         }
 
         private void RefreshField()
         {
-            _fieldUIView.Refresh(_field);
-            _fieldView.Refresh(_field);
+            _fieldUIView.Refresh(_fieldMgr.Blocks);
+            _fieldView.Refresh(_fieldMgr.Blocks);
             HighlightLine();
         }
 
         private void HighlightLine()
         {
+            _fieldMgr.HighlightLine(_playerPos);
+            /*
             List<int> aligLines = new List<int>();
             for(int y = 0; y < _fieldY; y++)
             {
@@ -269,39 +291,21 @@ namespace DungeonBuilder
                 var block = GetBlock(index);
                 if(block != null) block.IsIlluminated = true;
             }
+            */
 
-            _fieldView.HighlightLine(_field);
-        }
-
-        private (int x, int y) GetTouchIndex(Vector2 position, bool isDebug = false)
-        {
-            // スクリーン座標を元にRayを取得
-            var ray = _camera.ScreenPointToRay(position);
-            if(!Physics.Raycast(ray, out RaycastHit hit, 300f, _touchPanelLayer))
-            {
-                return (-1, -1);
-            }
-            float distance = Vector3.Distance(ray.origin, hit.point);
-            if(isDebug) Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, 5);
-            var index = GetIndex(hit.point);
-            if(isDebug) Debug.Log("index: " + index);
-            return index;
+            _fieldView.HighlightLine(_fieldMgr.Blocks);
         }
 
         private void TouchBlock(PointerEventData eventData)
         {
-            var index = GetTouchIndex(eventData.position, true);
-            var block = GetBlock(index);
-            if(block == null)
-            {
-                return;
-            }
-            var route = _routeCalc.GetRoute(_playerPos, new Vector2Int(index.x, index.y), _field);
+            var fieldPos = _controlMgr.GetFieldPosition(eventData.position, true);
+            var block = _fieldMgr.GetBlock(fieldPos);
+            if(block == null) return;
+
+            var route = _routeCalc.GetRoute(_playerPos, fieldPos, _fieldMgr.Blocks);
             _routeView.gameObject.SetActive(route != null);
-            if (route == null)
-            {
-                return;
-            }
+            if (route == null) return;
+
             TraceRoute(route);
         }
 
@@ -327,75 +331,53 @@ namespace DungeonBuilder
             seq.Play();
         }
 
-        private void PutMino((int x, int y) index)
-        {
-            _current.Index = index;
-            RefreshMino();
-        }
-
-        private (int x, int y) GetIndex(Vector3 worldPosition)
-        {
-            var helfCellSize = CELL_SIZE / 2f;
-            return (
-                (int)((worldPosition.x + helfCellSize) / CELL_SIZE),
-                (int)((worldPosition.z + helfCellSize) / CELL_SIZE)
-            );
-        }
-
         public static Vector3 GetPosition(Vector2Int fieldPosition)
         {
             return new Vector3(fieldPosition.x * CELL_SIZE, 0f, fieldPosition.y * CELL_SIZE);
         }
 
+        /*
         private Block GetBlock((int x, int y) position)
         {
-            if(position.x < 0 || position.x >= _fieldX || position.y < 0 || position.y >= _fieldY)
-            {
-                return null;
-            }
+            if(position.x < 0 || position.x >= _fieldX || position.y < 0 || position.y >= _fieldY) return null;
             return _field[position.x, position.y];
         }
+        */
 
         #region Control Mino
         private void PickMino(int index)
         {
-            _current = _putMinoPatterns[index];
-
-            _fieldView.PickMino(_current, _putMinoRotateCounts[index]);
+            _fieldMgr.PickMino(index);
+            //_current = _putMinoPatterns[index];
+            _fieldView.PickMino(_fieldMgr.PickedMino, _putMinoRotateCounts[index]);
         }
 
         private void DragMino(PointerEventData eventData, int panelId)
         {
             _isDragMinoViewPanels[panelId] = true;
-            if(_current == null)
-            {
-                return;
-            }
-            var index = GetTouchIndex(eventData.position);
-            if(_current.Index == index)
-            {
-                return;
-            }
-            var block = GetBlock(index);
-            if(block != null)
-            {
-                return;
-            }
-            PutMino(index);
+            if(_fieldMgr.PickedMino == null)　return;
+
+            var fieldPos = _controlMgr.GetFieldPosition(eventData.position);
+            if(_fieldMgr.PickedMino.Index == (fieldPos.x, fieldPos.y))　return;
+
+            var block = _fieldMgr.GetBlock(fieldPos);
+            if(block != null)　return;
+
+            _fieldMgr.PickedMino.Index = (fieldPos.x, fieldPos.y);
+            RefreshMino();
         }
 
         private void ReleaseMino(int index)
         {
             _isDragMinoViewPanels[index] = false;
 
-            if(_current == null)
-            {
-                return;
-            }
+            var pickedMino = _fieldMgr.PickedMino;
+            if (pickedMino == null) return;
 
-            if(!CanPlaced(_current, _current.X, _current.Y))
+            if(!_fieldMgr.CanPutMino(pickedMino))
             {
-                _current = null;
+                _fieldMgr.ReleaseMino();
+                //_current = null;
                 _fieldView.DestroyCurrentMino();
                 RefreshMino();
                 return;
@@ -403,19 +385,19 @@ namespace DungeonBuilder
 
             FixMino();
 
-            _fieldView.ReleaseMino(_current);
+            _fieldView.ReleaseMino(pickedMino);
 
-            _current = null;
+            _fieldMgr.ReleaseMino();
 
             var shapeType = Mino.RandomShapeType();
-            _putMinoPatterns[index] = Mino.Create(shapeType);
+            var spawnedMino = _fieldMgr.SpawnMino(index, shapeType);
             if(!_putKey)
             {
                 int blockCount = 0;
-                foreach(var block in _field) if(block != null) blockCount++;
-                if(blockCount > _fieldX * _fieldY * 0.3f)
+                foreach(var block in _fieldMgr.Blocks) if(block != null) blockCount++;
+                if(blockCount > _fieldMgr.FieldSize.x * _fieldMgr.FieldSize.y * 0.3f)
                 {
-                    _putMinoPatterns[index].PutKey();
+                    spawnedMino.PutKey();
                     _putKey = true;
                 }
             }
@@ -426,7 +408,7 @@ namespace DungeonBuilder
             _putMinoRotateCounts[index] = 0;
 
             int count = 0;
-            foreach(var kvp in _putMinoPatterns[index].Blocks)
+            foreach(var kvp in _fieldMgr.PickableMinos[index].Blocks)
             {
                 var block = kvp.Value;
                 var blockView = minoView.GetChild(count);
@@ -440,11 +422,9 @@ namespace DungeonBuilder
 
         private void RotateMino(int index)
         {
-            if(_isDragMinoViewPanels[index])
-            {
-                return;
-            }
-            _current.Rotate();
+            if(_isDragMinoViewPanels[index]) return;
+
+            _fieldMgr.PickedMino.Rotate();
             var rotateCount = _putMinoRotateCounts[index] + 1;
             if(rotateCount >= 4) rotateCount = 0;
             _putMinoRotateCounts[index] = rotateCount;

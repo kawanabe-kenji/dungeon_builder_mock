@@ -28,6 +28,15 @@ namespace DungeonBuilder
 
         public float HeightFloor => _minoViewParent.position.y;
 
+        public static Vector2Int GetIndex(Vector3 worldPosition)
+        {
+            var helfCellSize = CELL_SIZE / 2f;
+            return new Vector2Int(
+                (int)((worldPosition.x + helfCellSize) / CELL_SIZE),
+                (int)((worldPosition.z + helfCellSize) / CELL_SIZE)
+            );
+        }
+
         public void Initialize(Vector2Int fieldSize, Vector2Int startPos)
         {
             _blocks = new MinoView.Block[fieldSize.x, fieldSize.y];
