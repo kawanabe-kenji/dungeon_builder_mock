@@ -35,9 +35,7 @@ namespace DungeonBuilder
 
         private Mino _current;
 
-        private Node[] _nodes;
-
-        private (int x, int y) _playerPos;
+        private Vector2Int _playerPos;
 
         private Mino[] _putMinoPatterns;
 
@@ -50,6 +48,8 @@ namespace DungeonBuilder
 
         [SerializeField]
         private FieldView _fieldView;
+
+        private RouteCalculator _routeCalc;
 
         // Control
         [SerializeField]
@@ -125,7 +125,7 @@ namespace DungeonBuilder
                 _putMinoPatterns[i] = Mino.Create(Mino.RandomShapeType());
             }
             // ゲーム開始スペース
-            (int x, int y) startIndex = (Mathf.CeilToInt(_fieldX / 2), 1);
+            Vector2Int startIndex = new Vector2Int(Mathf.CeilToInt(_fieldX / 2), 1);
             foreach(var kvp in BASE_SPACE)
             {
                 var offset = kvp.Key;
@@ -137,20 +137,14 @@ namespace DungeonBuilder
                     block.Walls[(int)dir] = true;
                 }
             }
-            _nodes = new Node[_fieldX * _fieldY];
-            for(int y = 0; y < _fieldY; y++)
-            {
-                for(int x = 0; x < _fieldX; x++)
-                {
-                    _nodes[y * _fieldX + x] = new Node(x, y);
-                }
-            }
             _playerPos = startIndex;
+
+            _routeCalc = new RouteCalculator(new Vector2Int(_fieldX, _fieldY));
 
             ////////////////////////////////////////
             // View
             ////////////////////////////////////////
-            _fieldView.Initialize(new Vector2Int(_fieldX, _fieldY), new Vector2Int(startIndex.x, startIndex.y));
+            _fieldView.Initialize(new Vector2Int(_fieldX, _fieldY), startIndex);
 
             ////////////////////////////////////////
             // Control
@@ -271,7 +265,7 @@ namespace DungeonBuilder
                 }
             }
 
-            GetBlock(_playerPos).IsIlluminated = true;
+            GetBlock((_playerPos.x, _playerPos.y)).IsIlluminated = true;
             foreach(var offset in Block.EIGHT_AROUND_OFFSET)
             {
                 (int x, int y) index = (_playerPos.x + offset.x, _playerPos.y + offset.y);
@@ -305,7 +299,7 @@ namespace DungeonBuilder
             {
                 return;
             }
-            var route = GetRoute(_playerPos, index);
+            var route = _routeCalc.GetRoute(_playerPos, new Vector2Int(index.x, index.y), _field);
             _routeArrow.parent.gameObject.SetActive(route != null);
             if(route == null)
             {
@@ -314,7 +308,7 @@ namespace DungeonBuilder
             TraceRoute(route);
         }
 
-        private void TraceRoute((int x, int y)[] route)
+        private void TraceRoute(Vector2Int[] route)
         {
             _playerPos = route[route.Length - 1];
             DrawRoute(route);
@@ -351,12 +345,12 @@ namespace DungeonBuilder
             );
         }
 
-        private Vector3 GetPosition((int x, int y) index)
+        private Vector3 GetPosition(Vector2Int fieldPosition)
         {
-            return new Vector3(index.x * CELL_SIZE, 0f, index.y * CELL_SIZE);
+            return new Vector3(fieldPosition.x * CELL_SIZE, 0f, fieldPosition.y * CELL_SIZE);
         }
 
-        private void DrawRoute((int x, int y)[] route)
+        private void DrawRoute(Vector2Int[] route)
         {
             Vector3[] routePositions = new Vector3[route.Length];
             for(int i = 0; i < route.Length; i++)
@@ -371,107 +365,6 @@ namespace DungeonBuilder
 
             _routeArrow.localPosition = routePositions[route.Length - 1];
             _routeArrow.rotation = Quaternion.LookRotation(-backOffset);
-        }
-
-        private (int x, int y)[] GetRoute((int x, int y) start, (int x, int y) goal)
-        {
-            _nodes.ToList().ForEach(node => node.Initialize());
-
-            var passedPositions = new List<(int x, int y)>();
-            var recentTargets = new List<Node>();
-            var startNode = GetNode(start);
-            startNode.Score(goal, null);
-            passedPositions.Add(start);
-            recentTargets.Add(GetNode(start));
-            var adjacentInfos = new List<Node>();
-            Node goalNode = null;
-
-            while(true)
-            {
-                var currentTarget = recentTargets.OrderBy(info => info.Weight).FirstOrDefault();
-                var currentPosition = currentTarget.Position;
-                var currentBlock = GetBlock(currentPosition);
-
-                adjacentInfos.Clear();
-                for(int i = 0; i < (int)Block.DirectionType.Max; i++)
-                {
-                    var offset = Block.AROUND_OFFSET[i];
-                    (int x, int y) targetPosition = (currentPosition.x + offset.x, currentPosition.y + offset.y);
-                    // 対象方向に対して移動できなければ対象外
-                    if(currentBlock.Walls[i])
-                    {
-                        continue;
-                    }
-                    var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
-                    var targetBlock = GetBlock(targetPosition);
-                    if(targetBlock == null || targetBlock.Walls[(int)reverseDir])
-                    {
-                        continue;
-                    }
-
-                    // 計算済みのセルは対象外
-                    if(passedPositions.Contains(targetPosition))
-                    {
-                        continue;
-                    }
-                    var target = GetNode(targetPosition);
-                    if(target == null)
-                    {
-                        continue;
-                    }
-                    target.Score(goal, GetNode(currentPosition));
-                    adjacentInfos.Add(target);
-                }
-
-                // recentTargetsとpassedPositionsを更新
-                recentTargets.Remove(currentTarget);
-                recentTargets.AddRange(adjacentInfos);
-                passedPositions.Add(currentPosition);
-
-                // ゴールが含まれていたらそこで終了
-                goalNode = adjacentInfos.FirstOrDefault(info => info.Position == goal);
-                if(goalNode != null)
-                {
-                    break;
-                }
-                // recentTargetsがゼロだったら行き止まりなので終了
-                if(recentTargets.Count == 0)
-                {
-                    break;
-                }
-            }
-
-            // ゴールが結果に含まれていない場合は最短経路が見つからなかった
-            if(goalNode == null)
-            {
-                return null;
-            }
-
-            // Previousを辿ってセルのリストを作成する
-            var route = new List<(int x, int y)>();
-            route.Add(goal);
-            var routeNode = goalNode;
-
-            while(true)
-            {
-                if(routeNode.Step == 0)
-                {
-                    break;
-                }
-                route.Add(routeNode.Previous);
-                routeNode = GetNode(routeNode.Previous);
-            }
-            route.Reverse();
-            return route.ToArray();
-        }
-
-        private Node GetNode((int x, int y) position)
-        {
-            if(position.x < 0 || position.x >= _fieldX || position.y < 0 || position.y >= _fieldY)
-            {
-                return null;
-            }
-            return _nodes[position.y * _fieldX + position.x];
         }
 
         private Block GetBlock((int x, int y) position)

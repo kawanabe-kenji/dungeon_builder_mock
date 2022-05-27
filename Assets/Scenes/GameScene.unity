@@ -13374,7 +13374,7 @@ MonoBehaviour:
   _fieldX: 7
   _fieldY: 12
   _fieldUIView: {fileID: 1696340545}
-  _fieldView: {fileID: 0}
+  _fieldView: {fileID: 1912644073}
   _touchHandler: {fileID: 2073758809}
   _camera: {fileID: 847978930}
   _player: {fileID: 1812217287}
