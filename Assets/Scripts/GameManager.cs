@@ -49,26 +49,7 @@ namespace DungeonBuilder
         private FieldUIView _fieldUIView;
 
         [SerializeField]
-        private FieldView __fieldView;
-
-        // View
-        /*
-        [SerializeField]
-        private MinoView[] _minoPrefabs;
-
-        private MinoView _currentView;
-
-        [SerializeField]
-        private Transform _minoViewParent;
-
-        [SerializeField]
-        private ParticleSystem _fogs;
-
-        private MinoView.Block[,] _fieldView;
-
-        [SerializeField]
-        private MinoView.Block[] _startBlocks;
-        */
+        private FieldView _fieldView;
 
         // Control
         [SerializeField]
@@ -104,8 +85,6 @@ namespace DungeonBuilder
             return self.GetComponentsInChildren<T>().Where(c => self != c.gameObject).ToArray();
         }
 
-        private (int x, int y) SpawnIndex => (_fieldX / 2, _fieldY - 3);
-
         private bool CanPlaced(Mino mino, int x, int y)
         {
             foreach(var kvp in mino.Blocks)
@@ -130,6 +109,9 @@ namespace DungeonBuilder
 
         private void Awake()
         {
+            ////////////////////////////////////////
+            // UI View
+            ////////////////////////////////////////
             _fieldUIView.Initialize(new Vector2Int(_fieldX, _fieldY));
 
             ////////////////////////////////////////
@@ -168,21 +150,7 @@ namespace DungeonBuilder
             ////////////////////////////////////////
             // View
             ////////////////////////////////////////
-            __fieldView.Initialize(new Vector2Int(_fieldX, _fieldY), new Vector2Int(startIndex.x, startIndex.y));
-            /*
-            _fieldView = new MinoView.Block[_fieldX, _fieldY];
-            // スタート地点の壁情報
-            _fieldView[startIndex.x, startIndex.y] = _startBlocks[0];
-            for(int i = 0; i < Block.EIGHT_AROUND_OFFSET.Length; i++)
-            {
-                var offset = Block.EIGHT_AROUND_OFFSET[i];
-                (int x, int y) index = (startIndex.x + offset.x, startIndex.y + offset.y);
-                _fieldView[index.x, index.y] = _startBlocks[i + 1];
-            }
-
-            _fogs.Simulate(100f);
-            _fogs.Play();
-            */
+            _fieldView.Initialize(new Vector2Int(_fieldX, _fieldY), new Vector2Int(startIndex.x, startIndex.y));
 
             ////////////////////////////////////////
             // Control
@@ -218,7 +186,10 @@ namespace DungeonBuilder
         {
             RefreshField();
             _fieldUIView.DrawMino(_current);
-            __fieldView.SetMinoPosition(new Vector2Int(_current.Index.x, _current.Index.y));
+            if(_current != null)
+            {
+                _fieldView.SetMinoPosition(new Vector2Int(_current.Index.x, _current.Index.y));
+            }
         }
 
         private void FixMino()
@@ -264,7 +235,7 @@ namespace DungeonBuilder
                 _field[x, y] = block;
             }
 
-            __fieldView.PutMino(_current);
+            _fieldView.PutMino(_current);
 
             RefreshMino();
         }
@@ -272,23 +243,7 @@ namespace DungeonBuilder
         private void RefreshField()
         {
             _fieldUIView.Refresh(_field);
-
-            for (int x = 0; x < _fieldX; x++)
-            {
-                for(int y = 0; y < _fieldY; y++)
-                {
-                    Block block = GetBlock((x, y));
-                    var blockView = _fieldView[x, y];
-                    if (blockView == null || blockView.Walls == null) continue;
-
-                    for (int i = 0; i < blockView.Walls.Length; i++)
-                    {
-                        if (blockView.Walls[i] == null) continue;
-                        blockView.Walls[i].gameObject.SetActive(block.Walls[i]);
-                    }
-                }
-            }
-
+            _fieldView.Refresh(_field);
             HighlightLine();
         }
 
@@ -324,20 +279,7 @@ namespace DungeonBuilder
                 if(block != null) block.IsIlluminated = true;
             }
 
-            for(int y = 0; y < _fieldY; y++)
-            {
-                for(int x = 0; x < _fieldX; x++)
-                {
-                    var block = _field[x, y];
-                    if(block == null) continue;
-                    var blockView = _fieldView[x, y];
-                    var fog = blockView.Fog;
-                    if(fog == null) continue;
-                    if(block.IsIlluminated) fog.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-                    else fog.Play();
-                    if(blockView.Key != null) blockView.Key.gameObject.SetActive(block.IsIlluminated);
-                }
-            }
+            _fieldView.HighlightLine(_field);
         }
 
         private (int x, int y) GetTouchIndex(Vector2 position, bool isDebug = false)
@@ -378,7 +320,7 @@ namespace DungeonBuilder
             DrawRoute(route);
 
             var seq = DOTween.Sequence();
-            var offset = Vector3.up * _minoViewParent.position.y + Vector3.back;
+            var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
             var playerRotate = _player.GetChild(0);
             for(int i = 1; i < route.Length; i++)
             {
@@ -546,20 +488,7 @@ namespace DungeonBuilder
         {
             _current = _putMinoPatterns[index];
 
-            if(_currentView != null)
-            {
-                Destroy(_currentView.gameObject);
-            }
-            _currentView = Instantiate(_minoPrefabs[(int)_current.Type], _minoViewParent);
-            foreach(var block in _currentView.Blocks) block.Fog.Simulate(100f);
-
-            _currentView.transform.position = Vector3.one * 1000f;
-            for(int i = 0; i < _putMinoRotateCounts[index]; i++)
-            {
-                _currentView.Rotate();
-            }
-
-            _currentView.RefreshWalls(_current);
+            _fieldView.PickMino(_current, _putMinoRotateCounts[index]);
         }
 
         private void DragMino(PointerEventData eventData, int panelId)
@@ -594,28 +523,16 @@ namespace DungeonBuilder
             if(!CanPlaced(_current, _current.X, _current.Y))
             {
                 _current = null;
-                Destroy(_currentView.gameObject);
-                _currentView = null;
+                _fieldView.DestroyCurrentMino();
                 RefreshMino();
                 return;
             }
 
             FixMino();
 
-            for(int i = 0; i < _current.Blocks.Values.Count; i++)
-            {
-                var block = _current.Blocks.Values.ElementAt(i);
-                if(block.HasKey)
-                {
-                    var blockView = _currentView.Blocks[i];
-                    blockView.Key = Instantiate(_keyPrefab, blockView.Fog.transform.parent);
-                    blockView.Key.eulerAngles = _keyPrefab.localEulerAngles;
-                    blockView.Key.gameObject.SetActive(block.IsIlluminated);
-                }
-            }
+            _fieldView.ReleaseMino(_current);
 
             _current = null;
-            _currentView = null;
 
             var shapeType = Mino.RandomShapeType();
             _putMinoPatterns[index] = Mino.Create(shapeType);
@@ -647,9 +564,6 @@ namespace DungeonBuilder
                 count++;
             }
         }
-
-        [SerializeField]
-        private Transform _keyPrefab;
 
         private void RotateMino(int index)
         {

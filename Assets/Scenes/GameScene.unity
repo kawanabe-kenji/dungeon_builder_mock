@@ -1130,7 +1130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 93225054}
   m_Layer: 0
-  m_Name: WallPart (1)
+  m_Name: WallPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1147,10 +1147,10 @@ Transform:
   m_LocalPosition: {x: -2, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 641511042}
-  - {fileID: 547876367}
-  - {fileID: 1136437372}
   - {fileID: 214375482}
+  - {fileID: 1136437372}
+  - {fileID: 547876367}
+  - {fileID: 641511042}
   - {fileID: 1408861870}
   - {fileID: 1976562449}
   m_Father: {fileID: 400312129}
@@ -1483,7 +1483,7 @@ Transform:
   - {fileID: 1286066248}
   - {fileID: 1816827335}
   m_Father: {fileID: 1771041124}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128905528
 GameObject:
@@ -2133,7 +2133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 214375482}
   m_Layer: 0
-  m_Name: RockWall (4)
+  m_Name: RockWall (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2153,7 +2153,7 @@ Transform:
   - {fileID: 2127720368}
   - {fileID: 1380774608}
   m_Father: {fileID: 93225054}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &221458745
 GameObject:
@@ -3063,7 +3063,7 @@ Transform:
   - {fileID: 1917011636}
   - {fileID: 314519962}
   - {fileID: 93225054}
-  m_Father: {fileID: 1771041124}
+  m_Father: {fileID: 1912644072}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &409046063
@@ -8911,7 +8911,7 @@ Transform:
   - {fileID: 187814402}
   - {fileID: 1931435163}
   m_Father: {fileID: 93225054}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &570028517
 GameObject:
@@ -9179,7 +9179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 641511042}
   m_Layer: 0
-  m_Name: RockWall (1)
+  m_Name: RockWall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9199,7 +9199,7 @@ Transform:
   - {fileID: 1869772060}
   - {fileID: 1687996092}
   m_Father: {fileID: 93225054}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &642707615
 PrefabInstance:
@@ -13112,7 +13112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136437372}
   m_Layer: 0
-  m_Name: RockWall (3)
+  m_Name: RockWall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13132,7 +13132,7 @@ Transform:
   - {fileID: 1014647067}
   - {fileID: 1924145665}
   m_Father: {fileID: 93225054}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143907347
 GameObject:
@@ -13374,81 +13374,7 @@ MonoBehaviour:
   _fieldX: 7
   _fieldY: 12
   _fieldUIView: {fileID: 1696340545}
-  __fieldView: {fileID: 0}
-  _minoPrefabs:
-  - {fileID: 6708146365437269724, guid: 04525610b408b4e78aa9521e7de022be, type: 3}
-  - {fileID: 3772255742458757667, guid: dfa91f6af54d2471e89f9da456338347, type: 3}
-  - {fileID: 7725259047111096916, guid: f406058fc7ab44009a53a1648fc09310, type: 3}
-  - {fileID: 851662047253839194, guid: 3b95b79de75e64d90b5488a990da7b80, type: 3}
-  - {fileID: 7729701989366236419, guid: 02d791096d28548019e957cf9eaab05b, type: 3}
-  - {fileID: 6638279416355861138, guid: 9ea19d557472b456c8bd29d3f2c9bd05, type: 3}
-  - {fileID: 4395613207847500826, guid: feff62f60802e4764b2cbad21e0ca365, type: 3}
-  _minoViewParent: {fileID: 1912644072}
-  _fogs: {fileID: 519068188}
-  _startBlocks:
-  - _walls:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    _fog: {fileID: 1794128639}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    _fog: {fileID: 1071255112}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    _fog: {fileID: 592666957}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    _fog: {fileID: 23741505}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    _fog: {fileID: 966512683}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 214375481}
-    - {fileID: 1136437371}
-    - {fileID: 0}
-    - {fileID: 0}
-    _fog: {fileID: 1929590721}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 0}
-    - {fileID: 547876366}
-    - {fileID: 0}
-    - {fileID: 0}
-    _fog: {fileID: 842675697}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 641511041}
-    _fog: {fileID: 232395570}
-    Key: {fileID: 0}
-  - _walls:
-    - {fileID: 1408861869}
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 1976562448}
-    _fog: {fileID: 1594622130}
-    Key: {fileID: 0}
+  _fieldView: {fileID: 0}
   _touchHandler: {fileID: 2073758809}
   _camera: {fileID: 847978930}
   _player: {fileID: 1812217287}
@@ -13466,7 +13392,6 @@ MonoBehaviour:
   - {fileID: 5071463515282090448, guid: b22e0043266e441c3a7236b974262f5a, type: 3}
   - {fileID: 4006204119083820144, guid: 98feb91e892484d12b208f0dc76f1ee4, type: 3}
   - {fileID: 8396823234138598529, guid: 29a6328052bc444a292be495babc0bed, type: 3}
-  _keyPrefab: {fileID: 7978863029161293546, guid: 4b2c3d49dbcf0458ea36a302735b092d, type: 3}
 --- !u!4 &1175318378
 Transform:
   m_ObjectHideFlags: 0
@@ -14423,7 +14348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1408861870}
   m_Layer: 0
-  m_Name: RockWall (5)
+  m_Name: RockWall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16420,7 +16345,7 @@ GameObject:
   - component: {fileID: 1696340544}
   - component: {fileID: 1696340545}
   m_Layer: 5
-  m_Name: FieldView
+  m_Name: FieldUIView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17192,7 +17117,6 @@ Transform:
   m_LocalPosition: {x: 0, y: -4.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400312129}
   - {fileID: 1912644072}
   - {fileID: 126852764}
   - {fileID: 1812217287}
@@ -17819,7 +17743,7 @@ Transform:
   m_Children:
   - {fileID: 483239503}
   m_Father: {fileID: 1771041124}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!1 &1816827334
 GameObject:
@@ -18490,8 +18414,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1912644072}
+  - component: {fileID: 1912644073}
   m_Layer: 0
-  m_Name: Tetriminos
+  m_Name: FieldView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18507,10 +18432,98 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 400312129}
   m_Father: {fileID: 1771041124}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1912644073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912644071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c21661f6de94416834f898f3dd955d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minoPrefabs:
+  - {fileID: 6708146365437269724, guid: 04525610b408b4e78aa9521e7de022be, type: 3}
+  - {fileID: 3772255742458757667, guid: dfa91f6af54d2471e89f9da456338347, type: 3}
+  - {fileID: 7725259047111096916, guid: f406058fc7ab44009a53a1648fc09310, type: 3}
+  - {fileID: 851662047253839194, guid: 3b95b79de75e64d90b5488a990da7b80, type: 3}
+  - {fileID: 7729701989366236419, guid: 02d791096d28548019e957cf9eaab05b, type: 3}
+  - {fileID: 6638279416355861138, guid: 9ea19d557472b456c8bd29d3f2c9bd05, type: 3}
+  - {fileID: 4395613207847500826, guid: feff62f60802e4764b2cbad21e0ca365, type: 3}
+  _minoViewParent: {fileID: 1912644072}
+  _startBlocks:
+  - _walls:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    _fog: {fileID: 1794128639}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    _fog: {fileID: 1071255112}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    _fog: {fileID: 592666957}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    _fog: {fileID: 23741505}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    _fog: {fileID: 966512683}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 214375481}
+    - {fileID: 1136437371}
+    - {fileID: 0}
+    - {fileID: 0}
+    _fog: {fileID: 1929590721}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 0}
+    - {fileID: 547876366}
+    - {fileID: 0}
+    - {fileID: 0}
+    _fog: {fileID: 842675697}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 641511041}
+    _fog: {fileID: 232395570}
+    Key: {fileID: 0}
+  - _walls:
+    - {fileID: 1408861869}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 1976562448}
+    _fog: {fileID: 1594622130}
+    Key: {fileID: 0}
+  _fogs: {fileID: 519068188}
+  _keyPrefab: {fileID: 7978863029161293546, guid: 4b2c3d49dbcf0458ea36a302735b092d, type: 3}
 --- !u!1 &1917011635
 GameObject:
   m_ObjectHideFlags: 0
@@ -19223,7 +19236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1976562449}
   m_Layer: 0
-  m_Name: RockWall (6)
+  m_Name: RockWall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20146,7 +20159,7 @@ Transform:
   - {fileID: 498817322}
   - {fileID: 1685535119}
   m_Father: {fileID: 1771041124}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2121405847
 GameObject:
