@@ -49,7 +49,7 @@ namespace DungeonBuilder
             );
         }
 
-        public void Reflesh(Block[,] fieldData)
+        public void Refresh(Block[,] fieldData)
         {
             var fieldX = fieldData.GetLength(0);
             var fieldY = fieldData.GetLength(1);

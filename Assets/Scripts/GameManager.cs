@@ -214,9 +214,9 @@ namespace DungeonBuilder
             _touchPanelLayer = LayerMask.GetMask("UI");
         }
 
-        private void RefleshMino()
+        private void RefreshMino()
         {
-            RefleshField();
+            RefreshField();
             _fieldUIView.DrawMino(_current);
             __fieldView.SetMinoPosition(new Vector2Int(_current.Index.x, _current.Index.y));
         }
@@ -266,12 +266,12 @@ namespace DungeonBuilder
 
             __fieldView.PutMino(_current);
 
-            RefleshMino();
+            RefreshMino();
         }
 
-        private void RefleshField()
+        private void RefreshField()
         {
-            _fieldUIView.Reflesh(_field);
+            _fieldUIView.Refresh(_field);
 
             for (int x = 0; x < _fieldX; x++)
             {
@@ -397,7 +397,7 @@ namespace DungeonBuilder
         private void PutMino((int x, int y) index)
         {
             _current.Index = index;
-            RefleshMino();
+            RefreshMino();
         }
 
         private (int x, int y) GetIndex(Vector3 worldPosition)
@@ -596,7 +596,7 @@ namespace DungeonBuilder
                 _current = null;
                 Destroy(_currentView.gameObject);
                 _currentView = null;
-                RefleshMino();
+                RefreshMino();
                 return;
             }
 
