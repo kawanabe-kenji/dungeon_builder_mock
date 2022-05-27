@@ -64,10 +64,7 @@ namespace DungeonBuilder
         private Transform _player;
 
         [SerializeField]
-        private LineRenderer _routeLine;
-
-        [SerializeField]
-        private Transform _routeArrow;
+        private RouteView _routeView;
 
         // UI View
         [SerializeField]
@@ -300,8 +297,8 @@ namespace DungeonBuilder
                 return;
             }
             var route = _routeCalc.GetRoute(_playerPos, new Vector2Int(index.x, index.y), _field);
-            _routeArrow.parent.gameObject.SetActive(route != null);
-            if(route == null)
+            _routeView.gameObject.SetActive(route != null);
+            if (route == null)
             {
                 return;
             }
@@ -311,7 +308,7 @@ namespace DungeonBuilder
         private void TraceRoute(Vector2Int[] route)
         {
             _playerPos = route[route.Length - 1];
-            DrawRoute(route);
+            _routeView.DrawRoute(route);
 
             var seq = DOTween.Sequence();
             var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
@@ -345,26 +342,9 @@ namespace DungeonBuilder
             );
         }
 
-        private Vector3 GetPosition(Vector2Int fieldPosition)
+        public static Vector3 GetPosition(Vector2Int fieldPosition)
         {
             return new Vector3(fieldPosition.x * CELL_SIZE, 0f, fieldPosition.y * CELL_SIZE);
-        }
-
-        private void DrawRoute(Vector2Int[] route)
-        {
-            Vector3[] routePositions = new Vector3[route.Length];
-            for(int i = 0; i < route.Length; i++)
-            {
-                routePositions[i] = GetPosition(route[i]);
-            }
-            // 最後の座標は、最後から一つ前の方向に１m下げる（矢印表示のため）
-            var backOffset = (routePositions[route.Length - 2] - routePositions[route.Length - 1]).normalized;
-            routePositions[route.Length - 1] += backOffset;
-            _routeLine.positionCount = routePositions.Length;
-            _routeLine.SetPositions(routePositions);
-
-            _routeArrow.localPosition = routePositions[route.Length - 1];
-            _routeArrow.rotation = Quaternion.LookRotation(-backOffset);
         }
 
         private Block GetBlock((int x, int y) position)

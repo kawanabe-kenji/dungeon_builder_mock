@@ -3858,6 +3858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 498817322}
+  - component: {fileID: 498817323}
   m_Layer: 0
   m_Name: RouteView
   m_TagString: Untagged
@@ -3881,6 +3882,20 @@ Transform:
   m_Father: {fileID: 2118915513}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &498817323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498817321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55632f7e5469e43bf969bc1ce8f41dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _routeLine: {fileID: 1459508122}
+  _routeArrow: {fileID: 654839222}
 --- !u!1001 &499794383
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13378,8 +13393,7 @@ MonoBehaviour:
   _touchHandler: {fileID: 2073758809}
   _camera: {fileID: 847978930}
   _player: {fileID: 1812217287}
-  _routeLine: {fileID: 1459508122}
-  _routeArrow: {fileID: 654839222}
+  _routeView: {fileID: 498817323}
   _minoViewPanels:
   - {fileID: 1461477644}
   - {fileID: 32376764}
