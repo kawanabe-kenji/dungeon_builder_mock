@@ -37,6 +37,11 @@ namespace DungeonBuilder
             );
         }
 
+        public static Vector3 GetWorldPosition(Vector2Int fieldPos)
+        {
+            return new Vector3(fieldPos.x * CELL_SIZE, 0f, fieldPos.y * CELL_SIZE);
+        }
+
         public void Initialize(Vector2Int fieldSize, Vector2Int startPos)
         {
             _blocks = new MinoView.Block[fieldSize.x, fieldSize.y];

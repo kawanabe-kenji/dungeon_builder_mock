@@ -18,7 +18,6 @@ namespace DungeonBuilder
             { (1, 1), new Block.DirectionType[] { Block.DirectionType.FRONT, Block.DirectionType.RIGHT } },
         };
 
-        // Data
         private Vector2Int _fieldSize;
 
         public Vector2Int FieldSize => _fieldSize;
