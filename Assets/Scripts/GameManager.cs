@@ -17,32 +17,31 @@ namespace DungeonBuilder
 
         private Vector2Int _playerPos;
 
-        private int[] _putMinoRotateCounts;
-
-        private bool _putKey;
+        [SerializeField]
+        private FieldView _fieldView;
 
         [SerializeField]
         private FieldUIView _fieldUIView;
 
         [SerializeField]
-        private FieldView _fieldView;
+        private RouteView _routeView;
 
         private RouteCalculator _routeCalc;
 
-        // Control
         [SerializeField]
         private ControlManager _controlMgr;
 
         [SerializeField]
-        private TouchHandler _touchHandler;
-
-        [SerializeField]
         private Transform _player;
 
-        [SerializeField]
-        private RouteView _routeView;
+        private bool _putKey;
 
-        // UI View
+        private int[] _putMinoRotateCounts;
+
+        /*
+        [SerializeField]
+        private TouchHandler _touchHandler;
+
         [SerializeField]
         private TouchHandler[] _minoViewPanels;
 
@@ -50,6 +49,7 @@ namespace DungeonBuilder
         private RectTransform[] _minoViewPrefabs;
 
         private bool[] _isDragMinoViewPanels;
+        */
         #endregion // Variables
 
         #region CommonMethod
@@ -61,54 +61,30 @@ namespace DungeonBuilder
 
         private void Awake()
         {
-            ////////////////////////////////////////
-            // Data
-            ////////////////////////////////////////
             // ゲーム開始のフィールド座標
             Vector2Int startPos = new Vector2Int(Mathf.CeilToInt(_fieldSize.x / 2), 1);
-            _fieldMgr = new FieldManager(_fieldSize, startPos, _minoViewPanels.Length);
             _playerPos = startPos;
 
-            // UI View
-            _fieldUIView.Initialize(_fieldMgr.FieldSize);
-
+            _fieldMgr = new FieldManager(_fieldSize, startPos, _controlMgr.MinoViewPanels.Length);
             _routeCalc = new RouteCalculator(_fieldMgr.FieldSize);
 
-            ////////////////////////////////////////
-            // View
-            ////////////////////////////////////////
             _fieldView.Initialize(_fieldMgr.FieldSize, startPos);
+            _fieldUIView.Initialize(_fieldMgr.FieldSize);
 
-            ////////////////////////////////////////
-            // Control
-            ////////////////////////////////////////
-            _controlMgr.Initialize();
+            _controlMgr.Initialize(_fieldMgr.PickableMinos);
 
-            _touchHandler.OnPointerUpEvent = TouchBlock;
-            _isDragMinoViewPanels = new bool[_minoViewPanels.Length];
-            for(int i = 0; i < _minoViewPanels.Length; i++)
+            _controlMgr.TouchHandler.OnPointerUpEvent = TouchBlock;
+            var minoViewPanels = _controlMgr.MinoViewPanels;
+            for(int i = 0; i < minoViewPanels.Length; i++)
             {
                 int index = i;
-                _minoViewPanels[i].OnPointerDownEvent = e => PickMino(index);
-                _minoViewPanels[i].OnDragEvent = e => DragMino(e, index);
-                _minoViewPanels[i].OnEndDragEvent = e => ReleaseMino(index);
-                _minoViewPanels[i].OnPointerClickEvent = e => RotateMino(index);
-                var minoView = Instantiate(_minoViewPrefabs[(int)_fieldMgr.PickableMinos[i].Type], _minoViewPanels[i].transform);
-
-                int count = 0;
-                foreach(var kvp in _fieldMgr.PickableMinos[i].Blocks)
-                {
-                    var block = kvp.Value;
-                    var blockView = minoView.GetChild(count);
-                    for(int j = 0; j < block.Walls.Length; j++)
-                    {
-                        blockView.GetChild(j).GetComponent<Image>().enabled = block.Walls[j];
-                    }
-                    count++;
-                }
+                minoViewPanels[i].OnPointerDownEvent = e => PickMino(index);
+                minoViewPanels[i].OnDragEvent = e => DragMino(e, index);
+                minoViewPanels[i].OnEndDragEvent = e => ReleaseMino(index);
+                minoViewPanels[i].OnPointerClickEvent = e => RotateMino(index);
             }
 
-            _putMinoRotateCounts = new int[_minoViewPanels.Length];
+            _putMinoRotateCounts = new int[minoViewPanels.Length];
         }
 
         private void RefreshMino()
@@ -122,7 +98,7 @@ namespace DungeonBuilder
             }
         }
 
-        private void FixMino()
+        private void PutMino()
         {
             _fieldMgr.PutMino(_fieldMgr.PickedMino);
             _fieldView.PutMino(_fieldMgr.PickedMino);
@@ -201,7 +177,7 @@ namespace DungeonBuilder
 
         private void ReleaseMino(int index)
         {
-            _isDragMinoViewPanels[index] = false;
+            _controlMgr.IsDragMinoViewPanels[index] = false;
 
             var pickedMino = _fieldMgr.PickedMino;
             if (pickedMino == null) return;
@@ -214,7 +190,7 @@ namespace DungeonBuilder
                 return;
             }
 
-            FixMino();
+            PutMino();
 
             _fieldView.ReleaseMino(pickedMino);
 
@@ -233,33 +209,20 @@ namespace DungeonBuilder
                 }
             }
 
-            var minoViewPanel = _minoViewPanels[index];
-            Destroy(minoViewPanel.transform.GetChild(0).gameObject);
-            var minoView = Instantiate(_minoViewPrefabs[(int)shapeType], minoViewPanel.transform);
             _putMinoRotateCounts[index] = 0;
 
-            int count = 0;
-            foreach(var kvp in _fieldMgr.PickableMinos[index].Blocks)
-            {
-                var block = kvp.Value;
-                var blockView = minoView.GetChild(count);
-                for(int j = 0; j < block.Walls.Length; j++)
-                {
-                    blockView.GetChild(j).GetComponent<Image>().enabled = block.Walls[j];
-                }
-                count++;
-            }
+            _controlMgr.SpawnMino(index, shapeType, _fieldMgr.PickableMinos[index].Blocks);
         }
 
         private void RotateMino(int index)
         {
-            if(_isDragMinoViewPanels[index]) return;
+            if(_controlMgr.IsDragMinoViewPanels[index]) return;
 
             _fieldMgr.PickedMino.Rotate();
             var rotateCount = _putMinoRotateCounts[index] + 1;
             if(rotateCount >= 4) rotateCount = 0;
             _putMinoRotateCounts[index] = rotateCount;
-            _minoViewPanels[index].transform.GetChild(0).localEulerAngles = Vector3.forward * rotateCount * -90f;
+            _controlMgr.RotateMino(index, rotateCount);
         }
         #endregion // Control Mino
     }

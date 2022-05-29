@@ -28,12 +28,12 @@ namespace DungeonBuilder
 
         public float HeightFloor => _minoViewParent.position.y;
 
-        public static Vector2Int GetIndex(Vector3 worldPosition)
+        public static Vector2Int GetFieldPosition(Vector3 worldPos)
         {
             var helfCellSize = CELL_SIZE / 2f;
             return new Vector2Int(
-                (int)((worldPosition.x + helfCellSize) / CELL_SIZE),
-                (int)((worldPosition.z + helfCellSize) / CELL_SIZE)
+                (int)((worldPos.x + helfCellSize) / CELL_SIZE),
+                (int)((worldPos.z + helfCellSize) / CELL_SIZE)
             );
         }
 
