@@ -16,10 +16,10 @@ namespace DungeonBuilder
 
         private BlockUIView[,] _blocks;
 
-        private BlockUIView GetBlock(int x, int y)
+        private BlockUIView GetBlock(Vector2Int fieldPos)
         {
-            if (x < 0 || y < 0 || x >= _blocks.GetLength(0) ||y >= _blocks.GetLength(1)) return null;
-            return _blocks[x, y];
+            if (fieldPos.x < 0 || fieldPos.y < 0 || fieldPos.x >= _blocks.GetLength(0) || fieldPos.y >= _blocks.GetLength(1)) return null;
+            return _blocks[fieldPos.x, fieldPos.y];
         }
 
         public void Initialize(Vector2Int fieldSize)
@@ -76,7 +76,7 @@ namespace DungeonBuilder
             foreach (var kvp in mino.Blocks)
             {
                 var offset = kvp.Key;
-                var view = GetBlock(mino.X + offset.x, mino.Y + offset.y);
+                var view = GetBlock(mino.Index + offset);
                 if (view == null) continue;
 
                 var data = kvp.Value;

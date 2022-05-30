@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,9 +10,9 @@ namespace DungeonBuilder
         private Camera _camera;
 
         [SerializeField]
-        private TouchHandler _touchHandler;
+        private TouchHandler _touchFieldHandler;
 
-        public TouchHandler TouchHandler => _touchHandler;
+        public TouchHandler TouchFieldHandler => _touchFieldHandler;
 
         [SerializeField]
         private TouchHandler[] _minoViewPanels;
@@ -66,7 +65,7 @@ namespace DungeonBuilder
             return fieldPos;
         }
 
-        public void SpawnMino(int index, Mino.ShapeType shapeType, Dictionary<(int x, int y), Block> minoBlocks)
+        public void SpawnMino(int index, Mino.ShapeType shapeType, Dictionary<Vector2Int, Block> minoBlocks)
 		{
             var minoViewPanel = _minoViewPanels[index];
             Destroy(minoViewPanel.transform.GetChild(0).gameObject);

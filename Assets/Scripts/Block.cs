@@ -13,9 +13,23 @@ namespace DungeonBuilder
             Max
         }
 
-        public readonly static (int x, int y)[] AROUND_OFFSET = new (int x, int y)[] { (0, 1), (1, 0), (0, -1), (-1, 0) };
+        public readonly static Vector2Int[] AROUND_OFFSET = new Vector2Int[] {
+            new Vector2Int(0, 1),
+            new Vector2Int(1, 0),
+            new Vector2Int(0, -1),
+            new Vector2Int(-1, 0)
+        };
 
-        public readonly static (int x, int y)[] EIGHT_AROUND_OFFSET = new (int x, int y)[] { (0, 1), (1, 0), (0, -1), (-1, 0), (1, 1), (1, -1), (-1, -1), (-1, 1) };
+        public readonly static Vector2Int[] EIGHT_AROUND_OFFSET = new Vector2Int[] {
+            new Vector2Int(0, 1),
+            new Vector2Int(1, 0),
+            new Vector2Int(0, -1),
+            new Vector2Int(-1, 0),
+            new Vector2Int(1, 1),
+            new Vector2Int(1, -1),
+            new Vector2Int(-1, -1),
+            new Vector2Int(-1, 1)
+        };
 
         private bool[] _walls = new bool[(int)DirectionType.Max];
 

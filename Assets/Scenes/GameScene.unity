@@ -15595,7 +15595,7 @@ GameObject:
   - component: {fileID: 1646074880}
   - component: {fileID: 1646074879}
   m_Layer: 5
-  m_Name: MinoPanels
+  m_Name: MinoViewPanels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17048,7 +17048,7 @@ Transform:
   - {fileID: 1812217287}
   - {fileID: 2118915513}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1775067747
 GameObject:
@@ -19693,7 +19693,7 @@ Transform:
   - {fileID: 1733562319}
   - {fileID: 465659759}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047089207
 GameObject:
@@ -19769,7 +19769,7 @@ GameObject:
   - component: {fileID: 2073758810}
   - component: {fileID: 2073758809}
   m_Layer: 5
-  m_Name: TouchHandler
+  m_Name: TouchFieldHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19905,7 +19905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 847978930}
-  _touchHandler: {fileID: 2073758809}
+  _touchFieldHandler: {fileID: 2073758809}
   _minoViewPanels:
   - {fileID: 1461477644}
   - {fileID: 32376764}
@@ -19930,7 +19930,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2091788711
 PrefabInstance:
