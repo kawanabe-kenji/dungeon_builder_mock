@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,9 +10,9 @@ namespace DungeonBuilder
         private Camera _camera;
 
         [SerializeField]
-        private TouchHandler _touchHandler;
+        private TouchHandler _touchFieldHandler;
 
-        public TouchHandler TouchHandler => _touchHandler;
+        public TouchHandler TouchFieldHandler => _touchFieldHandler;
 
         [SerializeField]
         private TouchHandler[] _minoViewPanels;

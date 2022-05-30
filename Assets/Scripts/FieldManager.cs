@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,13 +25,19 @@ namespace DungeonBuilder
 
         public Block[,] Blocks => _field;
 
-        private Mino _current;
+        private Mino _pickedMino;
 
-        public Mino PickedMino => _current;
+        public Mino PickedMino => _pickedMino;
 
-        private Mino[] _putMinoPatterns;
+        private Mino[] _pickableMinos;
 
-        public Mino[] PickableMinos => _putMinoPatterns;
+        public Mino[] PickableMinos => _pickableMinos;
+
+        private int[] _pickableMinoRotateCounts;
+
+        public int[] PickableMinoRotateCounts => _pickableMinoRotateCounts;
+
+        private bool _isPutKey;
 
         public Block GetBlock(Vector2Int fieldPos)
         {
@@ -44,10 +49,10 @@ namespace DungeonBuilder
         {
             _fieldSize = fieldSize;
             _field = new Block[FieldSize.x, FieldSize.y];
-            _putMinoPatterns = new Mino[pickableMinoCount];
-            for (int i = 0; i < _putMinoPatterns.Length; i++)
+            _pickableMinos = new Mino[pickableMinoCount];
+            for (int i = 0; i < _pickableMinos.Length; i++)
             {
-                _putMinoPatterns[i] = Mino.Create(Mino.RandomShapeType());
+                _pickableMinos[i] = Mino.Create(Mino.RandomShapeType());
             }
             // ゲーム開始スペース
             foreach (var kvp in BASE_SPACE)
@@ -61,6 +66,7 @@ namespace DungeonBuilder
                     block.Walls[(int)dir] = true;
                 }
             }
+            _pickableMinoRotateCounts = new int[pickableMinoCount];
         }
 
         public bool CanPutMino(Mino mino, int x, int y)
@@ -161,19 +167,39 @@ namespace DungeonBuilder
 
         public void PickMino(int index)
         {
-            _current = _putMinoPatterns[index];
+            _pickedMino = _pickableMinos[index];
         }
 
         public void ReleaseMino()
         {
-            _current = null;
+            _pickedMino = null;
         }
 
         public Mino SpawnMino(int index, Mino.ShapeType shapeType)
         {
             var mino = Mino.Create(shapeType);
-            _putMinoPatterns[index] = mino;
+            _pickableMinos[index] = mino;
+
+            if (!_isPutKey)
+            {
+                int blockCount = 0;
+                foreach (var block in Blocks) if (block != null) blockCount++;
+                if (blockCount > FieldSize.x * FieldSize.y * 0.3f)
+                {
+                    mino.PutKey();
+                    _isPutKey = true;
+                }
+            }
+
             return mino;
+        }
+
+        public int PickableMinoRotate(int index)
+        {
+            var rotateCount = _pickableMinoRotateCounts[index] + 1;
+            if (rotateCount >= 4) rotateCount = 0;
+            _pickableMinoRotateCounts[index] = rotateCount;
+            return rotateCount;
         }
     }
 }

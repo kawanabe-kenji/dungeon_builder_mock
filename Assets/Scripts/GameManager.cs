@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
@@ -33,23 +31,6 @@ namespace DungeonBuilder
 
         [SerializeField]
         private Transform _player;
-
-        private bool _putKey;
-
-        private int[] _putMinoRotateCounts;
-
-        /*
-        [SerializeField]
-        private TouchHandler _touchHandler;
-
-        [SerializeField]
-        private TouchHandler[] _minoViewPanels;
-
-        [SerializeField]
-        private RectTransform[] _minoViewPrefabs;
-
-        private bool[] _isDragMinoViewPanels;
-        */
         #endregion // Variables
 
         #region CommonMethod
@@ -73,7 +54,7 @@ namespace DungeonBuilder
 
             _controlMgr.Initialize(_fieldMgr.PickableMinos);
 
-            _controlMgr.TouchHandler.OnPointerUpEvent = TouchBlock;
+            _controlMgr.TouchFieldHandler.OnPointerUpEvent = TouchField;
             var minoViewPanels = _controlMgr.MinoViewPanels;
             for(int i = 0; i < minoViewPanels.Length; i++)
             {
@@ -83,8 +64,6 @@ namespace DungeonBuilder
                 minoViewPanels[i].OnEndDragEvent = e => ReleaseMino(index);
                 minoViewPanels[i].OnPointerClickEvent = e => RotateMino(index);
             }
-
-            _putMinoRotateCounts = new int[minoViewPanels.Length];
         }
 
         private void RefreshMino()
@@ -118,7 +97,7 @@ namespace DungeonBuilder
             _fieldView.HighlightLine(_fieldMgr.Blocks);
         }
 
-        private void TouchBlock(PointerEventData eventData)
+        private void TouchField(PointerEventData eventData)
         {
             var fieldPos = _controlMgr.GetFieldPosition(eventData.position, true);
             var block = _fieldMgr.GetBlock(fieldPos);
@@ -157,7 +136,7 @@ namespace DungeonBuilder
         private void PickMino(int index)
         {
             _fieldMgr.PickMino(index);
-            _fieldView.PickMino(_fieldMgr.PickedMino, _putMinoRotateCounts[index]);
+            _fieldView.PickMino(_fieldMgr.PickedMino, _fieldMgr.PickableMinoRotateCounts[index]);
         }
 
         private void DragMino(PointerEventData eventData, int panelId)
@@ -197,19 +176,9 @@ namespace DungeonBuilder
             _fieldMgr.ReleaseMino();
 
             var shapeType = Mino.RandomShapeType();
-            var spawnedMino = _fieldMgr.SpawnMino(index, shapeType);
-            if(!_putKey)
-            {
-                int blockCount = 0;
-                foreach(var block in _fieldMgr.Blocks) if(block != null) blockCount++;
-                if(blockCount > _fieldMgr.FieldSize.x * _fieldMgr.FieldSize.y * 0.3f)
-                {
-                    spawnedMino.PutKey();
-                    _putKey = true;
-                }
-            }
+            _fieldMgr.SpawnMino(index, shapeType);
 
-            _putMinoRotateCounts[index] = 0;
+            _fieldMgr.PickableMinoRotateCounts[index] = 0;
 
             _controlMgr.SpawnMino(index, shapeType, _fieldMgr.PickableMinos[index].Blocks);
         }
@@ -219,9 +188,7 @@ namespace DungeonBuilder
             if(_controlMgr.IsDragMinoViewPanels[index]) return;
 
             _fieldMgr.PickedMino.Rotate();
-            var rotateCount = _putMinoRotateCounts[index] + 1;
-            if(rotateCount >= 4) rotateCount = 0;
-            _putMinoRotateCounts[index] = rotateCount;
+            var rotateCount = _fieldMgr.PickableMinoRotate(index);
             _controlMgr.RotateMino(index, rotateCount);
         }
         #endregion // Control Mino
