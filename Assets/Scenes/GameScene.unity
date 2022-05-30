@@ -13313,24 +13313,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fieldSize: {x: 7, y: 12}
-  _fieldUIView: {fileID: 1696340545}
   _fieldView: {fileID: 1912644073}
-  _controlMgr: {fileID: 2083369286}
-  _touchHandler: {fileID: 2073758809}
-  _player: {fileID: 1812217287}
+  _fieldUIView: {fileID: 1696340545}
   _routeView: {fileID: 498817323}
-  _minoViewPanels:
-  - {fileID: 1461477644}
-  - {fileID: 32376764}
-  - {fileID: 89181584}
-  _minoViewPrefabs:
-  - {fileID: 6340028106534644626, guid: 3ca3ee3e8d0664fea84b3acb7238c2f5, type: 3}
-  - {fileID: 2240043721504784238, guid: db4e00a8d7ad84370b42fa3b242f2ea2, type: 3}
-  - {fileID: 4693187007748632720, guid: 1d3291e164c9642e686ac4693752f30b, type: 3}
-  - {fileID: 7457030952560424288, guid: aa492208a428548b4b53b2ff41657c5b, type: 3}
-  - {fileID: 5071463515282090448, guid: b22e0043266e441c3a7236b974262f5a, type: 3}
-  - {fileID: 4006204119083820144, guid: 98feb91e892484d12b208f0dc76f1ee4, type: 3}
-  - {fileID: 8396823234138598529, guid: 29a6328052bc444a292be495babc0bed, type: 3}
+  _controlMgr: {fileID: 2083369286}
+  _player: {fileID: 1812217287}
 --- !u!4 &1175318378
 Transform:
   m_ObjectHideFlags: 0
@@ -19923,6 +19910,14 @@ MonoBehaviour:
   - {fileID: 1461477644}
   - {fileID: 32376764}
   - {fileID: 89181584}
+  _minoViewPrefabs:
+  - {fileID: 6340028106534644626, guid: 3ca3ee3e8d0664fea84b3acb7238c2f5, type: 3}
+  - {fileID: 2240043721504784238, guid: db4e00a8d7ad84370b42fa3b242f2ea2, type: 3}
+  - {fileID: 4693187007748632720, guid: 1d3291e164c9642e686ac4693752f30b, type: 3}
+  - {fileID: 7457030952560424288, guid: aa492208a428548b4b53b2ff41657c5b, type: 3}
+  - {fileID: 5071463515282090448, guid: b22e0043266e441c3a7236b974262f5a, type: 3}
+  - {fileID: 4006204119083820144, guid: 98feb91e892484d12b208f0dc76f1ee4, type: 3}
+  - {fileID: 8396823234138598529, guid: 29a6328052bc444a292be495babc0bed, type: 3}
 --- !u!4 &2083369287
 Transform:
   m_ObjectHideFlags: 0

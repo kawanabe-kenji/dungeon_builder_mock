@@ -162,7 +162,7 @@ namespace DungeonBuilder
 
         private void DragMino(PointerEventData eventData, int panelId)
         {
-            _isDragMinoViewPanels[panelId] = true;
+            _controlMgr.IsDragMinoViewPanels[panelId] = true;
             if(_fieldMgr.PickedMino == null)　return;
 
             var fieldPos = _controlMgr.GetFieldPosition(eventData.position);
