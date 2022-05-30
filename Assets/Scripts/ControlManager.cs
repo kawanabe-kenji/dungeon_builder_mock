@@ -60,7 +60,7 @@ namespace DungeonBuilder
             if (isDebug) Debug.DrawRay(ray.origin, ray.direction * distance, Color.red, 5);
 
             var fieldPos = FieldView.GetFieldPosition(hit.point);
-            if (isDebug) Debug.Log("index: " + fieldPos);
+            if (isDebug) Debug.Log("fieldPos: " + fieldPos);
 
             return fieldPos;
         }

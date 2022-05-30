@@ -58,8 +58,9 @@ namespace DungeonBuilder
             foreach (var kvp in BASE_SPACE)
             {
                 var offset = kvp.Key;
+                var fieldPos = startPos + offset;
                 var block = new Block();
-                _field[startPos.x + offset.x, startPos.y + offset.y] = block;
+                _field[fieldPos.x, fieldPos.y] = block;
                 if (kvp.Value == null) continue;
                 foreach (var dir in kvp.Value)
                 {
@@ -69,12 +70,12 @@ namespace DungeonBuilder
             _pickableMinoRotateCounts = new int[pickableMinoCount];
         }
 
-        public bool CanPutMino(Mino mino, int x, int y)
+        public bool CanPutMino(Mino mino, Vector2Int putFieldPos)
         {
             foreach (var kvp in mino.Blocks)
             {
                 var offset = kvp.Key;
-                var fieldPos = new Vector2Int(x + offset.x, y + offset.y);
+                var fieldPos = putFieldPos + offset;
                 // 指定したミノを指定した位置に置いたとき、壁や地面にぶつかっているかどうか
                 if (fieldPos.x < 0 || fieldPos.y < 0 || fieldPos.x >= FieldSize.x) return false;
                 // 指定したミノを指定した位置に置いたとき、いずれかのブロックが設置済みブロックにぶつかっているかどうか
@@ -85,7 +86,7 @@ namespace DungeonBuilder
 
         public bool CanPutMino(Mino mino)
         {
-            return CanPutMino(mino, mino.X, mino.Y);
+            return CanPutMino(mino, mino.FieldPos);
         }
 
         public void PutMino(Mino mino)
@@ -101,7 +102,7 @@ namespace DungeonBuilder
                     // ミノ内の隣接は無視
                     if (mino.Blocks.ContainsKey(offset + dir)) continue;
 
-                    Vector2Int fieldPos = new Vector2Int(mino.Index.x + offset.x + dir.x, mino.Index.y + offset.y + dir.y);
+                    var fieldPos = mino.FieldPos + offset + dir;
                     // 盤面外は無視
                     if (fieldPos.x < 0 || fieldPos.x >= FieldSize.x || fieldPos.y < 0 || fieldPos.y >= FieldSize.y) continue;
 
@@ -126,9 +127,8 @@ namespace DungeonBuilder
             {
                 var offset = kvp.Key;
                 Block block = kvp.Value;
-                int x = mino.X + offset.x;
-                int y = mino.Y + offset.y;
-                _field[x, y] = block;
+                var fieldPos = mino.FieldPos + offset;
+                _field[fieldPos.x, fieldPos.y] = block;
             }
         }
 
@@ -159,7 +159,7 @@ namespace DungeonBuilder
             GetBlock(playerPos).IsIlluminated = true;
             foreach (var offset in Block.EIGHT_AROUND_OFFSET)
             {
-                Vector2Int fieldPos = new Vector2Int(playerPos.x + offset.x, playerPos.y + offset.y);
+                Vector2Int fieldPos = playerPos + offset;
                 var block = GetBlock(fieldPos);
                 if (block != null) block.IsIlluminated = true;
             }

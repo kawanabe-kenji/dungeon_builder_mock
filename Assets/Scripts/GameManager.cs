@@ -72,7 +72,7 @@ namespace DungeonBuilder
             _fieldUIView.DrawMino(_fieldMgr.PickedMino);
             if(_fieldMgr.PickedMino != null)
             {
-                var minoPosition = _fieldMgr.PickedMino.Index;
+                var minoPosition = _fieldMgr.PickedMino.FieldPos;
                 _fieldView.SetMinoPosition(new Vector2Int(minoPosition.x, minoPosition.y));
             }
         }
@@ -145,12 +145,12 @@ namespace DungeonBuilder
             if(_fieldMgr.PickedMino == null)　return;
 
             var fieldPos = _controlMgr.GetFieldPosition(eventData.position);
-            if(_fieldMgr.PickedMino.Index == fieldPos)　return;
+            if(_fieldMgr.PickedMino.FieldPos == fieldPos)　return;
 
             var block = _fieldMgr.GetBlock(fieldPos);
             if(block != null)　return;
 
-            _fieldMgr.PickedMino.Index = fieldPos;
+            _fieldMgr.PickedMino.FieldPos = fieldPos;
             RefreshMino();
         }
 

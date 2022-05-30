@@ -76,7 +76,7 @@ namespace DungeonBuilder
             foreach (var kvp in mino.Blocks)
             {
                 var offset = kvp.Key;
-                var view = GetBlock(mino.Index + offset);
+                var view = GetBlock(mino.FieldPos + offset);
                 if (view == null) continue;
 
                 var data = kvp.Value;

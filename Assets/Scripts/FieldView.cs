@@ -51,8 +51,8 @@ namespace DungeonBuilder
             for (int i = 0; i < Block.EIGHT_AROUND_OFFSET.Length; i++)
             {
                 var offset = Block.EIGHT_AROUND_OFFSET[i];
-                Vector2Int index = new Vector2Int(startPos.x + offset.x, startPos.y + offset.y);
-                _blocks[index.x, index.y] = _startBlocks[i + 1];
+                Vector2Int fieldPos = startPos + offset;
+                _blocks[fieldPos.x, fieldPos.y] = _startBlocks[i + 1];
             }
 
             _fogs.Simulate(100f);
@@ -71,11 +71,10 @@ namespace DungeonBuilder
             foreach (var kvp in mino.Blocks)
             {
                 var offset = kvp.Key;
-                var x = mino.X + offset.x;
-                var y = mino.Y + offset.y;
+                var fieldPos = mino.FieldPos + offset;
 
                 var view = _currentView.Blocks[count++];
-                _blocks[x, y] = view;
+                _blocks[fieldPos.x, fieldPos.y] = view;
 
                 view.Fog.Play();
             }

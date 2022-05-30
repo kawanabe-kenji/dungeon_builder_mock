@@ -45,44 +45,44 @@ namespace DungeonBuilder
             while (true)
             {
                 var currentTarget = recentTargets.OrderBy(info => info.Weight).FirstOrDefault();
-                var currentPosition = currentTarget.Position;
-                var currentBlock = GetBlock(fieldData, currentPosition);
+                var currentPos = currentTarget.Position;
+                var currentBlock = GetBlock(fieldData, currentPos);
 
                 adjacentInfos.Clear();
                 for (int i = 0; i < (int)Block.DirectionType.Max; i++)
                 {
                     var offset = Block.AROUND_OFFSET[i];
-                    Vector2Int targetPosition = new Vector2Int(currentPosition.x + offset.x, currentPosition.y + offset.y);
+                    Vector2Int targetPos = currentPos + offset;
                     // 対象方向に対して移動できなければ対象外
                     if (currentBlock.Walls[i])
                     {
                         continue;
                     }
                     var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
-                    var targetBlock = GetBlock(fieldData, targetPosition);
+                    var targetBlock = GetBlock(fieldData, targetPos);
                     if (targetBlock == null || targetBlock.Walls[(int)reverseDir])
                     {
                         continue;
                     }
 
                     // 計算済みのセルは対象外
-                    if (passedPositions.Contains(targetPosition))
+                    if (passedPositions.Contains(targetPos))
                     {
                         continue;
                     }
-                    var target = GetNode(targetPosition);
+                    var target = GetNode(targetPos);
                     if (target == null)
                     {
                         continue;
                     }
-                    target.Score(goal, GetNode(currentPosition));
+                    target.Score(goal, GetNode(currentPos));
                     adjacentInfos.Add(target);
                 }
 
                 // recentTargetsとpassedPositionsを更新
                 recentTargets.Remove(currentTarget);
                 recentTargets.AddRange(adjacentInfos);
-                passedPositions.Add(currentPosition);
+                passedPositions.Add(currentPos);
 
                 // ゴールが含まれていたらそこで終了
                 goalNode = adjacentInfos.FirstOrDefault(info => info.Position == goal);

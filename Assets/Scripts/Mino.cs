@@ -43,24 +43,12 @@ namespace DungeonBuilder
 
         public Dictionary<Vector2Int, Block> Blocks => _blocks;
 
-        private Vector2Int _index;
+        private Vector2Int _fieldPos;
 
-        public Vector2Int Index
+        public Vector2Int FieldPos
         {
-            get => _index;
-            set => _index = value;
-        }
-
-        public int X
-        {
-            get => _index.x;
-            set => _index = new Vector2Int(value, _index.y);
-        }
-
-        public int Y
-        {
-            get => _index.y;
-            set => _index = new Vector2Int(_index.x, value);
+            get => _fieldPos;
+            set => _fieldPos = value;
         }
 
         private ShapeType _type;
@@ -87,10 +75,10 @@ namespace DungeonBuilder
             Blocks.Clear();
             Blocks.Add(Vector2Int.zero, new Block());
 
-            var indexes = SHAPE_PATTERN[type];
-            foreach (var index in indexes)
+            var offsets = SHAPE_PATTERN[type];
+            foreach (var offset in offsets)
             {
-                Blocks.Add(index, new Block());
+                Blocks.Add(offset, new Block());
             }
             CreateWalls();
         }
