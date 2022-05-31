@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -27,41 +26,29 @@ namespace DungeonBuilder
             Max
         }
 
-        private readonly static Dictionary<ShapeType, (int x, int y)[]> SHAPE_PATTERN = new Dictionary<ShapeType, (int x, int y)[]>()
+        private readonly static Dictionary<ShapeType, Vector2Int[]> SHAPE_PATTERN = new Dictionary<ShapeType, Vector2Int[]>()
         {
-            { ShapeType.A, new (int x, int y)[] { (-1, 0), (1, 0), (2, 0) } },
-            { ShapeType.B, new (int x, int y)[] { (0, 1), (1, 0), (1, 1) } },
-            { ShapeType.C1, new (int x, int y)[] { (-1, 0), (0, 1), (1, 1) } },
-            { ShapeType.C2, new (int x, int y)[] { (-1, 1), (0, 1), (1, 0) } },
-            { ShapeType.D1, new (int x, int y)[] { (-1, 0), (1, 0), (1, 1) } },
-            { ShapeType.D2, new (int x, int y)[] { (-1, 1), (-1, 0), (1, 0) } },
-            { ShapeType.E, new (int x, int y)[] { (-1, 0), (1, 0), (0, 1) } },
+            { ShapeType.A, new Vector2Int[] { new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(2, 0) } },
+            { ShapeType.B, new Vector2Int[] { new Vector2Int(0, 1), new Vector2Int(1, 0), new Vector2Int(1, 1) } },
+            { ShapeType.C1, new Vector2Int[] { new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(1, 1) } },
+            { ShapeType.C2, new Vector2Int[] { new Vector2Int(-1, 1), new Vector2Int(0, 1), new Vector2Int(1, 0) } },
+            { ShapeType.D1, new Vector2Int[] { new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(1, 1) } },
+            { ShapeType.D2, new Vector2Int[] { new Vector2Int(-1, 1), new Vector2Int(-1, 0), new Vector2Int(1, 0) } },
+            { ShapeType.E, new Vector2Int[] { new Vector2Int(-1, 0), new Vector2Int(1, 0), new Vector2Int(0, 1) } },
         };
         #endregion // Constant
 
         #region Variables
-        private Dictionary<(int x, int y), Block> _blocks = new Dictionary<(int x, int y), Block>();
+        private Dictionary<Vector2Int, Block> _blocks = new Dictionary<Vector2Int, Block>();
 
-        public Dictionary<(int x, int y), Block> Blocks => _blocks;
+        public Dictionary<Vector2Int, Block> Blocks => _blocks;
 
-        private (int x, int y) _index;
+        private Vector2Int _fieldPos;
 
-        public (int x, int y) Index
+        public Vector2Int FieldPos
         {
-            get => _index;
-            set => _index = value;
-        }
-
-        public int X
-        {
-            get => _index.x;
-            set => _index = (value, _index.y);
-        }
-
-        public int Y
-        {
-            get => _index.y;
-            set => _index = (_index.x, value);
+            get => _fieldPos;
+            set => _fieldPos = value;
         }
 
         private ShapeType _type;
@@ -86,12 +73,12 @@ namespace DungeonBuilder
             _type = type;
 
             Blocks.Clear();
-            Blocks.Add((0, 0), new Block());
+            Blocks.Add(Vector2Int.zero, new Block());
 
-            var indexes = SHAPE_PATTERN[type];
-            foreach (var index in indexes)
+            var offsets = SHAPE_PATTERN[type];
+            foreach (var offset in offsets)
             {
-                Blocks.Add(index, new Block());
+                Blocks.Add(offset, new Block());
             }
             CreateWalls();
         }
@@ -109,7 +96,7 @@ namespace DungeonBuilder
                 {
                     // チェックした方向にブロックがなければ壁を作成
                     var offset = Block.AROUND_OFFSET[i];
-                    if (!Blocks.ContainsKey((index.x + offset.x, index.y + offset.y)))
+                    if (!Blocks.ContainsKey(index + offset))
                     {
                         block.Walls[i] = true;
                         minoWalls.Add((block, i));
@@ -131,13 +118,13 @@ namespace DungeonBuilder
 
         public void Rotate()
         {
-            var newBlocks = new Dictionary<(int x, int y), Block>();
+            var newBlocks = new Dictionary<Vector2Int, Block >();
             foreach (var kvp in Blocks)
             {
                 var index = kvp.Key;
                 var block = kvp.Value;
                 // 回転に合わせてブロックの相対的な位置を変える
-                newBlocks.Add((index.y, -index.x), block);
+                newBlocks.Add(new Vector2Int(index.y, -index.x), block);
 
                 // 回転に合わせて壁の情報も更新
                 var lastWall = block.Walls[block.Walls.Length - 1];
