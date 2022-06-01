@@ -202,5 +202,30 @@ namespace DungeonBuilder
             _controlMgr.RotateMino(index, rotateCount);
         }
         #endregion // Control Mino
+
+        private void PlayEnemyTurn()
+        {
+            for(int i = 0; i < _enemyMgr.Enemies.Count; i++)
+            {
+                var enemy = _enemyMgr.Enemies[i];
+                var enemyView = _enemyMgr.EnemyViews[i];
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, _fieldMgr.Blocks);
+
+                var seq = DOTween.Sequence();
+                var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
+                for (int j = 1; j < route.Length; j++)
+                {
+                    var position = FieldView.GetWorldPosition(route[j]) + offset;
+                    seq.AppendCallback(() =>
+                    {
+                        float angle = Quaternion.LookRotation(position - _player.position).eulerAngles.y;
+                        enemyView.lookAngles = new Vector3(0f, angle, 0f);
+                    });
+                    seq.Append(enemyView.transform.DOMove(position, 0.1f).SetEase(Ease.Linear));
+                }
+                seq.OnComplete(HighlightLine);
+                seq.Play();
+            }
+        }
     }
 }
