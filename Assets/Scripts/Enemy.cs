@@ -6,9 +6,7 @@ namespace DungeonBuilder
 {
     public class Enemy
     {
-        private Vector2Int _fieldPos;
-
-        public Vector2Int FieldPos => _fieldPos;
+        public Vector2Int FieldPos;
 
         private int _hp;
 

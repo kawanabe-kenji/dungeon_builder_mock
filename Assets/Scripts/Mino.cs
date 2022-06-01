@@ -54,6 +54,10 @@ namespace DungeonBuilder
         private ShapeType _type;
 
         public ShapeType Type => _type;
+
+        private Enemy _enemy;
+
+        public Enemy Enemy => _enemy;
         #endregion // Variables
 
         public static Mino Create(ShapeType type)
@@ -136,12 +140,24 @@ namespace DungeonBuilder
             }
             Blocks.Clear();
             _blocks = newBlocks;
+
+            if(Enemy != null)
+            {
+                Enemy.FieldPos = new Vector2Int(Enemy.FieldPos.y, -Enemy.FieldPos.x);
+            }
         }
 
         public void PutKey()
 		{
             var block = Blocks.Values.ElementAt(Random.Range(0, Blocks.Values.Count));
             block.HasKey = true;
+        }
+
+        public void PutEnemy(Enemy enemy)
+        {
+            var offset = Blocks.Keys.ElementAt(Random.Range(0, Blocks.Keys.Count));
+            enemy.FieldPos = offset;
+            _enemy = enemy;
         }
     }
 }

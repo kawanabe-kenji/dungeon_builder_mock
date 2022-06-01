@@ -28,6 +28,11 @@ namespace DungeonBuilder
 
         public bool[] IsDragMinoViewPanels => _isDragMinoViewPanels;
 
+        [SerializeField]
+        private Image _enemyIconPrefab;
+
+        private Image _enemyIcon;
+
         public void Initialize(Mino[] pickableMinos)
         {
             _touchPanelLayer = LayerMask.GetMask("UI");
@@ -65,20 +70,26 @@ namespace DungeonBuilder
             return fieldPos;
         }
 
-        public void SpawnMino(int index, Mino.ShapeType shapeType, Dictionary<Vector2Int, Block> minoBlocks)
+        public void SpawnMino(int index, Mino.ShapeType shapeType, Mino mino)
 		{
             var minoViewPanel = _minoViewPanels[index];
             Destroy(minoViewPanel.transform.GetChild(0).gameObject);
             var minoView = Instantiate(_minoViewPrefabs[(int)shapeType], minoViewPanel.transform);
 
             int count = 0;
-            foreach(var kvp in minoBlocks)
+            foreach(var kvp in mino.Blocks)
             {
                 var block = kvp.Value;
                 var blockView = minoView.GetChild(count);
                 for(int j = 0; j < block.Walls.Length; j++)
                 {
                     blockView.GetChild(j).GetComponent<Image>().enabled = block.Walls[j];
+                }
+                var offset = kvp.Key;
+                if (offset == mino.Enemy.FieldPos)
+                {
+                    _enemyIcon = Instantiate(_enemyIconPrefab, blockView.transform);
+                    _enemyIcon.rectTransform.localPosition = Vector3.zero;
                 }
                 count++;
             }
@@ -87,6 +98,7 @@ namespace DungeonBuilder
         public void RotateMino(int index, int rotateCount)
 		{
             _minoViewPanels[index].transform.GetChild(0).localEulerAngles = Vector3.forward * rotateCount * -90f;
+            if (_enemyIcon != null) _enemyIcon.rectTransform.rotation = Quaternion.identity;
         }
     }
 }

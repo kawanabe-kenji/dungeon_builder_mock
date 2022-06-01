@@ -34,9 +34,7 @@ namespace DungeonBuilder
         private Transform _player;
 
         [SerializeField]
-        private Enemy _enemyPrefab;
-
-        private List<Enemy> _enemies;
+        private EnemyManager _enemyMgr;
         #endregion // Variables
 
         #region CommonMethod
@@ -71,7 +69,7 @@ namespace DungeonBuilder
                 minoViewPanels[i].OnPointerClickEvent = e => RotateMino(index);
             }
 
-            _enemies = new List<Enemy>();
+            _enemyMgr.Initialize();
         }
 
         private void RefreshMino()
@@ -184,11 +182,15 @@ namespace DungeonBuilder
             _fieldMgr.ReleaseMino();
 
             var shapeType = Mino.RandomShapeType();
-            _fieldMgr.SpawnMino(index, shapeType);
+            var mino = _fieldMgr.SpawnMino(index, shapeType);
+
+            // FIXME: 敵配置
+            var enemy = new Enemy();
+            mino.PutEnemy(enemy);
 
             _fieldMgr.PickableMinoRotateCounts[index] = 0;
 
-            _controlMgr.SpawnMino(index, shapeType, _fieldMgr.PickableMinos[index].Blocks);
+            _controlMgr.SpawnMino(index, shapeType, mino);
         }
 
         private void RotateMino(int index)
