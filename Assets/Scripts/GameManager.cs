@@ -83,16 +83,17 @@ namespace DungeonBuilder
             }
         }
 
-        private void PutMino()
+        private void PutMino(Mino mino)
         {
-            _fieldMgr.PutMino(_fieldMgr.PickedMino);
-            _fieldView.PutMino(_fieldMgr.PickedMino);
+            _fieldMgr.PutMino(mino);
+            _enemyMgr.PutMino(mino);
+            _fieldView.PutMino(mino);
             RefreshMino();
         }
 
         private void RefreshField()
         {
-            _fieldUIView.Refresh(_fieldMgr.Blocks);
+            _fieldUIView.Refresh(_fieldMgr.Blocks, _enemyMgr.Enemies);
             _fieldView.Refresh(_fieldMgr.Blocks);
             HighlightLine();
         }
@@ -167,19 +168,18 @@ namespace DungeonBuilder
             var pickedMino = _fieldMgr.PickedMino;
             if (pickedMino == null) return;
 
-            if(!_fieldMgr.CanPutMino(pickedMino))
+            _fieldMgr.ReleaseMino();
+
+            if (!_fieldMgr.CanPutMino(pickedMino))
             {
-                _fieldMgr.ReleaseMino();
                 _fieldView.DestroyCurrentMino();
                 RefreshMino();
                 return;
             }
 
-            PutMino();
+            PutMino(pickedMino);
 
             _fieldView.ReleaseMino(pickedMino);
-
-            _fieldMgr.ReleaseMino();
 
             var shapeType = Mino.RandomShapeType();
             var mino = _fieldMgr.SpawnMino(index, shapeType);

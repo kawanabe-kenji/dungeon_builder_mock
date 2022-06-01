@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,6 +38,7 @@ namespace DungeonBuilder
                     block.name = string.Format("Block [{0}, {1}]", x, y);
                     block.Panel.enabled = false;
                     foreach (var wall in block.Walls) wall.enabled = false;
+                    block.Enemy.enabled = false;
                 }
             }
 
@@ -49,7 +52,7 @@ namespace DungeonBuilder
             );
         }
 
-        public void Refresh(Block[,] fieldData)
+        public void Refresh(Block[,] fieldData, List<Enemy> enemies)
         {
             var fieldX = fieldData.GetLength(0);
             var fieldY = fieldData.GetLength(1);
@@ -65,6 +68,10 @@ namespace DungeonBuilder
                     {
                         view.Walls[i].enabled = view.Panel.enabled && data.Walls[i];
                     }
+
+                    var fieldPos = new Vector2Int(x, y);
+                    var enemy = enemies.FirstOrDefault(enemy => enemy.FieldPos == fieldPos);
+                    view.Enemy.enabled = enemy != null;
                 }
             }
         }
@@ -85,6 +92,8 @@ namespace DungeonBuilder
                 {
                     view.Walls[i].enabled = view.Panel.enabled && data.Walls[i];
                 }
+
+                view.Enemy.enabled = mino.Enemy != null && mino.Enemy.FieldPos == offset;
             }
         }
     }

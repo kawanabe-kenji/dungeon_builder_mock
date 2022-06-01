@@ -19,5 +19,11 @@ namespace DungeonBuilder
 
         /// <summary> 壁 </summary>
         public Image[] Walls => _walls;
+
+        /// <summary> 敵 </summary>
+        [SerializeField]
+        private Image _enemy;
+
+        public Image Enemy => _enemy;
     }
 }
