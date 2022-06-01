@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,6 +32,11 @@ namespace DungeonBuilder
 
         [SerializeField]
         private Transform _player;
+
+        [SerializeField]
+        private Enemy _enemyPrefab;
+
+        private List<Enemy> _enemies;
         #endregion // Variables
 
         #region CommonMethod
@@ -64,6 +70,8 @@ namespace DungeonBuilder
                 minoViewPanels[i].OnEndDragEvent = e => ReleaseMino(index);
                 minoViewPanels[i].OnPointerClickEvent = e => RotateMino(index);
             }
+
+            _enemies = new List<Enemy>();
         }
 
         private void RefreshMino()
