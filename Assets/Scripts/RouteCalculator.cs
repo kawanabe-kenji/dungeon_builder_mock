@@ -129,5 +129,46 @@ namespace DungeonBuilder
             }
             return data[position.x, position.y];
         }
+
+        public Vector2Int[] GetBlocksAsPossible(Vector2Int start, float maxMove, Block[,] fieldData)
+        {
+            var possibleBlocks = new List<Vector2Int>();
+            var checkBlocks = new List<Vector2Int>();
+            checkBlocks.Add(start);
+            var addBlocks = new List<Vector2Int>();
+
+            while (maxMove <= 0)
+            {
+                foreach(var currentPos in checkBlocks)
+                {
+                    var currentBlock = GetBlock(fieldData, currentPos);
+                    for (int i = 0; i <= (int)Block.DirectionType.Max; i++)
+                    {
+                        var offset = Block.AROUND_OFFSET[i];
+                        var targetPos = currentPos + offset;
+
+                        // 対象方向に対して移動できなければ対象外
+                        if (currentBlock.Walls[i])
+                        {
+                            continue;
+                        }
+
+                        var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
+                        var targetBlock = GetBlock(fieldData, targetPos);
+                        if (targetBlock == null || targetBlock.Walls[(int)reverseDir])
+                        {
+                            continue;
+                        }
+                        addBlocks.Add(targetPos);
+                    }
+                }
+                possibleBlocks.AddRange(addBlocks);
+                checkBlocks.Clear();
+                checkBlocks.AddRange(addBlocks);
+                maxMove--;
+            }
+
+            return null;
+        }
     }
 }

@@ -135,7 +135,11 @@ namespace DungeonBuilder
                 });
                 seq.Append(_player.DOMove(position, 0.05f).SetEase(Ease.Linear));
             }
-            seq.OnComplete(HighlightLine);
+            seq.OnComplete(()=>
+            {
+                HighlightLine();
+                PlayEnemyTurn();
+            });
             seq.Play();
         }
 
@@ -205,6 +209,10 @@ namespace DungeonBuilder
 
         private void PlayEnemyTurn()
         {
+            _controlMgr.interactable = false;
+            var maxDuration = 0f;
+            var oneMoneDuration = 0.1f;
+
             for(int i = 0; i < _enemyMgr.Enemies.Count; i++)
             {
                 var enemy = _enemyMgr.Enemies[i];
@@ -221,11 +229,20 @@ namespace DungeonBuilder
                         float angle = Quaternion.LookRotation(position - _player.position).eulerAngles.y;
                         enemyView.lookAngles = new Vector3(0f, angle, 0f);
                     });
-                    seq.Append(enemyView.transform.DOMove(position, 0.1f).SetEase(Ease.Linear));
+                    seq.Append(enemyView.transform.DOMove(position, oneMoneDuration).SetEase(Ease.Linear));
                 }
-                seq.OnComplete(HighlightLine);
                 seq.Play();
+
+                if(maxDuration < route.Length * oneMoneDuration)
+                {
+                    maxDuration = route.Length * oneMoneDuration;
+                }
             }
+
+            var controlSeq = DOTween.Sequence();
+            controlSeq.AppendInterval(maxDuration);
+            controlSeq.OnComplete(() => _controlMgr.interactable = true);
+            controlSeq.Play();
         }
     }
 }

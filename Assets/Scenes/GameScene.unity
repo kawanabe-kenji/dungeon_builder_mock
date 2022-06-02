@@ -19981,6 +19981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5037bfbcfb5bb419985bd141c19f9c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactable: 1
   _camera: {fileID: 847978930}
   _touchFieldHandler: {fileID: 2073758809}
   _minoViewPanels:

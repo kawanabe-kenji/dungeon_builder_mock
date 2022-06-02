@@ -7,6 +7,15 @@ namespace DungeonBuilder
     public class ControlManager : MonoBehaviour
     {
         [SerializeField]
+        private bool _interactable = true;
+
+        public bool interactable
+        {
+            get => _interactable;
+            set => OnUpdateInteractable(value);
+        }
+
+        [SerializeField]
         private Camera _camera;
 
         [SerializeField]
@@ -32,6 +41,30 @@ namespace DungeonBuilder
         private Image _enemyIconPrefab;
 
         private Image[] _enemyIcons;
+
+        private void OnValidate()
+        {
+            interactable = _interactable;
+        }
+
+        private void OnUpdateInteractable(bool value)
+        {
+            _interactable = value;
+
+            if(_touchFieldHandler != null)
+            {
+                _touchFieldHandler.GetComponent<Graphic>().raycastTarget = value;
+            }
+
+            if(_minoViewPanels != null)
+            {
+                foreach (var panel in _minoViewPanels)
+                {
+                    if (panel == null) continue;
+                    panel.GetComponent<Graphic>().raycastTarget = value;
+                }
+            }
+        }
 
         public void Initialize(Mino[] pickableMinos)
         {
