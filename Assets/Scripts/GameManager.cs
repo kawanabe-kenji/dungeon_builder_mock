@@ -195,6 +195,8 @@ namespace DungeonBuilder
             _fieldMgr.PickableMinoRotateCounts[index] = 0;
 
             _controlMgr.SpawnMino(index, shapeType, mino);
+
+            PlayEnemyTurn();
         }
 
         private void RotateMino(int index)
@@ -211,13 +213,14 @@ namespace DungeonBuilder
         {
             _controlMgr.interactable = false;
             var maxDuration = 0f;
-            var oneMoneDuration = 0.1f;
+            var oneMoneDuration = 0.3f;
 
             for(int i = 0; i < _enemyMgr.Enemies.Count; i++)
             {
                 var enemy = _enemyMgr.Enemies[i];
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, _fieldMgr.Blocks);
+                var route = _routeCalc.GetRouteAsPossibleRandom(enemy.FieldPos, 3, _fieldMgr.Blocks);
+                enemy.FieldPos = route[route.Length - 1];
 
                 var seq = DOTween.Sequence();
                 var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
@@ -226,10 +229,12 @@ namespace DungeonBuilder
                     var position = FieldView.GetWorldPosition(route[j]) + offset;
                     seq.AppendCallback(() =>
                     {
-                        float angle = Quaternion.LookRotation(position - _player.position).eulerAngles.y;
+                        float angle = Quaternion.LookRotation(position - enemyView.transform.position).eulerAngles.y;
                         enemyView.lookAngles = new Vector3(0f, angle, 0f);
                     });
                     seq.Append(enemyView.transform.DOMove(position, oneMoneDuration).SetEase(Ease.Linear));
+                    bool inFog = !_fieldMgr.GetBlock(route[j]).IsIlluminated;
+                    seq.AppendCallback(() => enemyView.transform.GetChild(0).gameObject.SetActive(!inFog));
                 }
                 seq.Play();
 

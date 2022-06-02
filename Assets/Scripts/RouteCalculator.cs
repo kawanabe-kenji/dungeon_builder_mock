@@ -12,7 +12,7 @@ namespace DungeonBuilder
 
         private Node GetNode(Vector2Int fidldPos)
         {
-            if (fidldPos.x < 0 || fidldPos.y < 0 || fidldPos.x >= fieldSize.x || fidldPos.y >= fieldSize.y) return null;
+            if(fidldPos.x < 0 || fidldPos.y < 0 || fidldPos.x >= fieldSize.x || fidldPos.y >= fieldSize.y) return null;
             return _nodes[fidldPos.y * fieldSize.x + fidldPos.x];
         }
 
@@ -20,9 +20,9 @@ namespace DungeonBuilder
         {
             this.fieldSize = fieldSize;
             _nodes = new Node[fieldSize.x * fieldSize.y];
-            for (int y = 0; y < fieldSize.y; y++)
+            for(int y = 0; y < fieldSize.y; y++)
             {
-                for (int x = 0; x < fieldSize.x; x++)
+                for(int x = 0; x < fieldSize.x; x++)
                 {
                     _nodes[y * fieldSize.x + x] = new Node(x, y);
                 }
@@ -42,36 +42,36 @@ namespace DungeonBuilder
             var adjacentInfos = new List<Node>();
             Node goalNode = null;
 
-            while (true)
+            while(true)
             {
                 var currentTarget = recentTargets.OrderBy(info => info.Weight).FirstOrDefault();
                 var currentPos = currentTarget.Position;
                 var currentBlock = GetBlock(fieldData, currentPos);
 
                 adjacentInfos.Clear();
-                for (int i = 0; i < (int)Block.DirectionType.Max; i++)
+                for(int i = 0; i < (int)Block.DirectionType.Max; i++)
                 {
                     var offset = Block.AROUND_OFFSET[i];
                     Vector2Int targetPos = currentPos + offset;
                     // 対象方向に対して移動できなければ対象外
-                    if (currentBlock.Walls[i])
+                    if(currentBlock.Walls[i])
                     {
                         continue;
                     }
                     var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
                     var targetBlock = GetBlock(fieldData, targetPos);
-                    if (targetBlock == null || targetBlock.Walls[(int)reverseDir])
+                    if(targetBlock == null || targetBlock.Walls[(int)reverseDir])
                     {
                         continue;
                     }
 
                     // 計算済みのセルは対象外
-                    if (passedPositions.Contains(targetPos))
+                    if(passedPositions.Contains(targetPos))
                     {
                         continue;
                     }
                     var target = GetNode(targetPos);
-                    if (target == null)
+                    if(target == null)
                     {
                         continue;
                     }
@@ -86,19 +86,19 @@ namespace DungeonBuilder
 
                 // ゴールが含まれていたらそこで終了
                 goalNode = adjacentInfos.FirstOrDefault(info => info.Position == goal);
-                if (goalNode != null)
+                if(goalNode != null)
                 {
                     break;
                 }
                 // recentTargetsがゼロだったら行き止まりなので終了
-                if (recentTargets.Count == 0)
+                if(recentTargets.Count == 0)
                 {
                     break;
                 }
             }
 
             // ゴールが結果に含まれていない場合は最短経路が見つからなかった
-            if (goalNode == null)
+            if(goalNode == null)
             {
                 return null;
             }
@@ -108,9 +108,9 @@ namespace DungeonBuilder
             route.Add(goal);
             var routeNode = goalNode;
 
-            while (true)
+            while(true)
             {
-                if (routeNode.Step == 0)
+                if(routeNode.Step == 0)
                 {
                     break;
                 }
@@ -123,43 +123,44 @@ namespace DungeonBuilder
 
         private Block GetBlock(Block[,] data, Vector2Int position)
         {
-            if (position.x < 0 || position.x >= data.GetLength(0) || position.y < 0 || position.y >= data.GetLength(1))
+            if(position.x < 0 || position.x >= data.GetLength(0) || position.y < 0 || position.y >= data.GetLength(1))
             {
                 return null;
             }
             return data[position.x, position.y];
         }
 
-        public Vector2Int[] GetBlocksAsPossible(Vector2Int start, float maxMove, Block[,] fieldData)
+        public Node[] GetNodesAsPossible(Vector2Int start, int maxMove, Block[,] fieldData)
         {
+            _nodes.ToList().ForEach(node => node.Initialize());
+
             var possibleBlocks = new List<Vector2Int>();
-            var checkBlocks = new List<Vector2Int>();
-            checkBlocks.Add(start);
+            var checkBlocks = new List<Vector2Int>() { start };
             var addBlocks = new List<Vector2Int>();
 
-            while (maxMove <= 0)
+            while(maxMove > 0)
             {
                 foreach(var currentPos in checkBlocks)
                 {
                     var currentBlock = GetBlock(fieldData, currentPos);
-                    for (int i = 0; i <= (int)Block.DirectionType.Max; i++)
+                    for(int i = 0; i < (int)Block.DirectionType.Max; i++)
                     {
                         var offset = Block.AROUND_OFFSET[i];
                         var targetPos = currentPos + offset;
 
+                        if(start == targetPos || possibleBlocks.Contains(targetPos)) continue;
+
                         // 対象方向に対して移動できなければ対象外
-                        if (currentBlock.Walls[i])
-                        {
-                            continue;
-                        }
+                        if(currentBlock.Walls[i]) continue;
 
                         var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
                         var targetBlock = GetBlock(fieldData, targetPos);
-                        if (targetBlock == null || targetBlock.Walls[(int)reverseDir])
-                        {
-                            continue;
-                        }
+                        if(targetBlock == null || targetBlock.Walls[(int)reverseDir]) continue;
+
                         addBlocks.Add(targetPos);
+
+                        var targetNode = GetNode(targetPos);
+                        targetNode.Previous = currentPos;
                     }
                 }
                 possibleBlocks.AddRange(addBlocks);
@@ -168,7 +169,36 @@ namespace DungeonBuilder
                 maxMove--;
             }
 
-            return null;
+            var nodesAsPossible = new Node[possibleBlocks.Count];
+            for(int i = 0; i < nodesAsPossible.Length; i++)
+            {
+                nodesAsPossible[i] = GetNode(possibleBlocks[i]);
+            }
+
+            return nodesAsPossible;
+        }
+
+        public Vector2Int[] GetRouteAsPossibleRandom(Vector2Int start, int maxMove, Block[,] fieldData)
+        {
+            var nodesAsPossible = GetNodesAsPossible(start, maxMove, fieldData);
+            var goalNode = nodesAsPossible[Random.Range(0, nodesAsPossible.Length - 1)];
+
+            // Previousを辿ってセルのリストを作成する
+            var route = new List<Vector2Int>();
+            route.Add(goalNode.Position);
+            var routeNode = goalNode;
+
+            while(true)
+            {
+                if(routeNode.Previous == -Vector2Int.one)
+                {
+                    break;
+                }
+                route.Add(routeNode.Previous);
+                routeNode = GetNode(routeNode.Previous);
+            }
+            route.Reverse();
+            return route.ToArray();
         }
     }
 }
