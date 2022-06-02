@@ -29,7 +29,7 @@ namespace DungeonBuilder
             }
         }
 
-        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData, List<Enemy> enemies)
+        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData)
         {
             _nodes.ToList().ForEach(node => node.Initialize());
 
@@ -41,8 +41,6 @@ namespace DungeonBuilder
             recentTargets.Add(GetNode(start));
             var adjacentInfos = new List<Node>();
             Node goalNode = null;
-            var enemyPositions = new List<Vector2Int>();
-            foreach(var enemy in enemies) enemyPositions.Add(enemy.FieldPos);
 
             while(true)
             {
@@ -64,11 +62,6 @@ namespace DungeonBuilder
                     var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
                     var targetBlock = GetBlock(fieldData, targetPos);
                     if(targetBlock == null || targetBlock.Walls[(int)reverseDir])
-                    {
-                        continue;
-                    }
-
-                    if(enemyPositions.Contains(targetPos))
                     {
                         continue;
                     }
