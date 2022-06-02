@@ -110,7 +110,7 @@ namespace DungeonBuilder
             var block = _fieldMgr.GetBlock(fieldPos);
             if(block == null) return;
 
-            var route = _routeCalc.GetRoute(_playerPos, fieldPos, _fieldMgr.Blocks);
+            var route = _routeCalc.GetRoute(_playerPos, fieldPos, _fieldMgr.Blocks, _enemyMgr.Enemies);
             _routeView.gameObject.SetActive(route != null);
             if (route == null) return;
 
@@ -219,10 +219,11 @@ namespace DungeonBuilder
             {
                 var enemy = _enemyMgr.Enemies[i];
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRouteAsPossibleRandom(enemy.FieldPos, 3, _fieldMgr.Blocks);
+                var route = _routeCalc.GetRouteAsPossibleRandom(enemy.FieldPos, 3, _fieldMgr.Blocks, _playerPos);
                 enemy.FieldPos = route[route.Length - 1];
 
                 var seq = DOTween.Sequence();
+                seq.AppendInterval(0.5f);
                 var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
                 for (int j = 1; j < route.Length; j++)
                 {

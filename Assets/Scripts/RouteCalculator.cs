@@ -29,7 +29,7 @@ namespace DungeonBuilder
             }
         }
 
-        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData)
+        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData, List<Enemy> enemies)
         {
             _nodes.ToList().ForEach(node => node.Initialize());
 
@@ -41,6 +41,8 @@ namespace DungeonBuilder
             recentTargets.Add(GetNode(start));
             var adjacentInfos = new List<Node>();
             Node goalNode = null;
+            var enemyPositions = new List<Vector2Int>();
+            foreach(var enemy in enemies) enemyPositions.Add(enemy.FieldPos);
 
             while(true)
             {
@@ -58,9 +60,15 @@ namespace DungeonBuilder
                     {
                         continue;
                     }
+
                     var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
                     var targetBlock = GetBlock(fieldData, targetPos);
                     if(targetBlock == null || targetBlock.Walls[(int)reverseDir])
+                    {
+                        continue;
+                    }
+
+                    if(enemyPositions.Contains(targetPos))
                     {
                         continue;
                     }
@@ -130,7 +138,7 @@ namespace DungeonBuilder
             return data[position.x, position.y];
         }
 
-        public Node[] GetNodesAsPossible(Vector2Int start, int maxMove, Block[,] fieldData)
+        public Node[] GetNodesAsPossible(Vector2Int start, int maxMove, Block[,] fieldData, params Vector2Int[] impossiblePos)
         {
             _nodes.ToList().ForEach(node => node.Initialize());
 
@@ -148,7 +156,7 @@ namespace DungeonBuilder
                         var offset = Block.AROUND_OFFSET[i];
                         var targetPos = currentPos + offset;
 
-                        if(start == targetPos || possibleBlocks.Contains(targetPos)) continue;
+                        if(start == targetPos || possibleBlocks.Contains(targetPos) || impossiblePos.Contains(targetPos)) continue;
 
                         // 対象方向に対して移動できなければ対象外
                         if(currentBlock.Walls[i]) continue;
@@ -178,9 +186,9 @@ namespace DungeonBuilder
             return nodesAsPossible;
         }
 
-        public Vector2Int[] GetRouteAsPossibleRandom(Vector2Int start, int maxMove, Block[,] fieldData)
+        public Vector2Int[] GetRouteAsPossibleRandom(Vector2Int start, int maxMove, Block[,] fieldData, params Vector2Int[] impossiblePos)
         {
-            var nodesAsPossible = GetNodesAsPossible(start, maxMove, fieldData);
+            var nodesAsPossible = GetNodesAsPossible(start, maxMove, fieldData, impossiblePos);
             var goalNode = nodesAsPossible[Random.Range(0, nodesAsPossible.Length - 1)];
 
             // Previousを辿ってセルのリストを作成する
