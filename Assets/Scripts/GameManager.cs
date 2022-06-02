@@ -53,6 +53,15 @@ namespace DungeonBuilder
 
         [SerializeField]
         private EnemyManager _enemyMgr;
+
+        [SerializeField]
+        private GameObject _loseLayerParent;
+
+        [SerializeField]
+        private CanvasGroup _loseBlackLayer;
+
+        [SerializeField]
+        private CanvasGroup _loseTextLayer;
         #endregion // Variables
 
         #region CommonMethod
@@ -335,6 +344,16 @@ namespace DungeonBuilder
                 _playerHPViews[i].fillAmount = (float)(_playerHP - i * PLAYER_HP_VIEW_PART) / PLAYER_HP_VIEW_PART;
             }
 
+            if(_playerHP > 0) return;
+
+            _controlMgr.interactable = false;
+
+            _loseLayerParent.SetActive(true);
+            var seq = DOTween.Sequence();
+            seq.AppendInterval(0.5f);
+            seq.Append(_loseBlackLayer.DOFade(1f, 1f));
+            seq.Append(_loseTextLayer.DOFade(1f, 1f));
+            seq.Play();
         }
     }
 }
