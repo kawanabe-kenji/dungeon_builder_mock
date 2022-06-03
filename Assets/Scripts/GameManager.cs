@@ -174,7 +174,7 @@ namespace DungeonBuilder
                     {
                         _routeView.gameObject.SetActive(false);
                         var enemyView = _enemyMgr.GetView(enemy);
-                        enemyView.transform.GetChild(0).gameObject.SetActive(true);
+                        enemyView.IsVisible = true;
                         // TODO: 攻撃演出
                     });
                     var prePos = FieldView.GetWorldPosition(route[i - 1]) + offset;
@@ -292,7 +292,7 @@ namespace DungeonBuilder
                         seq.AppendCallback(() =>
                         {
                             float angle = Quaternion.LookRotation(_player.position - enemyView.transform.position).eulerAngles.y;
-                            enemyView.transform.GetChild(0).gameObject.SetActive(true);
+                            enemyView.IsVisible = true;
                             enemyView.lookAngles = new Vector3(0f, angle, 0f);
                             // TODO: 攻撃モーション
                         });
@@ -302,7 +302,7 @@ namespace DungeonBuilder
                         seq.Append(enemyView.transform.DOMove(prePos, 0.1f));
                         seq.AppendCallback(() =>
                         {
-                            enemyView.transform.GetChild(0).gameObject.SetActive(_fieldMgr.GetBlock(enemy.FieldPos).IsIlluminated);
+                            enemyView.IsVisible = _fieldMgr.GetBlock(enemy.FieldPos).IsIlluminated;
                             PlayerHP--;
                         });
                         break;
@@ -316,10 +316,11 @@ namespace DungeonBuilder
                     {
                         float angle = Quaternion.LookRotation(position - enemyView.transform.position).eulerAngles.y;
                         enemyView.lookAngles = new Vector3(0f, angle, 0f);
-                        enemyView.transform.GetChild(0).gameObject.SetActive(isIlluminated);
+                        if (isIlluminated) enemyView.IsVisible = isIlluminated;
                         enemy.FieldPos = nextPos;
                     });
                     seq.Append(enemyView.transform.DOMove(position, oneMoneDuration).SetEase(Ease.Linear));
+                    if (!isIlluminated) seq.AppendCallback(() => enemyView.IsVisible = isIlluminated);
                 }
                 seq.Play();
 

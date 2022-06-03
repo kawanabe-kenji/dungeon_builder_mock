@@ -36,7 +36,7 @@ namespace DungeonBuilder
             Enemies.Add(enemy);
 
             var enemyView = CreateEnemyView(enemy);
-            enemyView.transform.GetChild(0).gameObject.SetActive(false);
+            enemyView.IsVisible = false;
         }
 
         private EnemyView CreateEnemyView(Enemy enemy)
@@ -67,7 +67,7 @@ namespace DungeonBuilder
 			{
                 var fieldPos = Enemies[i].FieldPos;
                 var block = fieldData[fieldPos.x, fieldPos.y];
-                EnemyViews[0].gameObject.SetActive(block.IsIlluminated);
+                EnemyViews[i].IsVisible = block.IsIlluminated;
 			}
         }
 

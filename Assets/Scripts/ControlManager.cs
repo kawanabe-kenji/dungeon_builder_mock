@@ -120,7 +120,7 @@ namespace DungeonBuilder
                     blockView.GetChild(j).GetComponent<Image>().enabled = block.Walls[j];
                 }
                 var offset = kvp.Key;
-                if (offset == mino.Enemy.FieldPos)
+                if (mino.Enemy != null && offset == mino.Enemy.FieldPos)
                 {
                     _enemyIcons[index] = Instantiate(_enemyIconPrefab, blockView.transform);
                     _enemyIcons[index].rectTransform.localPosition = Vector3.zero;
