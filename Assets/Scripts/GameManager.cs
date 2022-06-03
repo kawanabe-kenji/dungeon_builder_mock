@@ -242,9 +242,12 @@ namespace DungeonBuilder
             var shapeType = Mino.RandomShapeType();
             var mino = _fieldMgr.SpawnMino(index, shapeType);
 
-            // FIXME: 敵配置
-            var enemy = new Enemy();
-            mino.PutEnemy(enemy);
+            // FIXME: 敵配置(1/3の確率）
+            if(Random.Range(0, 2) == 0)
+            {
+                var enemy = new Enemy();
+                mino.PutEnemy(enemy);
+            }
 
             _fieldMgr.PickableMinoRotateCounts[index] = 0;
 
