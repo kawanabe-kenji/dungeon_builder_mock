@@ -287,7 +287,16 @@ namespace DungeonBuilder
                     bool isHitPlayer = false;
                     for(int k = 0; k < (int)Block.DirectionType.Max; k++)
                     {
-                        if(_playerPos != currentPos + Block.AROUND_OFFSET[k]) continue;
+                        var targetPos = currentPos + Block.AROUND_OFFSET[k];
+                        if (_playerPos != targetPos) continue;
+
+                        var currentBlock = _fieldMgr.GetBlock(currentPos);
+                        if (currentBlock.Walls[k]) continue;
+
+                        var reverseDir = Block.GetReverseDirection((Block.DirectionType)k);
+                        var targetBlock = _fieldMgr.GetBlock(targetPos);
+                        if (targetBlock == null || targetBlock.Walls[(int)reverseDir]) continue;
+
                         isHitPlayer = true;
                         seq.AppendCallback(() =>
                         {
