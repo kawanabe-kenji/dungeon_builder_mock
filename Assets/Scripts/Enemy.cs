@@ -15,5 +15,10 @@ namespace DungeonBuilder
         private int _waitTurn;
 
         public int WaitTurn => _waitTurn;
+
+        private Vector2Int[] CreateRouteChase()
+        {
+            return null;
+        }
     }
 }

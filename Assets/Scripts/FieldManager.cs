@@ -201,5 +201,10 @@ namespace DungeonBuilder
             _pickableMinoRotateCounts[index] = rotateCount;
             return rotateCount;
         }
+
+        public static int Distance(Vector2Int a, Vector2Int b)
+        {
+            return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
+        }
     }
 }
