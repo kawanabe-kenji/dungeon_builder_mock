@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 namespace DungeonBuilder
@@ -62,6 +63,12 @@ namespace DungeonBuilder
 
         [SerializeField]
         private CanvasGroup _loseTextLayer;
+
+        [SerializeField]
+        private Button _loseResetButton;
+
+        [SerializeField]
+        private Image _blackLayer;
         #endregion // Variables
 
         #region CommonMethod
@@ -95,10 +102,13 @@ namespace DungeonBuilder
                 minoViewPanels[i].OnEndDragEvent = e => ReleaseMino(index);
                 minoViewPanels[i].OnPointerClickEvent = e => RotateMino(index);
             }
+            _controlMgr.ResetButton.onClick.AddListener(ResetScene);
 
             _enemyMgr.Initialize();
 
             _playerHP = _playerHPViews.Length * PLAYER_HP_VIEW_PART;
+
+            Fade(false);
         }
 
         private void RefreshMino()
@@ -367,9 +377,30 @@ namespace DungeonBuilder
             _loseLayerParent.SetActive(true);
             var seq = DOTween.Sequence();
             seq.AppendInterval(0.5f);
-            seq.Append(_loseBlackLayer.DOFade(1f, 1f));
-            seq.Append(_loseTextLayer.DOFade(1f, 1f));
+            seq.Append(_loseBlackLayer.DOFade(1f, 0.7f));
+            seq.Append(_loseTextLayer.DOFade(1f, 0.5f));
+            seq.AppendCallback(() =>
+            {
+                _loseResetButton.image.enabled = true;
+                _loseResetButton.onClick.AddListener(ResetScene);
+            });
             seq.Play();
+        }
+
+        private void ResetScene()
+        {
+            var seq = Fade(true);
+            seq.AppendCallback(() => SceneManager.LoadScene("GameScene"));
+            seq.Play();
+        }
+
+        private Sequence Fade(bool isOut)
+        {
+            _blackLayer.color = isOut ? Color.clear : Color.black;
+            _blackLayer.enabled = true;
+            var seq = DOTween.Sequence();
+            seq.Append(_blackLayer.DOFade(isOut ? 1f : 0f, 0.5f));
+            return seq;
         }
     }
 }

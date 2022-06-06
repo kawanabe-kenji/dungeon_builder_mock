@@ -42,6 +42,11 @@ namespace DungeonBuilder
 
         private Image[] _enemyIcons;
 
+        [SerializeField]
+        private Button _resetButton;
+
+        public Button ResetButton => _resetButton;
+
         private void OnValidate()
         {
             interactable = _interactable;
