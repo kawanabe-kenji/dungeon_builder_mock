@@ -19399,6 +19399,7 @@ MonoBehaviour:
     _fog: {fileID: 1794128639}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 0}
     - {fileID: 0}
@@ -19407,6 +19408,7 @@ MonoBehaviour:
     _fog: {fileID: 1071255112}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 0}
     - {fileID: 0}
@@ -19415,6 +19417,7 @@ MonoBehaviour:
     _fog: {fileID: 592666957}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 0}
     - {fileID: 0}
@@ -19423,6 +19426,7 @@ MonoBehaviour:
     _fog: {fileID: 23741505}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 0}
     - {fileID: 0}
@@ -19431,6 +19435,7 @@ MonoBehaviour:
     _fog: {fileID: 966512683}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 214375481}
     - {fileID: 1136437371}
@@ -19439,6 +19444,7 @@ MonoBehaviour:
     _fog: {fileID: 1929590721}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 0}
     - {fileID: 547876366}
@@ -19447,6 +19453,7 @@ MonoBehaviour:
     _fog: {fileID: 842675697}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 0}
     - {fileID: 0}
@@ -19455,6 +19462,7 @@ MonoBehaviour:
     _fog: {fileID: 232395570}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   - _walls:
     - {fileID: 1408861869}
     - {fileID: 0}
@@ -19463,8 +19471,10 @@ MonoBehaviour:
     _fog: {fileID: 1594622130}
     IsPlayingFog: 0
     Key: {fileID: 0}
+    HealItem: {fileID: 0}
   _fogs: {fileID: 519068188}
   _keyPrefab: {fileID: 7978863029161293546, guid: 4b2c3d49dbcf0458ea36a302735b092d, type: 3}
+  _healItemPrefab: {fileID: 514441625106822582, guid: 5af9af221dc7a4d349f63607dacca27b, type: 3}
 --- !u!1 &1917011635
 GameObject:
   m_ObjectHideFlags: 0

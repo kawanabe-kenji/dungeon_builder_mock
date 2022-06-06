@@ -202,6 +202,13 @@ namespace DungeonBuilder
 
                 seq.Append(_player.DOMove(position, 0.05f).SetEase(Ease.Linear));
                 seq.AppendCallback(() => _playerPos = nextPos);
+
+                var nextBlock = _fieldMgr.GetBlock(nextPos);
+                if (nextBlock != null && nextBlock.HasHealItem)
+                {
+                    // TODO: 回復アイテム拾った演出
+                    nextBlock.HasHealItem = false;
+                }
             }
             seq.OnComplete(() =>
             {
@@ -256,11 +263,16 @@ namespace DungeonBuilder
             var shapeType = Mino.RandomShapeType();
             var mino = _fieldMgr.SpawnMino(index, shapeType);
 
-            // FIXME: 敵配置(70%の確率）
-            if(ProbabilityCalclator.DetectFromPercent(70))
+            // 敵配置(70%の確率）
+            if (ProbabilityCalclator.DetectFromPercent(70))
             {
                 var enemy = new Enemy();
                 mino.PutEnemy(enemy);
+            }
+            // 回復アイテム配置(30%の確率)
+            else if (ProbabilityCalclator.DetectFromPercent(30))
+            {
+                mino.PutHealItem();
             }
 
             _fieldMgr.PickableMinoRotateCounts[index] = 0;

@@ -39,6 +39,8 @@ namespace DungeonBuilder
 
         public bool HasKey;
 
+        public bool HasHealItem;
+
         public static DirectionType GetReverseDirection(DirectionType type)
         {
             switch (type)

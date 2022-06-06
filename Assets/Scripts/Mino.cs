@@ -159,5 +159,11 @@ namespace DungeonBuilder
             enemy.FieldPos = offset;
             _enemy = enemy;
         }
+
+        public void PutHealItem()
+        {
+            var block = Blocks.Values.ElementAt(Random.Range(0, Blocks.Values.Count));
+            block.HasHealItem = true;
+        }
     }
 }

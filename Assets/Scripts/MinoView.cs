@@ -22,6 +22,8 @@ namespace DungeonBuilder
             public bool IsPlayingFog;
 
             public Transform Key;
+
+            public Transform HealItem;
         }
 
         [SerializeField]

@@ -27,6 +27,9 @@ namespace DungeonBuilder
         [SerializeField]
         private Transform _keyPrefab;
 
+        [SerializeField]
+        private Transform _healItemPrefab;
+
         public float HeightFloor => _minoViewParent.position.y;
 
         public static Vector2Int GetFieldPosition(Vector3 worldPos)
@@ -179,13 +182,20 @@ namespace DungeonBuilder
         {
             for (int i = 0; i < mino.Blocks.Values.Count; i++)
             {
-                var data = mino.Blocks.Values.ElementAt(i);
-                if (!data.HasKey) continue;
-
                 var view = _currentView.Blocks[i];
-                view.Key = Instantiate(_keyPrefab, view.Fog.transform.parent);
-                view.Key.eulerAngles = _keyPrefab.localEulerAngles;
-                view.Key.gameObject.SetActive(data.IsIlluminated);
+                var data = mino.Blocks.Values.ElementAt(i);
+                if (data.HasKey)
+                {
+                    view.Key = Instantiate(_keyPrefab, view.Fog.transform.parent);
+                    view.Key.eulerAngles = _keyPrefab.localEulerAngles;
+                    view.Key.gameObject.SetActive(data.IsIlluminated);
+                }
+                if (data.HasHealItem)
+                {
+                    view.HealItem = Instantiate(_healItemPrefab, view.Fog.transform.parent);
+                    view.HealItem.eulerAngles = _healItemPrefab.localEulerAngles;
+                    view.HealItem.gameObject.SetActive(data.IsIlluminated);
+                }
             }
 
             _currentView = null;
