@@ -242,8 +242,8 @@ namespace DungeonBuilder
             var shapeType = Mino.RandomShapeType();
             var mino = _fieldMgr.SpawnMino(index, shapeType);
 
-            // FIXME: 敵配置(1/2の確率）
-            if(Random.Range(0, 1) == 0)
+            // FIXME: 敵配置(70%の確率）
+            if(ProbabilityCalclator.DetectFromPercent(70))
             {
                 var enemy = new Enemy();
                 mino.PutEnemy(enemy);
