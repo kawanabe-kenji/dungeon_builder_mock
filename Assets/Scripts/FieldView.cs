@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 namespace DungeonBuilder
 {
@@ -77,6 +78,7 @@ namespace DungeonBuilder
                 _blocks[fieldPos.x, fieldPos.y] = view;
 
                 view.Fog.Play();
+                view.IsPlayingFog = true;
             }
         }
 
@@ -120,13 +122,26 @@ namespace DungeonBuilder
                     var fog = view.Fog;
                     if (fog == null) continue;
 
-                    if (data.IsIlluminated)
+                    if(data.IsIlluminated == view.IsPlayingFog)
                     {
-                        fog.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-                    }
-                    else
-                    {
-                        fog.Play();
+                        view.IsPlayingFog = !data.IsIlluminated;
+                        if (data.IsIlluminated)
+                            fog.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+                        else
+                            fog.Play();
+
+                        var seq = DOTween.Sequence();
+                        seq.AppendCallback(() =>
+                        {
+                            var main = fog.main;
+                            main.simulationSpeed = 7.5f;
+                        });
+                        seq.AppendInterval(0.5f);
+                        seq.AppendCallback(() =>
+                        {
+                            var main = fog.main;
+                            main.simulationSpeed = 1f;
+                        });
                     }
 
                     if (view.Key != null)

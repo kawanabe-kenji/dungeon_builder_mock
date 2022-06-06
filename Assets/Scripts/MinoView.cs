@@ -19,6 +19,8 @@ namespace DungeonBuilder
 
             public ParticleSystem Fog => _fog;
 
+            public bool IsPlayingFog;
+
             public Transform Key;
         }
 
