@@ -127,7 +127,8 @@ namespace DungeonBuilder
             var route = GetRoute(start, goal, fieldData);
             if (route == null) return null;
 
-            var routeList = new List<Vector2Int>(route);
+            maxMove++; // GetRouteは移動開始地点もルートに含まれるため歩数を一歩増やす
+            var routeList = new List<Vector2Int>();
             for (int i = 0; i < maxMove && i < route.Length; i++)
             {
                 routeList.Add(route[i]);
