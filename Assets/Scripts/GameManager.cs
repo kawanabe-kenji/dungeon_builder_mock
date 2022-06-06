@@ -190,7 +190,11 @@ namespace DungeonBuilder
                     var prePos = FieldView.GetWorldPosition(route[i - 1]) + offset;
                     var movePos = prePos + (position - prePos) * 0.5f;
                     seq.Append(_player.DOMove(movePos, 0.1f));
-                    seq.AppendCallback(() => _enemyMgr.RemoveEnemy(enemy));
+                    seq.AppendCallback(() =>
+                    {
+                        enemy.HP--;
+                        if(enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
+                    });
                     seq.Append(_player.DOMove(prePos, 0.1f));
                     break;
                 }
@@ -285,10 +289,10 @@ namespace DungeonBuilder
             for(int i = 0; i < _enemyMgr.Enemies.Count; i++)
             {
                 var enemy = _enemyMgr.Enemies[i];
-                if(FieldManager.Distance(enemy.FieldPos, _playerPos) > 4) continue;
+                //if(FieldManager.Distance(enemy.FieldPos, _playerPos) > 4) continue;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, 2, _fieldMgr.Blocks);
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, 3, _fieldMgr.Blocks);
                 if (route == null) continue;
 
                 var seq = DOTween.Sequence();

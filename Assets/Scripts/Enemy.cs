@@ -8,9 +8,7 @@ namespace DungeonBuilder
     {
         public Vector2Int FieldPos;
 
-        private int _hp;
-
-        public int HP => _hp;
+        public int HP = 2;
 
         private int _waitTurn;
 
