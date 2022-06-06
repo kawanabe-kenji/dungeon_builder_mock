@@ -275,10 +275,11 @@ namespace DungeonBuilder
             for(int i = 0; i < _enemyMgr.Enemies.Count; i++)
             {
                 var enemy = _enemyMgr.Enemies[i];
-                if(FieldManager.Distance(enemy.FieldPos, _playerPos) >= 4) continue;
+                if(FieldManager.Distance(enemy.FieldPos, _playerPos) > 4) continue;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRouteAsPossibleRandom(enemy.FieldPos, 3, _fieldMgr.Blocks, _playerPos);
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, 2, _fieldMgr.Blocks);
+                if (route == null) continue;
 
                 var seq = DOTween.Sequence();
                 seq.AppendInterval(0.5f);

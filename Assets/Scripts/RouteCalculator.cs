@@ -122,6 +122,20 @@ namespace DungeonBuilder
             return route.ToArray();
         }
 
+        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, int maxMove, Block[,] fieldData)
+        {
+            var route = GetRoute(start, goal, fieldData);
+            if (route == null) return null;
+
+            var routeList = new List<Vector2Int>(route);
+            for (int i = 0; i < maxMove && i < route.Length; i++)
+            {
+                routeList.Add(route[i]);
+            }
+
+            return routeList.ToArray();
+        }
+
         private Block GetBlock(Block[,] data, Vector2Int position)
         {
             if(position.x < 0 || position.x >= data.GetLength(0) || position.y < 0 || position.y >= data.GetLength(1))
@@ -200,54 +214,6 @@ namespace DungeonBuilder
             }
             route.Reverse();
             return route.ToArray();
-        }
-
-        public Node[] GetNodesAsPossible(Vector2Int start, Vector2Int goal, int maxMove, Block[,] fieldData, params Vector2Int[] impossiblePos)
-        {
-            _nodes.ToList().ForEach(node => node.Initialize());
-
-            var possibleBlocks = new List<Vector2Int>();
-            var checkBlocks = new List<Vector2Int>() { start };
-            var addBlocks = new List<Vector2Int>();
-
-            while (maxMove > 0)
-            {
-                foreach (var currentPos in checkBlocks)
-                {
-                    var currentBlock = GetBlock(fieldData, currentPos);
-                    for (int i = 0; i < (int)Block.DirectionType.Max; i++)
-                    {
-                        var offset = Block.AROUND_OFFSET[i];
-                        var targetPos = currentPos + offset;
-
-                        if (start == targetPos || possibleBlocks.Contains(targetPos) || impossiblePos.Contains(targetPos)) continue;
-
-                        // 対象方向に対して移動できなければ対象外
-                        if (currentBlock.Walls[i]) continue;
-
-                        var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
-                        var targetBlock = GetBlock(fieldData, targetPos);
-                        if (targetBlock == null || targetBlock.Walls[(int)reverseDir]) continue;
-
-                        addBlocks.Add(targetPos);
-
-                        var targetNode = GetNode(targetPos);
-                        targetNode.Previous = currentPos;
-                    }
-                }
-                possibleBlocks.AddRange(addBlocks);
-                checkBlocks.Clear();
-                checkBlocks.AddRange(addBlocks);
-                maxMove--;
-            }
-
-            var nodesAsPossible = new Node[possibleBlocks.Count];
-            for (int i = 0; i < nodesAsPossible.Length; i++)
-            {
-                nodesAsPossible[i] = GetNode(possibleBlocks[i]);
-            }
-
-            return nodesAsPossible;
         }
     }
 }
