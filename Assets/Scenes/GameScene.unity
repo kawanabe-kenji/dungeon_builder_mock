@@ -21027,7 +21027,7 @@ MonoBehaviour:
   - {fileID: 5071463515282090448, guid: b22e0043266e441c3a7236b974262f5a, type: 3}
   - {fileID: 4006204119083820144, guid: 98feb91e892484d12b208f0dc76f1ee4, type: 3}
   - {fileID: 8396823234138598529, guid: 29a6328052bc444a292be495babc0bed, type: 3}
-  _enemyIconPrefab: {fileID: 133809688949486720, guid: 465fd4af35c874872ad1c9ccddac4ed0, type: 3}
+  _objectIconPrefab: {fileID: 133809688949486720, guid: 465fd4af35c874872ad1c9ccddac4ed0, type: 3}
   _resetButton: {fileID: 871163394}
 --- !u!4 &2083369287
 Transform:

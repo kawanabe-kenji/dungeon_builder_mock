@@ -165,5 +165,14 @@ namespace DungeonBuilder
             var block = Blocks.Values.ElementAt(Random.Range(0, Blocks.Values.Count));
             block.HasHealItem = true;
         }
+
+        public bool HasKey()
+        {
+            foreach (var block in Blocks)
+            {
+                if (block.Value.HasKey) return true;
+            }
+            return false;
+        }
     }
 }

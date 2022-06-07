@@ -288,16 +288,19 @@ namespace DungeonBuilder
             var shapeType = Mino.RandomShapeType();
             var mino = _fieldMgr.SpawnMino(index, shapeType);
 
-            // 敵配置(60%の確率）
-            if (ProbabilityCalclator.DetectFromPercent(60))
+            if (!mino.HasKey())
             {
-                var enemy = new Enemy();
-                mino.PutEnemy(enemy);
-            }
-            // 回復アイテム配置(35%の確率)
-            else if (ProbabilityCalclator.DetectFromPercent(35))
-            {
-                mino.PutHealItem();
+                // 敵配置(60%の確率）
+                if (ProbabilityCalclator.DetectFromPercent(60))
+                {
+                    var enemy = new Enemy();
+                    mino.PutEnemy(enemy);
+                }
+                // 回復アイテム配置(35%の確率)
+                else if (ProbabilityCalclator.DetectFromPercent(35))
+                {
+                    mino.PutHealItem();
+                }
             }
 
             _fieldMgr.PickableMinoRotateCounts[index] = 0;
