@@ -12,6 +12,8 @@ namespace DungeonBuilder
         [SerializeField]
         private bool _isVisible;
 
+        public UnknownObjectView UnknownView;
+
         public bool IsVisible
         {
             get => _isVisible;
@@ -31,6 +33,7 @@ namespace DungeonBuilder
         private void SetVisible(bool isVisible)
         {
             transform.GetChild(0).gameObject.SetActive(isVisible);
+            if (UnknownView != null) UnknownView.SetVisible(!isVisible);
         }
     }
 }

@@ -30,6 +30,8 @@ namespace DungeonBuilder
         [SerializeField]
         private Transform _healItemPrefab;
 
+        private FieldHUDManager _fieldHUDMgr;
+
         public float HeightFloor => _minoViewParent.position.y;
 
         public static Vector2Int GetFieldPosition(Vector3 worldPos)
@@ -53,7 +55,7 @@ namespace DungeonBuilder
             return _blocks[fieldPos.x, fieldPos.y];
         }
 
-        public void Initialize(Vector2Int fieldSize, Vector2Int startPos)
+        public void Initialize(Vector2Int fieldSize, Vector2Int startPos, FieldHUDManager fieldHUDMgr)
         {
             _blocks = new MinoView.Block[fieldSize.x, fieldSize.y];
 
@@ -68,6 +70,8 @@ namespace DungeonBuilder
 
             _fogs.Simulate(100f);
             _fogs.Play();
+
+            _fieldHUDMgr = fieldHUDMgr;
         }
 
         public void SetMinoPosition(Vector2Int fieldPos)
@@ -157,11 +161,15 @@ namespace DungeonBuilder
                     if (view.Key != null)
                     {
                         view.Key.gameObject.SetActive(data.IsIlluminated);
+                        var unknownView = _fieldHUDMgr.GetUnknownView(view.Key.gameObject);
+                        unknownView.SetVisible(!data.IsIlluminated);
                     }
 
                     if (view.HealItem != null)
                     {
                         view.HealItem.gameObject.SetActive(data.IsIlluminated);
+                        var unknownView = _fieldHUDMgr.GetUnknownView(view.HealItem.gameObject);
+                        unknownView.SetVisible(!data.IsIlluminated);
                     }
                 }
             }
@@ -201,12 +209,16 @@ namespace DungeonBuilder
                     view.Key = Instantiate(_keyPrefab, view.Fog.transform.parent);
                     view.Key.eulerAngles = _keyPrefab.localEulerAngles;
                     view.Key.gameObject.SetActive(data.IsIlluminated);
+                    var unknownView = _fieldHUDMgr.AddUnknownView(view.Key.gameObject, new Vector2(0f, 25f));
+                    unknownView.SetVisible(!data.IsIlluminated);
                 }
                 if (data.HasHealItem)
                 {
                     view.HealItem = Instantiate(_healItemPrefab, view.Fog.transform.parent);
                     view.HealItem.eulerAngles = _healItemPrefab.localEulerAngles;
                     view.HealItem.gameObject.SetActive(data.IsIlluminated);
+                    var unknownView = _fieldHUDMgr.AddUnknownView(view.HealItem.gameObject, new Vector2(0f, 25f));
+                    unknownView.SetVisible(!data.IsIlluminated);
                 }
             }
 

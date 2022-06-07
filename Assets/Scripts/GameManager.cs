@@ -33,6 +33,9 @@ namespace DungeonBuilder
         private ControlManager _controlMgr;
 
         [SerializeField]
+        private FieldHUDManager _fieldHUDMgr;
+
+        [SerializeField]
         private Transform _player;
 
         private const int PLAYER_HP_VIEW_PART = 1;
@@ -86,10 +89,12 @@ namespace DungeonBuilder
             Vector2Int startPos = new Vector2Int(Mathf.CeilToInt(_fieldSize.x / 2), 1);
             _playerPos = startPos;
 
+            _fieldHUDMgr.Initialize();
+
             _fieldMgr = new FieldManager(_fieldSize, startPos, _controlMgr.MinoViewPanels.Length);
             _routeCalc = new RouteCalculator(_fieldMgr.FieldSize);
 
-            _fieldView.Initialize(_fieldMgr.FieldSize, startPos);
+            _fieldView.Initialize(_fieldMgr.FieldSize, startPos, _fieldHUDMgr);
             _fieldUIView.Initialize(_fieldMgr.FieldSize);
 
             _controlMgr.Initialize(_fieldMgr.PickableMinos);
@@ -106,7 +111,7 @@ namespace DungeonBuilder
             }
             _controlMgr.ResetButton.onClick.AddListener(ResetScene);
 
-            _enemyMgr.Initialize();
+            _enemyMgr.Initialize(_fieldHUDMgr);
 
             _playerHP = PlayerMaxHP;
 
@@ -214,7 +219,11 @@ namespace DungeonBuilder
                     if(nextBlockView != null && nextBlockView.HealItem != null)
                     {
                         var healItem = nextBlockView.HealItem;
-                        seq.AppendCallback(() => healItem.gameObject.SetActive(true));
+                        seq.AppendCallback(() =>
+                        {
+                            healItem.gameObject.SetActive(true);
+                            _fieldHUDMgr.RemoveUnknownView(healItem.gameObject);
+                        });
                         var upVector = (Vector3.forward + Camera.main.transform.up).normalized;
                         seq.Append(healItem.DOMove(healItem.position + upVector * 3f, 1f).SetEase(Ease.OutCubic));
                         seq.AppendCallback(() =>

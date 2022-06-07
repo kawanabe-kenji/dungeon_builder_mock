@@ -21,10 +21,13 @@ namespace DungeonBuilder
         [SerializeField]
         private Transform _viewParent;
 
-        public void Initialize()
+        private FieldHUDManager _fieldHUDMgr;
+
+        public void Initialize(FieldHUDManager fieldHUDMgr)
         {
             _enemies = new List<Enemy>();
             _enemyViews = new List<EnemyView>();
+            _fieldHUDMgr = fieldHUDMgr;
         }
 
         public void PutMino(Mino mino)
@@ -48,6 +51,9 @@ namespace DungeonBuilder
             enemyView.transform.localPosition = worldPos;
 
             enemyView.lookAngles = Vector3.up * Random.Range(0, 3) * 90f;
+
+            enemyView.UnknownView = _fieldHUDMgr.AddUnknownView(enemyView.gameObject, new Vector2(0f, 50f));
+
             return enemyView;
         }
 
@@ -57,6 +63,9 @@ namespace DungeonBuilder
             Enemies.RemoveAt(index);
 
             var view = EnemyViews[index];
+
+            _fieldHUDMgr.RemoveUnknownView(view.gameObject);
+
             Destroy(view.gameObject);
             EnemyViews.RemoveAt(index);
         }
