@@ -47,10 +47,12 @@ namespace DungeonBuilder
             get => _playerHP;
             set
             {
-                _playerHP = value;
+                _playerHP = Mathf.Min(value, PlayerMaxHP);
                 UpdatePlayerHPView();
             }
         }
+
+        public int PlayerMaxHP => _playerHPViews.Length * PLAYER_HP_VIEW_PART;
 
         [SerializeField]
         private EnemyManager _enemyMgr;
@@ -106,7 +108,7 @@ namespace DungeonBuilder
 
             _enemyMgr.Initialize();
 
-            _playerHP = _playerHPViews.Length * PLAYER_HP_VIEW_PART;
+            _playerHP = PlayerMaxHP;
 
             Fade(false);
         }
@@ -208,6 +210,20 @@ namespace DungeonBuilder
                 {
                     // TODO: 回復アイテム拾った演出
                     nextBlock.HasHealItem = false;
+                    var nextBlockView = _fieldView.GetBlock(nextPos);
+                    if(nextBlockView != null && nextBlockView.HealItem != null)
+                    {
+                        var healItem = nextBlockView.HealItem;
+                        seq.AppendCallback(() => healItem.gameObject.SetActive(true));
+                        var upVector = (Vector3.forward + Camera.main.transform.up).normalized;
+                        seq.Append(healItem.DOMove(healItem.position + upVector * 3f, 1f).SetEase(Ease.OutCubic));
+                        seq.AppendCallback(() =>
+                        {
+                            nextBlockView.HealItem = null;
+                            Destroy(healItem.gameObject);
+                            PlayerHP++;
+                        });
+                    }
                 }
             }
             seq.OnComplete(() =>
@@ -263,16 +279,16 @@ namespace DungeonBuilder
             var shapeType = Mino.RandomShapeType();
             var mino = _fieldMgr.SpawnMino(index, shapeType);
 
+            // 回復アイテム配置(30%の確率)
+            if (ProbabilityCalclator.DetectFromPercent(35))
+            {
+                mino.PutHealItem();
+            }
             // 敵配置(70%の確率）
-            if (ProbabilityCalclator.DetectFromPercent(70))
+            else if (ProbabilityCalclator.DetectFromPercent(60))
             {
                 var enemy = new Enemy();
                 mino.PutEnemy(enemy);
-            }
-            // 回復アイテム配置(30%の確率)
-            else if (ProbabilityCalclator.DetectFromPercent(30))
-            {
-                mino.PutHealItem();
             }
 
             _fieldMgr.PickableMinoRotateCounts[index] = 0;

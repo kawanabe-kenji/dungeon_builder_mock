@@ -46,6 +46,13 @@ namespace DungeonBuilder
             return new Vector3(fieldPos.x * CELL_SIZE, 0f, fieldPos.y * CELL_SIZE);
         }
 
+        public MinoView.Block GetBlock(Vector2Int fieldPos)
+        {
+            var fieldSize = new Vector2Int(_blocks.GetLength(0), _blocks.GetLength(1));
+            if (fieldPos.x < 0 || fieldPos.x >= fieldSize.x || fieldPos.y < 0 || fieldPos.y >= fieldSize.y) return null;
+            return _blocks[fieldPos.x, fieldPos.y];
+        }
+
         public void Initialize(Vector2Int fieldSize, Vector2Int startPos)
         {
             _blocks = new MinoView.Block[fieldSize.x, fieldSize.y];
