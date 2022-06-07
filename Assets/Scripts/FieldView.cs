@@ -158,6 +158,11 @@ namespace DungeonBuilder
                     {
                         view.Key.gameObject.SetActive(data.IsIlluminated);
                     }
+
+                    if (view.HealItem != null)
+                    {
+                        view.HealItem.gameObject.SetActive(data.IsIlluminated);
+                    }
                 }
             }
         }
