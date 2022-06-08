@@ -332,7 +332,7 @@ namespace DungeonBuilder
                 //if(FieldManager.Distance(enemy.FieldPos, _playerPos) > 4) continue;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, 3, _fieldMgr.Blocks);
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, 1, _fieldMgr.Blocks);
                 if (route == null) continue;
 
                 var seq = DOTween.Sequence();
