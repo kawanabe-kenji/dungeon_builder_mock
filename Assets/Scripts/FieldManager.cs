@@ -184,7 +184,7 @@ namespace DungeonBuilder
             {
                 int blockCount = 0;
                 foreach (var block in Blocks) if (block != null) blockCount++;
-                if (blockCount > FieldSize.x * FieldSize.y * 0.3f)
+                if (blockCount > 48) // ミノ12個分
                 {
                     mino.PutKey();
                     _isPutKey = true;
