@@ -43,6 +43,15 @@ namespace DungeonBuilder
         private Image[] _objectIcons;
 
         [SerializeField]
+        private Sprite _spriteMonster;
+
+        [SerializeField]
+        private Sprite _spriteKey;
+
+        [SerializeField]
+        private Sprite _spriteHealItem;
+
+        [SerializeField]
         private Button _resetButton;
 
         public Button ResetButton => _resetButton;
@@ -127,8 +136,25 @@ namespace DungeonBuilder
                 var offset = kvp.Key;
                 if (mino.Enemy != null && offset == mino.Enemy.FieldPos || block.HasKey || block.HasHealItem)
                 {
-                    _objectIcons[index] = Instantiate(_objectIconPrefab, blockView.transform);
-                    _objectIcons[index].rectTransform.localPosition = Vector3.zero;
+                    var icon = Instantiate(_objectIconPrefab, blockView.transform);
+                    _objectIcons[index] = icon;
+                    icon.rectTransform.localPosition = Vector3.zero;
+
+                    if (block.HasKey)
+                    {
+                        icon.sprite = _spriteKey;
+                        icon.color = new Color32(255, 140, 0, 255);
+                    }
+                    else if (block.HasHealItem)
+                    {
+                        icon.sprite = _spriteHealItem;
+                        icon.color = new Color32(255, 110, 210, 255);
+                    }
+                    else
+                    {
+                        icon.sprite = _spriteMonster;
+                        icon.color = new Color32(255, 75, 75, 255);
+                    }
                 }
                 count++;
             }

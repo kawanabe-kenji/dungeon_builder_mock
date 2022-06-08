@@ -21028,6 +21028,9 @@ MonoBehaviour:
   - {fileID: 4006204119083820144, guid: 98feb91e892484d12b208f0dc76f1ee4, type: 3}
   - {fileID: 8396823234138598529, guid: 29a6328052bc444a292be495babc0bed, type: 3}
   _objectIconPrefab: {fileID: 133809688949486720, guid: 465fd4af35c874872ad1c9ccddac4ed0, type: 3}
+  _spriteMonster: {fileID: 21300000, guid: fd3c4e34f56e2471d96ba694b27271e8, type: 3}
+  _spriteKey: {fileID: 21300000, guid: 458deb2ed48b9405db7ea57d6b847cbd, type: 3}
+  _spriteHealItem: {fileID: 21300000, guid: 18ad8a91ee34541dc816730e37911c4a, type: 3}
   _resetButton: {fileID: 871163394}
 --- !u!4 &2083369287
 Transform:
