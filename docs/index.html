@@ -6,6 +6,7 @@
     <title>Unity WebGL Player | DungeonBuilder</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <script type="text/javascript" src="dynamicResize.js"></script>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -52,18 +53,12 @@
       // the canvas DOM size and WebGL render target sizes yourself.
       // config.matchWebGLToCanvasSize = false;
 
+      config.devicePixelRatio = 1;
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        // Avoid draining fillrate performance on mobile devices,
-        // and default/override low DPI mode on mobile browsers.
-        config.devicePixelRatio = 1;
         mobileWarning.style.display = "block";
         setTimeout(() => {
           mobileWarning.style.display = "none";
         }, 5000);
-      } else {
-        canvas.style.width = "1080px";
-        canvas.style.height = "1920px";
       }
       loadingBar.style.display = "block";
 
