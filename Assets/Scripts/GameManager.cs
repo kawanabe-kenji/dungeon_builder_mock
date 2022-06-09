@@ -69,7 +69,7 @@ namespace DungeonBuilder
             }
         }
 
-        private int _playerStaminaMax = 7;
+        private int _playerStaminaMax = 5;
 
         [SerializeField]
         private Renderer _possibleBlockPrefab;
@@ -78,6 +78,8 @@ namespace DungeonBuilder
         private Transform _possibleBlocksParent;
 
         private List<Renderer> _possibleBlocks;
+
+        private Node[] _possibleNodes;
 
         [SerializeField]
         private EnemyManager _enemyMgr;
@@ -141,6 +143,8 @@ namespace DungeonBuilder
             _possibleBlocks = new List<Renderer>();
 
             Fade(false);
+
+            ShowPlayerPossibleRange();
         }
 
         private void RefreshMino()
@@ -185,6 +189,17 @@ namespace DungeonBuilder
         private void TouchField(PointerEventData eventData)
         {
             var fieldPos = _controlMgr.GetFieldPosition(eventData.position, true);
+            var isContainsPossibleNode = false;
+            foreach (var node in _possibleNodes)
+            {
+                if (node.Position == fieldPos)
+                {
+                    isContainsPossibleNode = true;
+                    break;
+                }
+            }
+            if (!isContainsPossibleNode) return;
+
             var block = _fieldMgr.GetBlock(fieldPos);
             if(block == null) return;
 
@@ -193,6 +208,9 @@ namespace DungeonBuilder
             if(route == null) return;
 
             TraceRoute(route);
+            HidePlayerPossibleRange();
+
+            PlayerStamina -= route.Length - 1;
         }
 
         private void TraceRoute(Vector2Int[] route)
@@ -279,6 +297,7 @@ namespace DungeonBuilder
         {
             _fieldMgr.PickMino(index);
             _fieldView.PickMino(_fieldMgr.PickedMino, _fieldMgr.PickableMinoRotateCounts[index]);
+            HidePlayerPossibleRange();
         }
 
         private void DragMino(PointerEventData eventData, int panelId)
@@ -309,6 +328,7 @@ namespace DungeonBuilder
             {
                 _fieldView.DestroyCurrentMino();
                 RefreshMino();
+                ShowPlayerPossibleRange();
                 return;
             }
 
@@ -447,7 +467,12 @@ namespace DungeonBuilder
 
             var controlSeq = DOTween.Sequence();
             controlSeq.AppendInterval(maxDuration);
-            controlSeq.OnComplete(() => _controlMgr.interactable = true);
+            controlSeq.OnComplete(() =>
+            {
+                _controlMgr.interactable = true;
+                PlayerStamina += 2;
+                ShowPlayerPossibleRange();
+            });
             controlSeq.Play();
         }
 
@@ -498,13 +523,34 @@ namespace DungeonBuilder
 
         private void ShowPlayerPossibleRange()
         {
-            for(int i = 0; i < PlayerStamina; i++)
-            {
-                for(int j = 0; j < (int)Block.DirectionType.Max; j++)
-                {
+            _routeView.gameObject.SetActive(false);
 
+            var enemiesPos = new Vector2Int[_enemyMgr.Enemies.Count];
+            for (int i = 0; i < enemiesPos.Length; i++) enemiesPos[i] = _enemyMgr.Enemies[i].FieldPos;
+
+            HidePlayerPossibleRange();
+
+            _possibleNodes = _routeCalc.GetNodesAsPossible(_playerPos, 3/*PlayerStamina*/, _fieldMgr.Blocks/*, enemiesPos*/);
+            for(int i = 0; i < _possibleNodes.Length; i++)
+            {
+                Renderer block;
+                if (_possibleBlocks.Count <= i)
+                {
+                    block = Instantiate(_possibleBlockPrefab, _possibleBlocksParent);
+                    _possibleBlocks.Add(block);
                 }
+                else
+                {
+                    block = _possibleBlocks[i];
+                }
+                block.transform.localPosition = FieldView.GetWorldPosition(_possibleNodes[i].Position);
+                block.enabled = true;
             }
+        }
+
+        private void HidePlayerPossibleRange()
+        {
+            foreach (var block in _possibleBlocks) block.enabled = false;
         }
     }
 }
