@@ -164,7 +164,7 @@ namespace DungeonBuilder
                         var offset = Block.AROUND_OFFSET[i];
                         var targetPos = currentPos + offset;
 
-                        if(start == targetPos || possibleBlocks.Contains(targetPos) || impossiblePos.Contains(targetPos)) continue;
+                        if(start == targetPos || possibleBlocks.Contains(targetPos) || addBlocks.Contains(targetPos) || impossiblePos.Contains(targetPos)) continue;
 
                         // 対象方向に対して移動できなければ対象外
                         if(currentBlock.Walls[i]) continue;
@@ -182,6 +182,7 @@ namespace DungeonBuilder
                 possibleBlocks.AddRange(addBlocks);
                 checkBlocks.Clear();
                 checkBlocks.AddRange(addBlocks);
+                addBlocks.Clear();
                 maxMove--;
             }
 
