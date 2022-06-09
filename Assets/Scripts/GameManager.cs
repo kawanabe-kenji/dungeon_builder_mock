@@ -311,8 +311,8 @@ namespace DungeonBuilder
                     else
                         enemy = new Enemy(
                             hp: 1,
-                            power: 2,
-                            moveDistance: 3,
+                            power: 1,
+                            moveDistance: 2,
                             searchRange: 4,
                             looksType: 1
                         );
@@ -352,10 +352,11 @@ namespace DungeonBuilder
             for(int i = 0; i < _enemyMgr.Enemies.Count; i++)
             {
                 var enemy = _enemyMgr.Enemies[i];
-                if(FieldManager.Distance(enemy.FieldPos, _playerPos) > enemy.SearchRange) continue;
+                var moveDistance = enemy.MoveDistance;
+                if (FieldManager.Distance(enemy.FieldPos, _playerPos) > enemy.SearchRange) moveDistance = 1;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, enemy.MoveDistance, _fieldMgr.Blocks);
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, moveDistance, _fieldMgr.Blocks);
                 if (route == null) continue;
 
                 var seq = DOTween.Sequence();
