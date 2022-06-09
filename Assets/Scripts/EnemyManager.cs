@@ -12,7 +12,7 @@ namespace DungeonBuilder
         public List<Enemy> Enemies => _enemies;
 
         [SerializeField]
-        private EnemyView _enemyViewPrefab;
+        private EnemyView[] _enemyViewPrefabs;
 
         private List<EnemyView> _enemyViews;
 
@@ -44,7 +44,7 @@ namespace DungeonBuilder
 
         private EnemyView CreateEnemyView(Enemy enemy)
         {
-            var enemyView = Instantiate(_enemyViewPrefab, _viewParent);
+            var enemyView = Instantiate(_enemyViewPrefabs[enemy.LooksType], _viewParent);
             _enemyViews.Add(enemyView);
 
             var worldPos = FieldView.GetWorldPosition(enemy.FieldPos) + Vector3.back;

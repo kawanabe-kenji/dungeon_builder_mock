@@ -12668,7 +12668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cae6dff1103943b1ba91668e3c288e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyViewPrefab: {fileID: 5032571048253017317, guid: 0d2d2f29f12924cc4986cb5c5481764e, type: 3}
+  _enemyViewPrefabs:
+  - {fileID: 5032571048253017317, guid: 0d2d2f29f12924cc4986cb5c5481764e, type: 3}
+  - {fileID: 77245819237034854, guid: ba9b0f7300c7e47578881599ca134ee5, type: 3}
   _viewParent: {fileID: 1293688032}
 --- !u!4 &1029538687
 Transform:

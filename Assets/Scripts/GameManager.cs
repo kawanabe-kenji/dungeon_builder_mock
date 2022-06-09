@@ -293,7 +293,12 @@ namespace DungeonBuilder
                 // 敵配置(60%の確率）
                 if (ProbabilityCalclator.DetectFromPercent(60))
                 {
-                    var enemy = new Enemy();
+                    Enemy enemy = null;
+                    if (ProbabilityCalclator.DetectFromPercent(50))
+                        enemy = new Enemy(2, 1, _fieldSize.x + _fieldSize.y, 0);
+                    else
+                        enemy = new Enemy(1, 2, 4, 1);
+
                     mino.PutEnemy(enemy);
                 }
                 // 回復アイテム配置(35%の確率)
@@ -329,10 +334,10 @@ namespace DungeonBuilder
             for(int i = 0; i < _enemyMgr.Enemies.Count; i++)
             {
                 var enemy = _enemyMgr.Enemies[i];
-                //if(FieldManager.Distance(enemy.FieldPos, _playerPos) > 4) continue;
+                if(FieldManager.Distance(enemy.FieldPos, _playerPos) > enemy.SearchRange) continue;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, 1, _fieldMgr.Blocks);
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, enemy.MoveDistance, _fieldMgr.Blocks);
                 if (route == null) continue;
 
                 var seq = DOTween.Sequence();
