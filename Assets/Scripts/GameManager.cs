@@ -311,8 +311,8 @@ namespace DungeonBuilder
                     else
                         enemy = new Enemy(
                             hp: 1,
-                            power: 1,
-                            moveDistance: 2,
+                            power: 2,
+                            moveDistance: 3,
                             searchRange: 4,
                             looksType: 1
                         );
