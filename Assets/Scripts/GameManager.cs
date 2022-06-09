@@ -57,6 +57,28 @@ namespace DungeonBuilder
 
         public int PlayerMaxHP => _playerHPViews.Length * PLAYER_HP_VIEW_PART;
 
+        private int _playerStamina;
+
+        private int PlayerStamina
+        {
+            get => _playerStamina;
+            set
+            {
+                _playerStamina = Mathf.Min(value, _playerStaminaMax);
+                //UpdatePlayerStaminaView();
+            }
+        }
+
+        private int _playerStaminaMax = 7;
+
+        [SerializeField]
+        private Renderer _possibleBlockPrefab;
+
+        [SerializeField]
+        private Transform _possibleBlocksParent;
+
+        private List<Renderer> _possibleBlocks;
+
         [SerializeField]
         private EnemyManager _enemyMgr;
 
@@ -114,6 +136,9 @@ namespace DungeonBuilder
             _enemyMgr.Initialize(_fieldHUDMgr);
 
             _playerHP = PlayerMaxHP;
+            _playerStamina = _playerStaminaMax;
+
+            _possibleBlocks = new List<Renderer>();
 
             Fade(false);
         }
@@ -469,6 +494,17 @@ namespace DungeonBuilder
             var seq = DOTween.Sequence();
             seq.Append(_blackLayer.DOFade(isOut ? 1f : 0f, 0.5f));
             return seq;
+        }
+
+        private void ShowPlayerPossibleRange()
+        {
+            for(int i = 0; i < PlayerStamina; i++)
+            {
+                for(int j = 0; j < (int)Block.DirectionType.Max; j++)
+                {
+
+                }
+            }
         }
     }
 }
