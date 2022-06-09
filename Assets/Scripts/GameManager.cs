@@ -141,14 +141,14 @@ namespace DungeonBuilder
         {
             _fieldUIView.Refresh(_fieldMgr.Blocks, _enemyMgr.Enemies);
             _fieldView.Refresh(_fieldMgr.Blocks);
-            HighlightLine();
+            HilightLine();
         }
 
-        private void HighlightLine()
+        private void HilightLine()
         {
-            _fieldMgr.HighlightLine(_playerPos);
-            _fieldView.HighlightLine(_fieldMgr.Blocks);
-            _enemyMgr.HighlightLine(_fieldMgr.Blocks);
+            _fieldMgr.HilightLine(_playerPos);
+            _fieldView.HilightLine(_fieldMgr.Blocks);
+            _enemyMgr.HilightLine(_fieldMgr.Blocks);
         }
 
         private void TouchField(PointerEventData eventData)
@@ -237,7 +237,7 @@ namespace DungeonBuilder
             }
             seq.OnComplete(() =>
             {
-                HighlightLine();
+                HilightLine();
                 PlayEnemyTurn();
             });
             seq.Play();

@@ -132,7 +132,7 @@ namespace DungeonBuilder
             }
         }
 
-        public void HighlightLine(Vector2Int playerPos)
+        public void HilightLine(Vector2Int playerPos)
         {
             List<int> aligLines = new List<int>();
             for (int y = 0; y < FieldSize.y; y++)

@@ -70,7 +70,7 @@ namespace DungeonBuilder
             EnemyViews.RemoveAt(index);
         }
 
-        public void HighlightLine(Block[,] fieldData)
+        public void HilightLine(Block[,] fieldData)
         {
             for(int i = 0; i < Enemies.Count; i++)
 			{

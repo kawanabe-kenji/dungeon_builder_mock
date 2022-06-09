@@ -119,7 +119,7 @@ namespace DungeonBuilder
             }
         }
 
-        public void HighlightLine(Block[,] fieldData)
+        public void HilightLine(Block[,] fieldData)
         {
             var _fieldX = fieldData.GetLength(0);
             var _fieldY = fieldData.GetLength(1);
