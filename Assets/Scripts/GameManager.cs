@@ -312,8 +312,8 @@ namespace DungeonBuilder
                         enemy = new Enemy(
                             hp: 1,
                             power: 1,
-                            moveDistance: 2,
-                            searchRange: 4,
+                            moveDistance: 3,
+                            searchRange: 3,
                             looksType: 1
                         );
 
