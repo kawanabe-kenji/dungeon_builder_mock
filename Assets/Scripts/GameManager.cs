@@ -301,9 +301,21 @@ namespace DungeonBuilder
                 {
                     Enemy enemy = null;
                     if (ProbabilityCalclator.DetectFromPercent(50))
-                        enemy = new Enemy(2, 1, _fieldSize.x + _fieldSize.y, 0);
+                        enemy = new Enemy(
+                            hp: 2,
+                            power: 1,
+                            moveDistance: 1,
+                            searchRange: _fieldSize.x + _fieldSize.y,
+                            looksType: 0
+                        );
                     else
-                        enemy = new Enemy(1, 2, 4, 1);
+                        enemy = new Enemy(
+                            hp: 1,
+                            power: 1,
+                            moveDistance: 2,
+                            searchRange: 4,
+                            looksType: 1
+                        );
 
                     mino.PutEnemy(enemy);
                 }
@@ -380,7 +392,7 @@ namespace DungeonBuilder
                         seq.AppendCallback(() =>
                         {
                             enemyView.IsVisible = _fieldMgr.GetBlock(enemy.FieldPos).IsIlluminated;
-                            PlayerHP--;
+                            PlayerHP -= enemy.Power;
                         });
                         break;
                     }

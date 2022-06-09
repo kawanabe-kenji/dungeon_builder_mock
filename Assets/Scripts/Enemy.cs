@@ -10,9 +10,9 @@ namespace DungeonBuilder
 
         public int HP = 2;
 
-        private int _waitTurn;
+        private int _power;
 
-        public int WaitTurn => _waitTurn;
+        public int Power => _power;
 
         private int _moveDistance;
 
@@ -26,9 +26,10 @@ namespace DungeonBuilder
 
         public int LooksType => _looksType;
 
-        public Enemy(int hp, int moveDistance, int searchRange, int looksType)
+        public Enemy(int hp, int power, int moveDistance, int searchRange, int looksType)
         {
             HP = hp;
+            _power = power;
             _moveDistance = moveDistance;
             _searchRange = searchRange;
             _looksType = looksType;
