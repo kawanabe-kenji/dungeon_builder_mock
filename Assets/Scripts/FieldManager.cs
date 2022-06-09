@@ -39,6 +39,12 @@ namespace DungeonBuilder
 
         private bool _isPutKey;
 
+        private List<int> _hilightLine;
+
+        private List<int> _lastAddHilightLine;
+
+        public List<int> LastAddHilightLine => _lastAddHilightLine;
+
         public Block GetBlock(Vector2Int fieldPos)
         {
             if (fieldPos.x < 0 || fieldPos.x >= FieldSize.x || fieldPos.y < 0 || fieldPos.y >= FieldSize.y) return null;
@@ -68,6 +74,8 @@ namespace DungeonBuilder
                 }
             }
             _pickableMinoRotateCounts = new int[pickableMinoCount];
+            _hilightLine = new List<int>();
+            _lastAddHilightLine = new List<int>();
         }
 
         public bool CanPutMino(Mino mino, Vector2Int putFieldPos)
@@ -163,6 +171,15 @@ namespace DungeonBuilder
                 var block = GetBlock(fieldPos);
                 if (block != null) block.IsIlluminated = true;
             }
+
+            _lastAddHilightLine.Clear();
+            foreach (var fieldPosY in aligLines)
+            {
+                if (!_hilightLine.Contains(fieldPosY)) _lastAddHilightLine.Add(fieldPosY);
+            }
+
+            _hilightLine.Clear();
+            _hilightLine.AddRange(aligLines);
         }
 
         public void PickMino(int index)

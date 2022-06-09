@@ -142,6 +142,12 @@ namespace DungeonBuilder
             _fieldUIView.Refresh(_fieldMgr.Blocks, _enemyMgr.Enemies);
             _fieldView.Refresh(_fieldMgr.Blocks);
             HilightLine();
+
+            // TODO: 今回新たに揃った列に何かする
+            foreach (var fieldPosY in _fieldMgr.LastAddHilightLine)
+            {
+                Debug.Log("Hilight Y: " + fieldPosY);
+            }
         }
 
         private void HilightLine()
