@@ -474,7 +474,7 @@ namespace DungeonBuilder
             controlSeq.OnComplete(() =>
             {
                 _controlMgr.interactable = true;
-                PlayerStamina += 2;
+                PlayerStamina += 1;
                 ShowPlayerPossibleRange();
             });
             controlSeq.Play();
