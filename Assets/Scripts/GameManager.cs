@@ -64,12 +64,15 @@ namespace DungeonBuilder
             get => _playerStamina;
             set
             {
-                _playerStamina = Mathf.Min(value, _playerStaminaMax);
-                //UpdatePlayerStaminaView();
+                _playerStamina = Mathf.Min(value, PlayerStaminaMax);
+                for(int i = 0; i < _playerStaminaViews.Length; i++) _playerStaminaViews[i].enabled = i < PlayerStamina;
             }
         }
 
-        private int _playerStaminaMax = 5;
+        private int PlayerStaminaMax => _playerStaminaViews.Length;
+
+        [SerializeField]
+        private Image[] _playerStaminaViews;
 
         [SerializeField]
         private Renderer _possibleBlockPrefab;
@@ -98,6 +101,8 @@ namespace DungeonBuilder
 
         [SerializeField]
         private Image _blackLayer;
+
+        private bool _isShowPossibleRange;
         #endregion // Variables
 
         #region CommonMethod
@@ -138,7 +143,7 @@ namespace DungeonBuilder
             _enemyMgr.Initialize(_fieldHUDMgr);
 
             _playerHP = PlayerMaxHP;
-            _playerStamina = _playerStaminaMax;
+            _playerStamina = PlayerStaminaMax;
 
             _possibleBlocks = new List<Renderer>();
 
@@ -209,8 +214,6 @@ namespace DungeonBuilder
 
             TraceRoute(route);
             HidePlayerPossibleRange();
-
-            PlayerStamina -= route.Length - 1;
         }
 
         private void TraceRoute(Vector2Int[] route)
@@ -256,7 +259,8 @@ namespace DungeonBuilder
                 }
                 if(isHitEnemy) break;
 
-                seq.Append(_player.DOMove(position, 0.05f).SetEase(Ease.Linear));
+                seq.AppendCallback(() => PlayerStamina--);
+                seq.Append(_player.DOMove(position, 0.1f).SetEase(Ease.Linear));
                 seq.AppendCallback(() => _playerPos = nextPos);
 
                 var nextBlock = _fieldMgr.GetBlock(nextPos);
@@ -297,7 +301,6 @@ namespace DungeonBuilder
         {
             _fieldMgr.PickMino(index);
             _fieldView.PickMino(_fieldMgr.PickedMino, _fieldMgr.PickableMinoRotateCounts[index]);
-            HidePlayerPossibleRange();
         }
 
         private void DragMino(PointerEventData eventData, int panelId)
@@ -313,6 +316,7 @@ namespace DungeonBuilder
 
             _fieldMgr.PickedMino.FieldPos = fieldPos;
             RefreshMino();
+            HidePlayerPossibleRange();
         }
 
         private void ReleaseMino(int index)
@@ -523,6 +527,8 @@ namespace DungeonBuilder
 
         private void ShowPlayerPossibleRange()
         {
+            if (_isShowPossibleRange) return;
+
             _routeView.gameObject.SetActive(false);
 
             var enemiesPos = new Vector2Int[_enemyMgr.Enemies.Count];
@@ -530,7 +536,7 @@ namespace DungeonBuilder
 
             HidePlayerPossibleRange();
 
-            _possibleNodes = _routeCalc.GetNodesAsPossible(_playerPos, 3/*PlayerStamina*/, _fieldMgr.Blocks/*, enemiesPos*/);
+            _possibleNodes = _routeCalc.GetNodesAsPossible(_playerPos, PlayerStamina, _fieldMgr.Blocks/*, enemiesPos*/);
             for(int i = 0; i < _possibleNodes.Length; i++)
             {
                 Renderer block;
@@ -546,11 +552,15 @@ namespace DungeonBuilder
                 block.transform.localPosition = FieldView.GetWorldPosition(_possibleNodes[i].Position);
                 block.enabled = true;
             }
+
+            _isShowPossibleRange = true;
         }
 
         private void HidePlayerPossibleRange()
         {
+            if (!_isShowPossibleRange) return;
             foreach (var block in _possibleBlocks) block.enabled = false;
+            _isShowPossibleRange = false;
         }
     }
 }
