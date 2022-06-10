@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using DigitalRuby.LightningBolt;
 
 namespace DungeonBuilder
 {
@@ -85,6 +86,11 @@ namespace DungeonBuilder
         private Node[] _possibleNodes;
 
         [SerializeField]
+        private LightningBoltScript _efBoltPrefab;
+
+        private List<LightningBoltScript> _efBolts;
+
+        [SerializeField]
         private EnemyManager _enemyMgr;
 
         [SerializeField]
@@ -146,6 +152,7 @@ namespace DungeonBuilder
             _playerStamina = PlayerStaminaMax;
 
             _possibleBlocks = new List<Renderer>();
+            _efBolts = new List<LightningBoltScript>();
 
             Fade(false);
 
@@ -178,9 +185,30 @@ namespace DungeonBuilder
             HilightLine();
 
             // TODO: 今回新たに揃った列に何かする
-            foreach (var fieldPosY in _fieldMgr.LastAddHilightLine)
+            for(int i = 0; i < _fieldMgr.LastAddHilightLine.Count; i++)
             {
-                Debug.Log("Hilight Y: " + fieldPosY);
+                var fieldPosY = _fieldMgr.LastAddHilightLine[i];
+
+                for(int x = 0; x < _fieldMgr.FieldSize.x; x++)
+                {
+                    var fieldPos = new Vector2Int(x, fieldPosY);
+                    var enemy = _enemyMgr.GetEnemy(fieldPos);
+                    if (enemy == null) continue;
+                    enemy.HP -= 2;
+                    if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
+                }
+
+                if (i <= _efBolts.Count) _efBolts.Add(Instantiate(_efBoltPrefab));
+                var efBolt = _efBolts[i];
+                var efBoltLine = efBolt.GetComponent<LineRenderer>();
+                efBolt.StartPosition = efBolt.EndPosition = Vector3.zero;
+                efBolt.enabled = efBoltLine.enabled = true;
+
+                efBolt.StartPosition = FieldView.GetWorldPosition(new Vector2Int(0, fieldPosY));
+                efBolt.EndPosition = FieldView.GetWorldPosition(new Vector2Int(_fieldMgr.FieldSize.x - 1, fieldPosY));
+                var seq = DOTween.Sequence();
+                seq.AppendInterval(1.2f);
+                seq.AppendCallback(() => efBolt.enabled = efBoltLine.enabled = false);
             }
         }
 
@@ -474,7 +502,7 @@ namespace DungeonBuilder
             controlSeq.OnComplete(() =>
             {
                 _controlMgr.interactable = true;
-                PlayerStamina += 1;
+                PlayerStamina += 2;
                 ShowPlayerPossibleRange();
             });
             controlSeq.Play();

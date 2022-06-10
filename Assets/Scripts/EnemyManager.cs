@@ -85,5 +85,11 @@ namespace DungeonBuilder
             var index = Enemies.IndexOf(enemy);
             return EnemyViews[index];
         }
+
+        public Enemy GetEnemy(Vector2Int fieldPos)
+        {
+            foreach (var enemy in Enemies) if (enemy.FieldPos == fieldPos) return enemy;
+            return null;
+        }
     }
 }

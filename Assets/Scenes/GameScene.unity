@@ -14717,6 +14717,7 @@ MonoBehaviour:
   - {fileID: 1345219731}
   _possibleBlockPrefab: {fileID: 5817028945711926494, guid: 84e32fe03e2fb41d9960da7d8271c451, type: 3}
   _possibleBlocksParent: {fileID: 1534202662}
+  _efBoltPrefab: {fileID: 7402294161568957506, guid: 66446857704984e02921a02d701e4dca, type: 3}
   _enemyMgr: {fileID: 1029538686}
   _loseLayerParent: {fileID: 1314372198}
   _loseBlackLayer: {fileID: 52193435}
