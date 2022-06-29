@@ -6,41 +6,41 @@ namespace DungeonBuilder
     public class FieldHUDManager : MonoBehaviour
     {
         [SerializeField]
-        private UnknownObjectView _unknownViewPrefab;
+        private HUDViewBase _hudViewPrefab;
 
         [SerializeField]
-        private RectTransform _unknownViewsParent;
+        private RectTransform _hudViewsParent;
 
-        private Dictionary<GameObject, UnknownObjectView> _unknownViews;
+        private Dictionary<GameObject, HUDViewBase> _hudViews;
 
         public void Initialize()
         {
-            _unknownViews = new Dictionary<GameObject, UnknownObjectView>();
+            _hudViews = new Dictionary<GameObject, HUDViewBase>();
         }
 
-        public UnknownObjectView AddUnknownView(GameObject trackObject, Vector2 offset)
+        public HUDViewBase AddHUDView(GameObject trackObject, Vector2 offset)
         {
-            var unknownView = Instantiate(_unknownViewPrefab, _unknownViewsParent);
-            unknownView.SetTrackObject(trackObject.transform, offset);
-            _unknownViews.Add(trackObject, unknownView);
-            return unknownView;
+            var hudView = Instantiate(_hudViewPrefab, _hudViewsParent);
+            hudView.SetTrackObject(trackObject.transform, offset);
+            _hudViews.Add(trackObject, hudView);
+            return hudView;
         }
 
-        public UnknownObjectView AddUnknownView(GameObject trackObject)
+        public HUDViewBase AddHUDView(GameObject trackObject)
         {
-            return AddUnknownView(trackObject, Vector2.zero);
+            return AddHUDView(trackObject, Vector2.zero);
         }
 
-        public void RemoveUnknownView(GameObject trackObject)
+        public void RemoveHUDView(GameObject trackObject)
         {
-            var view = _unknownViews[trackObject];
-            _unknownViews.Remove(trackObject);
+            var view = _hudViews[trackObject];
+            _hudViews.Remove(trackObject);
             Destroy(view.gameObject);
         }
 
-        public UnknownObjectView GetUnknownView(GameObject trackObject)
+        public HUDViewBase GetHUDView(GameObject trackObject)
         {
-            return _unknownViews[trackObject];
+            return _hudViews[trackObject];
         }
     }
 }

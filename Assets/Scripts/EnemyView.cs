@@ -12,7 +12,7 @@ namespace DungeonBuilder
         [SerializeField]
         private bool _isVisible;
 
-        public UnknownObjectView UnknownView;
+        public StatusHUDView HUDView;
 
         public bool IsVisible
         {
@@ -33,7 +33,7 @@ namespace DungeonBuilder
         private void SetVisible(bool isVisible)
         {
             transform.GetChild(0).gameObject.SetActive(isVisible);
-            if (UnknownView != null) UnknownView.SetVisible(!isVisible);
+            if (HUDView != null) HUDView.SetVisible(!isVisible);
         }
     }
 }

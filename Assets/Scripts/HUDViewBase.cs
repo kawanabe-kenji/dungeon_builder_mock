@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace DungeonBuilder
 {
-    public class UnknownObjectView : MonoBehaviour
+    public class HUDViewBase : MonoBehaviour
     {
         [SerializeField]
         private RectTransform _rect;

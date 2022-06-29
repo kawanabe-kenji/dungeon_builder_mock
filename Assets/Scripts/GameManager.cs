@@ -56,7 +56,8 @@ namespace DungeonBuilder
             }
         }
 
-        public int PlayerMaxHP => _playerHPViews.Length * PLAYER_HP_VIEW_PART;
+        //public int PlayerMaxHP => _playerHPViews.Length * PLAYER_HP_VIEW_PART;
+        public const int PlayerMaxHP = 10;
 
         private int _playerStamina;
 
@@ -72,8 +73,28 @@ namespace DungeonBuilder
 
         private int PlayerStaminaMax => _playerStaminaViews.Length;
 
+        private int _playerPower;
+
+        private int PlayerPower
+        {
+            get => _playerPower;
+            set
+            {
+                _playerPower = value;
+                UpdatePlayerPowerView();
+            }
+        }
+
         [SerializeField]
         private Image[] _playerStaminaViews;
+
+        [SerializeField]
+        private Text _playerHPView;
+
+        [SerializeField]
+        private Text _playerPowerView;
+
+        private StatusHUDView _playerHUD;
 
         private Node[] _possibleNodes;
 
@@ -140,6 +161,11 @@ namespace DungeonBuilder
 
             _playerHP = PlayerMaxHP;
             _playerStamina = PlayerStaminaMax;
+            _playerPower = 1;
+
+            _playerHUD = (StatusHUDView)_fieldHUDMgr.AddHUDView(_player.gameObject, new Vector2(0f, 50f));
+            UpdatePlayerHPView();
+            UpdatePlayerPowerView();
 
             _efBolts = new List<LightningBoltScript>();
 
@@ -278,7 +304,7 @@ namespace DungeonBuilder
                         seq.AppendCallback(() =>
                         {
                             healItem.gameObject.SetActive(true);
-                            _fieldHUDMgr.RemoveUnknownView(healItem.gameObject);
+                            _fieldHUDMgr.RemoveHUDView(healItem.gameObject);
                         });
                         var upVector = (Vector3.forward + Camera.main.transform.up).normalized;
                         seq.Append(healItem.DOMove(healItem.position + upVector * 3f, 1f).SetEase(Ease.OutCubic));
@@ -328,7 +354,8 @@ namespace DungeonBuilder
                 seq.Append(_player.DOMove(movePos, 0.1f));
                 seq.AppendCallback(() =>
                 {
-                    enemy.HP--;
+                    enemy.HP -= _playerPower;
+                    enemyView.HUDView.SetHP(enemy.HP);
                     if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
                 });
                 seq.Append(_player.DOMove(prePos, 0.1f));
@@ -528,17 +555,19 @@ namespace DungeonBuilder
 
         private void UpdatePlayerHPView()
         {
-            for(int i = 0; i < _playerHPViews.Length; i++)
-            {
-                if(_playerHP >= (i + 1) * PLAYER_HP_VIEW_PART)
-                {
-                    _playerHPViews[i].fillAmount = 1f;
-                    continue;
-                }
-                _playerHPViews[i].fillAmount = (float)(_playerHP - i * PLAYER_HP_VIEW_PART) / PLAYER_HP_VIEW_PART;
-            }
+            //for(int i = 0; i < _playerHPViews.Length; i++)
+            //{
+            //    if(_playerHP >= (i + 1) * PLAYER_HP_VIEW_PART)
+            //    {
+            //        _playerHPViews[i].fillAmount = 1f;
+            //        continue;
+            //    }
+            //    _playerHPViews[i].fillAmount = (float)(_playerHP - i * PLAYER_HP_VIEW_PART) / PLAYER_HP_VIEW_PART;
+            //}
+            _playerHPView.text = _playerHP.ToString();
+            _playerHUD.SetHP(_playerHP);
 
-            if(_playerHP > 0) return;
+            if (_playerHP > 0) return;
 
             _controlMgr.interactable = false;
 
@@ -553,6 +582,12 @@ namespace DungeonBuilder
                 _loseResetButton.onClick.AddListener(ResetScene);
             });
             seq.Play();
+        }
+
+        private void UpdatePlayerPowerView()
+        {
+            _playerPowerView.text = _playerPower.ToString();
+            _playerHUD.SetPower(_playerPower);
         }
 
         private void ResetScene()

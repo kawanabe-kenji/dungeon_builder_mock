@@ -168,14 +168,14 @@ namespace DungeonBuilder
                     if (view.Key != null)
                     {
                         view.Key.gameObject.SetActive(data.IsIlluminated);
-                        var unknownView = _fieldHUDMgr.GetUnknownView(view.Key.gameObject);
+                        var unknownView = _fieldHUDMgr.GetHUDView(view.Key.gameObject);
                         unknownView.SetVisible(!data.IsIlluminated);
                     }
 
                     if (view.HealItem != null)
                     {
                         view.HealItem.gameObject.SetActive(data.IsIlluminated);
-                        var unknownView = _fieldHUDMgr.GetUnknownView(view.HealItem.gameObject);
+                        var unknownView = _fieldHUDMgr.GetHUDView(view.HealItem.gameObject);
                         unknownView.SetVisible(!data.IsIlluminated);
                     }
                 }
@@ -217,7 +217,7 @@ namespace DungeonBuilder
                     view.Key = Instantiate(_keyPrefab, view.Fog.transform.parent);
                     view.Key.eulerAngles = _keyPrefab.localEulerAngles;
                     view.Key.gameObject.SetActive(data.IsIlluminated);
-                    var unknownView = _fieldHUDMgr.AddUnknownView(view.Key.gameObject, new Vector2(0f, 25f));
+                    var unknownView = _fieldHUDMgr.AddHUDView(view.Key.gameObject, new Vector2(0f, 25f));
                     unknownView.SetVisible(!data.IsIlluminated);
                 }
                 if (data.HasHealItem)
@@ -225,7 +225,7 @@ namespace DungeonBuilder
                     view.HealItem = Instantiate(_healItemPrefab, view.Fog.transform.parent);
                     view.HealItem.eulerAngles = _healItemPrefab.localEulerAngles;
                     view.HealItem.gameObject.SetActive(data.IsIlluminated);
-                    var unknownView = _fieldHUDMgr.AddUnknownView(view.HealItem.gameObject, new Vector2(0f, 25f));
+                    var unknownView = _fieldHUDMgr.AddHUDView(view.HealItem.gameObject, new Vector2(0f, 25f));
                     unknownView.SetVisible(!data.IsIlluminated);
                 }
             }

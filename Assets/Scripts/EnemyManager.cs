@@ -58,7 +58,9 @@ namespace DungeonBuilder
 
             enemyView.lookAngles = Vector3.up * Random.Range(0, 3) * 90f;
 
-            //enemyView.UnknownView = _fieldHUDMgr.AddUnknownView(enemyView.gameObject, new Vector2(0f, 50f));
+            enemyView.HUDView = (StatusHUDView)_fieldHUDMgr.AddHUDView(enemyView.gameObject, new Vector2(0f, 50f));
+            enemyView.HUDView.SetHP(enemy.HP);
+            enemyView.HUDView.SetPower(enemy.Power);
 
             return enemyView;
         }
@@ -70,7 +72,7 @@ namespace DungeonBuilder
 
             var view = EnemyViews[index];
 
-            //_fieldHUDMgr.RemoveUnknownView(view.gameObject);
+            _fieldHUDMgr.RemoveHUDView(view.gameObject);
 
             Destroy(view.gameObject);
             EnemyViews.RemoveAt(index);
