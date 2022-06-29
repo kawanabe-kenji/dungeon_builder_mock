@@ -263,7 +263,7 @@ namespace DungeonBuilder
                 });
 
                 //seq.AppendCallback(() => PlayerStamina--);
-                seq.Append(_player.DOMove(position, 0.1f).SetEase(Ease.Linear));
+                seq.Append(_player.DOMove(position, 0.2f).SetEase(Ease.Linear));
                 seq.AppendCallback(() => _playerPos = nextPos);
 
                 var nextBlock = _fieldMgr.GetBlock(nextPos);
@@ -558,7 +558,7 @@ namespace DungeonBuilder
         private void ResetScene()
         {
             var seq = Fade(true);
-            seq.AppendCallback(() => SceneManager.LoadScene("GameScene"));
+            seq.AppendCallback(() => SceneManager.LoadScene("SideStickScene"));
             seq.Play();
         }
 
