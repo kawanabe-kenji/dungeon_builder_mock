@@ -202,6 +202,8 @@ namespace DungeonBuilder
             }
 
             _currentView.RefreshWalls(mino);
+
+            _currentView.Blocks[mino.MovePointIndex].MovePoint.enabled = true;
         }
 
         public void ReleaseMino(Mino mino)
@@ -227,6 +229,8 @@ namespace DungeonBuilder
                     unknownView.SetVisible(!data.IsIlluminated);
                 }
             }
+
+            _currentView.HideMovePoint();
 
             _currentView = null;
         }

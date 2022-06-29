@@ -24,6 +24,11 @@ namespace DungeonBuilder
             public Transform Key;
 
             public Transform HealItem;
+
+            [SerializeField]
+            private Renderer _movePoint;
+
+            public Renderer MovePoint => _movePoint;
         }
 
         [SerializeField]
@@ -62,6 +67,14 @@ namespace DungeonBuilder
                     block.Walls[i] = block.Walls[i - 1];
                 }
                 block.Walls[0] = lastWall;
+            }
+        }
+
+        public void HideMovePoint()
+        {
+            foreach (var block in Blocks)
+            {
+                block.MovePoint.enabled = false;
             }
         }
     }

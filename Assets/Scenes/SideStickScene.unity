@@ -15486,7 +15486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1685535119
 Transform:
   m_ObjectHideFlags: 0
@@ -15508,7 +15508,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685535118}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -17999,6 +17999,7 @@ MonoBehaviour:
     IsPlayingFog: 0
     Key: {fileID: 0}
     HealItem: {fileID: 0}
+    _movePoint: {fileID: 0}
   _fogs: {fileID: 519068188}
   _keyPrefab: {fileID: 7978863029161293546, guid: 4b2c3d49dbcf0458ea36a302735b092d, type: 3}
   _healItemPrefab: {fileID: 514441625106822582, guid: 5af9af221dc7a4d349f63607dacca27b, type: 3}
@@ -19164,6 +19165,7 @@ MonoBehaviour:
   _spriteMonster: {fileID: 21300000, guid: fd3c4e34f56e2471d96ba694b27271e8, type: 3}
   _spriteKey: {fileID: 21300000, guid: 458deb2ed48b9405db7ea57d6b847cbd, type: 3}
   _spriteHealItem: {fileID: 21300000, guid: 18ad8a91ee34541dc816730e37911c4a, type: 3}
+  _spriteMovePoint: {fileID: 21300000, guid: d0def59f298ef4b40ad32f96c905d508, type: 3}
   _resetButton: {fileID: 871163394}
 --- !u!4 &2083369287
 Transform:

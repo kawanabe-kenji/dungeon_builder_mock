@@ -103,7 +103,7 @@ namespace DungeonBuilder
                         blockView.GetChild(j).GetComponent<Image>().enabled = block.Walls[j];
                     }
 
-                    if (mino.MovePoint == kvp.Key)
+                    if (mino.GetMovePoint() == kvp.Key)
                     {
                         var icon = Instantiate(_objectIconPrefab, blockView.transform);
                         _objectIcons[i] = icon;
@@ -148,7 +148,7 @@ namespace DungeonBuilder
                 }
                 var offset = kvp.Key;
 
-                if(mino.MovePoint == kvp.Key)
+                if(mino.GetMovePoint() == kvp.Key)
                 {
                     var icon = Instantiate(_objectIconPrefab, blockView.transform);
                     _objectIcons[index] = icon;

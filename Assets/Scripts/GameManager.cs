@@ -404,7 +404,7 @@ namespace DungeonBuilder
 
             _controlMgr.SpawnMino(index, shapeType, mino);
 
-            var targetPos = pickedMino.FieldPos + pickedMino.MovePoint;
+            var targetPos = pickedMino.FieldPos + pickedMino.GetMovePoint();
             MoveTargetPosition(targetPos);
             //PlayEnemyTurn();
         }
