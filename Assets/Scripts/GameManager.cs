@@ -143,6 +143,8 @@ namespace DungeonBuilder
 
             _efBolts = new List<LightningBoltScript>();
 
+            CreateEnemies(6, startPos);
+
             Fade(false);
 
             ShowPlayerPossibleRange();
@@ -204,7 +206,7 @@ namespace DungeonBuilder
         {
             _fieldMgr.HilightLine(_playerPos);
             _fieldView.HilightLine(_fieldMgr.Blocks);
-            _enemyMgr.HilightLine(_fieldMgr.Blocks);
+            //_enemyMgr.HilightLine(_fieldMgr.Blocks);
         }
 
         private void TouchField(PointerEventData eventData)
@@ -265,7 +267,7 @@ namespace DungeonBuilder
                     {
                         _routeView.gameObject.SetActive(false);
                         var enemyView = _enemyMgr.GetView(enemy);
-                        enemyView.IsVisible = true;
+                        //enemyView.IsVisible = true;
                         // TODO: 攻撃演出
                     });
                     var prePos = FieldView.GetWorldPosition(route[i - 1]) + offset;
@@ -432,7 +434,7 @@ namespace DungeonBuilder
                 if (FieldManager.Distance(enemy.FieldPos, _playerPos) > enemy.SearchRange) moveDistance = 1;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, moveDistance, _fieldMgr.Blocks);
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, moveDistance, _fieldMgr.Blocks, true);
                 if (route == null) continue;
 
                 var seq = DOTween.Sequence();
@@ -447,28 +449,29 @@ namespace DungeonBuilder
                         var targetPos = currentPos + Block.AROUND_OFFSET[k];
                         if (_playerPos != targetPos) continue;
 
-                        var currentBlock = _fieldMgr.GetBlock(currentPos);
-                        if (currentBlock.Walls[k]) continue;
+                        //var currentBlock = _fieldMgr.GetBlock(currentPos);
+                        //if (currentBlock.Walls[k]) continue;
 
-                        var reverseDir = Block.GetReverseDirection((Block.DirectionType)k);
-                        var targetBlock = _fieldMgr.GetBlock(targetPos);
-                        if (targetBlock == null || targetBlock.Walls[(int)reverseDir]) continue;
+                        //var reverseDir = Block.GetReverseDirection((Block.DirectionType)k);
+                        //var targetBlock = _fieldMgr.GetBlock(targetPos);
+                        //if (targetBlock == null || targetBlock.Walls[(int)reverseDir]) continue;
 
                         isHitPlayer = true;
                         seq.AppendCallback(() =>
                         {
                             float angle = Quaternion.LookRotation(_player.position - enemyView.transform.position).eulerAngles.y;
-                            enemyView.IsVisible = true;
+                            //enemyView.IsVisible = true;
                             enemyView.lookAngles = new Vector3(0f, angle, 0f);
                             // TODO: 攻撃モーション
                         });
                         var prePos = FieldView.GetWorldPosition(currentPos) + offset;
+                        if (_fieldMgr.GetBlock(currentPos) == null) prePos += GetOnWallOffset();
                         var movePos = prePos + (_player.position - prePos) * 0.5f;
                         seq.Append(enemyView.transform.DOMove(movePos, 0.1f));
                         seq.Append(enemyView.transform.DOMove(prePos, 0.1f));
                         seq.AppendCallback(() =>
                         {
-                            enemyView.IsVisible = _fieldMgr.GetBlock(enemy.FieldPos).IsIlluminated;
+                            //enemyView.IsVisible = _fieldMgr.GetBlock(enemy.FieldPos).IsIlluminated;
                             PlayerHP -= enemy.Power;
                         });
                         break;
@@ -477,16 +480,17 @@ namespace DungeonBuilder
 
                     var nextPos = route[j];
                     var position = FieldView.GetWorldPosition(nextPos) + offset;
-                    bool isIlluminated = _fieldMgr.GetBlock(nextPos).IsIlluminated;
+                    if (_fieldMgr.GetBlock(nextPos) == null) position += GetOnWallOffset();
+                    //bool isIlluminated = _fieldMgr.GetBlock(nextPos).IsIlluminated;
                     seq.AppendCallback(() =>
                     {
                         float angle = Quaternion.LookRotation(position - enemyView.transform.position).eulerAngles.y;
                         enemyView.lookAngles = new Vector3(0f, angle, 0f);
-                        if (isIlluminated) enemyView.IsVisible = isIlluminated;
+                        //if (isIlluminated) enemyView.IsVisible = isIlluminated;
                         enemy.FieldPos = nextPos;
                     });
                     seq.Append(enemyView.transform.DOMove(position, oneMoneDuration).SetEase(Ease.Linear));
-                    if (!isIlluminated) seq.AppendCallback(() => enemyView.IsVisible = isIlluminated);
+                    //if (!isIlluminated) seq.AppendCallback(() => enemyView.IsVisible = isIlluminated);
                 }
                 seq.Play();
 
@@ -560,6 +564,45 @@ namespace DungeonBuilder
             for (int i = 0; i < enemiesPos.Length; i++) enemiesPos[i] = _enemyMgr.Enemies[i].FieldPos;
 
             _possibleNodes = _routeCalc.GetNodesAsPossible(_playerPos, PlayerStamina, _fieldMgr.Blocks/*, enemiesPos*/);
+        }
+
+        private void CreateEnemies(int count, Vector2Int startPos)
+        {
+            var creatablePosList = new List<Vector2Int>();
+            for(int y = 3; y < _fieldSize.y; y++)
+            {
+                for (int x = 0; x < _fieldSize.x; x++)
+                {
+                    creatablePosList.Add(new Vector2Int(x, y));
+                }
+            }
+            creatablePosList.Remove(startPos);
+
+            for (int i = 0; i < count; i++)
+            {
+                Enemy enemy = null;
+                if (ProbabilityCalclator.DetectFromPercent(0))
+                    ;
+                else
+                    enemy = new Enemy(
+                        hp: 2,
+                        power: 1,
+                        moveDistance: 1,
+                        searchRange: _fieldSize.x + _fieldSize.y,
+                        looksType: 0
+                    );
+
+                var fieldPos = creatablePosList[Random.Range(0, creatablePosList.Count)];
+                creatablePosList.Remove(fieldPos);
+                _enemyMgr.AddEnemy(enemy, fieldPos);
+
+                if (_fieldMgr.GetBlock(fieldPos) == null) _enemyMgr.GetView(enemy).transform.position += GetOnWallOffset();
+            }
+        }
+
+        private Vector3 GetOnWallOffset()
+        {
+            return Vector3.up * 4f;
         }
     }
 }

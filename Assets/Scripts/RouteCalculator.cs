@@ -29,7 +29,7 @@ namespace DungeonBuilder
             }
         }
 
-        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData)
+        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData, bool canMoveInWall = false)
         {
             _nodes.ToList().ForEach(node => node.Initialize());
 
@@ -53,21 +53,30 @@ namespace DungeonBuilder
                 {
                     var offset = Block.AROUND_OFFSET[i];
                     Vector2Int targetPos = currentPos + offset;
-                    // 対象方向に対して移動できなければ対象外
-                    if(currentBlock.Walls[i])
-                    {
-                        continue;
-                    }
 
-                    var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
-                    var targetBlock = GetBlock(fieldData, targetPos);
-                    if(targetBlock == null || targetBlock.Walls[(int)reverseDir])
+                    if (!canMoveInWall)
                     {
-                        continue;
+                        if (currentBlock == null)
+                        {
+                            continue;
+                        }
+
+                        // 対象方向に対して移動できなければ対象外
+                        if (currentBlock.Walls[i])
+                        {
+                            continue;
+                        }
+
+                        var reverseDir = Block.GetReverseDirection((Block.DirectionType)i);
+                        var targetBlock = GetBlock(fieldData, targetPos);
+                        if (targetBlock == null || targetBlock.Walls[(int)reverseDir])
+                        {
+                            continue;
+                        }
                     }
 
                     // 計算済みのセルは対象外
-                    if(passedPositions.Contains(targetPos))
+                    if (passedPositions.Contains(targetPos))
                     {
                         continue;
                     }
@@ -122,9 +131,9 @@ namespace DungeonBuilder
             return route.ToArray();
         }
 
-        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, int maxMove, Block[,] fieldData)
+        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, int maxMove, Block[,] fieldData, bool canMoveInWall = false)
         {
-            var route = GetRoute(start, goal, fieldData);
+            var route = GetRoute(start, goal, fieldData, canMoveInWall);
             if (route == null) return null;
 
             maxMove++; // GetRouteは移動開始地点もルートに含まれるため歩数を一歩増やす

@@ -35,11 +35,17 @@ namespace DungeonBuilder
             var enemy = mino.Enemy;
             if (enemy == null) return;
 
-            enemy.FieldPos = mino.FieldPos + enemy.FieldPos;
+            var fieldPos = mino.FieldPos + enemy.FieldPos;
+            AddEnemy(enemy, fieldPos);
+        }
+
+        public void AddEnemy(Enemy enemy, Vector2Int fieldPos)
+        {
+            enemy.FieldPos = fieldPos;
             Enemies.Add(enemy);
 
             var enemyView = CreateEnemyView(enemy);
-            enemyView.IsVisible = false;
+            //enemyView.IsVisible = false;
         }
 
         private EnemyView CreateEnemyView(Enemy enemy)
@@ -52,7 +58,7 @@ namespace DungeonBuilder
 
             enemyView.lookAngles = Vector3.up * Random.Range(0, 3) * 90f;
 
-            enemyView.UnknownView = _fieldHUDMgr.AddUnknownView(enemyView.gameObject, new Vector2(0f, 50f));
+            //enemyView.UnknownView = _fieldHUDMgr.AddUnknownView(enemyView.gameObject, new Vector2(0f, 50f));
 
             return enemyView;
         }

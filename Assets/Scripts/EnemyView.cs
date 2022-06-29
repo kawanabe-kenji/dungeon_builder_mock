@@ -20,7 +20,7 @@ namespace DungeonBuilder
             set
             {
                 _isVisible = value;
-                SetVisible(value);
+                //SetVisible(value);
             }
         }
 

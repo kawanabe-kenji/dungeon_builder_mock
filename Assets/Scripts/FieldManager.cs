@@ -212,5 +212,13 @@ namespace DungeonBuilder
         {
             return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
         }
+
+        public Vector2Int GetRandomFieldPosition()
+        {
+            return new Vector2Int(
+                x: Random.Range(0, FieldSize.x),
+                y: Random.Range(0, FieldSize.y)
+            );
+        }
     }
 }
