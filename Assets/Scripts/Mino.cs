@@ -58,6 +58,10 @@ namespace DungeonBuilder
         private Enemy _enemy;
 
         public Enemy Enemy => _enemy;
+
+        private Vector2Int _movePoint;
+
+        public Vector2Int MovePoint => _movePoint;
         #endregion // Variables
 
         public static Mino Create(ShapeType type)
@@ -84,7 +88,19 @@ namespace DungeonBuilder
             {
                 Blocks.Add(offset, new Block());
             }
-            CreateWalls();
+            CreateMovePoint();
+        }
+
+        private void CreateMovePoint()
+        {
+            var points = new Vector2Int[Blocks.Count];
+            int count = 0;
+            foreach (var kvp in Blocks)
+            {
+                points[count++] = kvp.Key;
+            }
+            int index = Random.Range(0, points.Length);
+            _movePoint = points[index];
         }
 
         private void CreateWalls()
@@ -145,6 +161,8 @@ namespace DungeonBuilder
             {
                 Enemy.FieldPos = new Vector2Int(Enemy.FieldPos.y, -Enemy.FieldPos.x);
             }
+
+            _movePoint = new Vector2Int(_movePoint.y, -_movePoint.x);
         }
 
         public void PutKey()

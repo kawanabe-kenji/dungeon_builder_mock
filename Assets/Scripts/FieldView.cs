@@ -34,6 +34,14 @@ namespace DungeonBuilder
 
         public float HeightFloor => _minoViewParent.position.y;
 
+        [SerializeField]
+        private GameObject _wallBlockPrafab;
+
+        private GameObject[,] _wallBlocks;
+
+        [SerializeField]
+        private Transform _wallBlockParent;
+
         public static Vector2Int GetFieldPosition(Vector3 worldPos)
         {
             var helfCellSize = CELL_SIZE / 2f;
@@ -55,18 +63,35 @@ namespace DungeonBuilder
             return _blocks[fieldPos.x, fieldPos.y];
         }
 
+        private GameObject GetWallBlock(Vector2Int fieldPos)
+        {
+            var fieldSize = new Vector2Int(_wallBlocks.GetLength(0), _wallBlocks.GetLength(1));
+            if (fieldPos.x < 0 || fieldPos.x >= fieldSize.x || fieldPos.y < 0 || fieldPos.y >= fieldSize.y) return null;
+            return _wallBlocks[fieldPos.x, fieldPos.y];
+        }
+
         public void Initialize(Vector2Int fieldSize, Vector2Int startPos, FieldHUDManager fieldHUDMgr)
         {
             _blocks = new MinoView.Block[fieldSize.x, fieldSize.y];
 
+            _wallBlocks = new GameObject[fieldSize.x, fieldSize.y];
+            for (int y = 0; y < fieldSize.y; y++)
+            {
+                for (int x = 0; x < fieldSize.x; x++)
+                {
+                    var wallBlock = Instantiate(_wallBlockPrafab, _wallBlockParent);
+                    _wallBlocks[x, y] = wallBlock;
+                    wallBlock.transform.localPosition = GetWorldPosition(new Vector2Int(x, y));
+
+                    var eulerAngles = wallBlock.transform.localEulerAngles;
+                    eulerAngles.y = Random.Range(0f, 359f);
+                    wallBlock.transform.localEulerAngles = eulerAngles;
+                }
+            }
+
             // スタート地点の壁情報
             _blocks[startPos.x, startPos.y] = _startBlocks[0];
-            for (int i = 0; i < Block.EIGHT_AROUND_OFFSET.Length; i++)
-            {
-                var offset = Block.EIGHT_AROUND_OFFSET[i];
-                Vector2Int fieldPos = startPos + offset;
-                _blocks[fieldPos.x, fieldPos.y] = _startBlocks[i + 1];
-            }
+            _wallBlocks[startPos.x, startPos.y].SetActive(false);
 
             _fogs.Simulate(100f);
             _fogs.Play();
@@ -74,10 +99,19 @@ namespace DungeonBuilder
             _fieldHUDMgr = fieldHUDMgr;
         }
 
-        public void SetMinoPosition(Vector2Int fieldPos)
+        public void SetMino(Mino mino)
         {
             if (_currentView == null) return;
-            _currentView.transform.localPosition = new Vector3(fieldPos.x, 0f, fieldPos.y) * CELL_SIZE;
+            _currentView.transform.localPosition = new Vector3(mino.FieldPos.x, 0f, mino.FieldPos.y) * CELL_SIZE;
+
+            foreach (var kvp in mino.Blocks)
+            {
+                var offset = kvp.Key;
+                var fieldPos = mino.FieldPos + offset;
+                var wallBlock = GetWallBlock(fieldPos);
+                if (wallBlock == null) continue;
+                wallBlock.SetActive(false);
+            }
         }
 
         public void PutMino(Mino mino)
@@ -90,9 +124,6 @@ namespace DungeonBuilder
 
                 var view = _currentView.Blocks[count++];
                 _blocks[fieldPos.x, fieldPos.y] = view;
-
-                view.Fog.Play();
-                view.IsPlayingFog = true;
             }
         }
 
@@ -105,6 +136,7 @@ namespace DungeonBuilder
                 for (int y = 0; y < fieldY; y++)
                 {
                     var data = fieldData[x, y];
+                    _wallBlocks[x, y].SetActive(data == null);
                     if (data == null) continue;
 
                     var view = _blocks[x, y];
@@ -132,31 +164,6 @@ namespace DungeonBuilder
 
                     var view = _blocks[x, y];
                     if (view == null) continue;
-
-                    var fog = view.Fog;
-                    if (fog == null) continue;
-
-                    if(data.IsIlluminated == view.IsPlayingFog)
-                    {
-                        view.IsPlayingFog = !data.IsIlluminated;
-                        if (data.IsIlluminated)
-                            fog.Stop(false, ParticleSystemStopBehavior.StopEmitting);
-                        else
-                            fog.Play();
-
-                        var seq = DOTween.Sequence();
-                        seq.AppendCallback(() =>
-                        {
-                            var main = fog.main;
-                            main.simulationSpeed = 7.5f;
-                        });
-                        seq.AppendInterval(0.5f);
-                        seq.AppendCallback(() =>
-                        {
-                            var main = fog.main;
-                            main.simulationSpeed = 1f;
-                        });
-                    }
 
                     if (view.Key != null)
                     {
@@ -187,7 +194,6 @@ namespace DungeonBuilder
             DestroyCurrentMino();
 
             _currentView = Instantiate(_minoPrefabs[(int)mino.Type], _minoViewParent);
-            foreach (var block in _currentView.Blocks) block.Fog.Simulate(100f);
 
             _currentView.transform.position = Vector3.one * 1000f;
             for (int i = 0; i < rotateCount; i++)

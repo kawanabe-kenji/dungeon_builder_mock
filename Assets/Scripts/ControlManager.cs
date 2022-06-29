@@ -52,6 +52,9 @@ namespace DungeonBuilder
         private Sprite _spriteHealItem;
 
         [SerializeField]
+        private Sprite _spriteMovePoint;
+
+        [SerializeField]
         private Button _resetButton;
 
         public Button ResetButton => _resetButton;
@@ -88,15 +91,25 @@ namespace DungeonBuilder
 
             for (int i = 0; i < pickableMinos.Length; i++)
             {
-                var minoView = Instantiate(_minoViewPrefabs[(int)pickableMinos[i].Type], _minoViewPanels[i].transform);
+                var mino = pickableMinos[i];
+                var minoView = Instantiate(_minoViewPrefabs[(int)mino.Type], _minoViewPanels[i].transform);
                 int count = 0;
-                foreach(var kvp in pickableMinos[i].Blocks)
+                foreach(var kvp in mino.Blocks)
                 {
                     var block = kvp.Value;
                     var blockView = minoView.GetChild(count);
                     for(int j = 0; j < block.Walls.Length; j++)
                     {
                         blockView.GetChild(j).GetComponent<Image>().enabled = block.Walls[j];
+                    }
+
+                    if (mino.MovePoint == kvp.Key)
+                    {
+                        var icon = Instantiate(_objectIconPrefab, blockView.transform);
+                        _objectIcons[i] = icon;
+                        icon.rectTransform.localPosition = Vector3.zero;
+                        icon.sprite = _spriteMovePoint;
+                        icon.color = new Color32(255, 140, 0, 255);
                     }
                     count++;
                 }
@@ -134,6 +147,18 @@ namespace DungeonBuilder
                     blockView.GetChild(j).GetComponent<Image>().enabled = block.Walls[j];
                 }
                 var offset = kvp.Key;
+
+                if(mino.MovePoint == kvp.Key)
+                {
+                    var icon = Instantiate(_objectIconPrefab, blockView.transform);
+                    _objectIcons[index] = icon;
+                    icon.rectTransform.localPosition = Vector3.zero;
+
+                    icon.sprite = _spriteMovePoint;
+                    icon.color = new Color32(255, 140, 0, 255);
+                }
+
+                /*
                 if (mino.Enemy != null && offset == mino.Enemy.FieldPos || block.HasKey || block.HasHealItem)
                 {
                     var icon = Instantiate(_objectIconPrefab, blockView.transform);
@@ -156,6 +181,7 @@ namespace DungeonBuilder
                         icon.color = new Color32(255, 75, 75, 255);
                     }
                 }
+                */
                 count++;
             }
         }

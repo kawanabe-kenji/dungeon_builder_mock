@@ -75,14 +75,6 @@ namespace DungeonBuilder
         [SerializeField]
         private Image[] _playerStaminaViews;
 
-        [SerializeField]
-        private Renderer _possibleBlockPrefab;
-
-        [SerializeField]
-        private Transform _possibleBlocksParent;
-
-        private List<Renderer> _possibleBlocks;
-
         private Node[] _possibleNodes;
 
         [SerializeField]
@@ -107,8 +99,6 @@ namespace DungeonBuilder
 
         [SerializeField]
         private Image _blackLayer;
-
-        private bool _isShowPossibleRange;
         #endregion // Variables
 
         #region CommonMethod
@@ -121,7 +111,7 @@ namespace DungeonBuilder
         private void Awake()
         {
             // ゲーム開始のフィールド座標
-            Vector2Int startPos = new Vector2Int(Mathf.CeilToInt(_fieldSize.x / 2), 1);
+            Vector2Int startPos = new Vector2Int(Mathf.CeilToInt(_fieldSize.x / 2), 0);
             _playerPos = startPos;
 
             _fieldHUDMgr.Initialize();
@@ -134,7 +124,7 @@ namespace DungeonBuilder
 
             _controlMgr.Initialize(_fieldMgr.PickableMinos);
 
-            _controlMgr.TouchFieldHandler.OnPointerUpEvent = TouchField;
+            //_controlMgr.TouchFieldHandler.OnPointerUpEvent = TouchField;
             var minoViewPanels = _controlMgr.MinoViewPanels;
             for(int i = 0; i < minoViewPanels.Length; i++)
             {
@@ -151,7 +141,6 @@ namespace DungeonBuilder
             _playerHP = PlayerMaxHP;
             _playerStamina = PlayerStaminaMax;
 
-            _possibleBlocks = new List<Renderer>();
             _efBolts = new List<LightningBoltScript>();
 
             Fade(false);
@@ -163,11 +152,8 @@ namespace DungeonBuilder
         {
             RefreshField();
             _fieldUIView.DrawMino(_fieldMgr.PickedMino);
-            if(_fieldMgr.PickedMino != null)
-            {
-                var minoPosition = _fieldMgr.PickedMino.FieldPos;
-                _fieldView.SetMinoPosition(new Vector2Int(minoPosition.x, minoPosition.y));
-            }
+            if (_fieldMgr.PickedMino == null) return;
+            _fieldView.SetMino(_fieldMgr.PickedMino);
         }
 
         private void PutMino(Mino mino)
@@ -189,6 +175,7 @@ namespace DungeonBuilder
             {
                 var fieldPosY = _fieldMgr.LastAddHilightLine[i];
 
+                /*
                 for(int x = 0; x < _fieldMgr.FieldSize.x; x++)
                 {
                     var fieldPos = new Vector2Int(x, fieldPosY);
@@ -209,6 +196,7 @@ namespace DungeonBuilder
                 var seq = DOTween.Sequence();
                 seq.AppendInterval(1.2f);
                 seq.AppendCallback(() => efBolt.enabled = efBoltLine.enabled = false);
+                */
             }
         }
 
@@ -222,6 +210,12 @@ namespace DungeonBuilder
         private void TouchField(PointerEventData eventData)
         {
             var fieldPos = _controlMgr.GetFieldPosition(eventData.position, true);
+            MoveTargetPosition(fieldPos);
+        }
+
+        private void MoveTargetPosition(Vector2Int fieldPos)
+        {
+            /*
             var isContainsPossibleNode = false;
             foreach (var node in _possibleNodes)
             {
@@ -232,16 +226,16 @@ namespace DungeonBuilder
                 }
             }
             if (!isContainsPossibleNode) return;
+            */
 
             var block = _fieldMgr.GetBlock(fieldPos);
-            if(block == null) return;
+            if (block == null) return;
 
             var route = _routeCalc.GetRoute(_playerPos, fieldPos, _fieldMgr.Blocks);
             _routeView.gameObject.SetActive(route != null);
-            if(route == null) return;
+            if (route == null) return;
 
             TraceRoute(route);
-            HidePlayerPossibleRange();
         }
 
         private void TraceRoute(Vector2Int[] route)
@@ -344,7 +338,6 @@ namespace DungeonBuilder
 
             _fieldMgr.PickedMino.FieldPos = fieldPos;
             RefreshMino();
-            HidePlayerPossibleRange();
         }
 
         private void ReleaseMino(int index)
@@ -371,6 +364,8 @@ namespace DungeonBuilder
             var shapeType = Mino.RandomShapeType();
             var mino = _fieldMgr.SpawnMino(index, shapeType);
 
+            #region ミノ上へのオブジェクト配置
+            /*
             if (!mino.HasKey())
             {
                 // 敵配置(60%の確率）
@@ -402,12 +397,16 @@ namespace DungeonBuilder
                     mino.PutHealItem();
                 }
             }
+            */
+            #endregion // ミノ上へのオブジェクト配置
 
             _fieldMgr.PickableMinoRotateCounts[index] = 0;
 
             _controlMgr.SpawnMino(index, shapeType, mino);
 
-            PlayEnemyTurn();
+            var targetPos = pickedMino.FieldPos + pickedMino.MovePoint;
+            MoveTargetPosition(targetPos);
+            //PlayEnemyTurn();
         }
 
         private void RotateMino(int index)
@@ -555,40 +554,12 @@ namespace DungeonBuilder
 
         private void ShowPlayerPossibleRange()
         {
-            if (_isShowPossibleRange) return;
-
             _routeView.gameObject.SetActive(false);
 
             var enemiesPos = new Vector2Int[_enemyMgr.Enemies.Count];
             for (int i = 0; i < enemiesPos.Length; i++) enemiesPos[i] = _enemyMgr.Enemies[i].FieldPos;
 
-            HidePlayerPossibleRange();
-
             _possibleNodes = _routeCalc.GetNodesAsPossible(_playerPos, PlayerStamina, _fieldMgr.Blocks/*, enemiesPos*/);
-            for(int i = 0; i < _possibleNodes.Length; i++)
-            {
-                Renderer block;
-                if (_possibleBlocks.Count <= i)
-                {
-                    block = Instantiate(_possibleBlockPrefab, _possibleBlocksParent);
-                    _possibleBlocks.Add(block);
-                }
-                else
-                {
-                    block = _possibleBlocks[i];
-                }
-                block.transform.localPosition = FieldView.GetWorldPosition(_possibleNodes[i].Position);
-                block.enabled = true;
-            }
-
-            _isShowPossibleRange = true;
-        }
-
-        private void HidePlayerPossibleRange()
-        {
-            if (!_isShowPossibleRange) return;
-            foreach (var block in _possibleBlocks) block.enabled = false;
-            _isShowPossibleRange = false;
         }
     }
 }

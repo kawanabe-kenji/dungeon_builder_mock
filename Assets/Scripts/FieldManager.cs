@@ -6,15 +6,15 @@ namespace DungeonBuilder
     public class FieldManager
     {
         private static readonly Dictionary<Vector2Int, Block.DirectionType[]> BASE_SPACE = new Dictionary<Vector2Int, Block.DirectionType[]>() {
-            { new Vector2Int(-1, -1), new Block.DirectionType[] { Block.DirectionType.BACK, Block.DirectionType.LEFT } },
-            { new Vector2Int(0, -1), null },
-            { new Vector2Int(1, -1), new Block.DirectionType[] { Block.DirectionType.BACK, Block.DirectionType.RIGHT } },
-            { new Vector2Int(-1, 0), null },
+            //{ new Vector2Int(-1, -1), new Block.DirectionType[] { Block.DirectionType.BACK, Block.DirectionType.LEFT } },
+            //{ new Vector2Int(0, -1), null },
+            //{ new Vector2Int(1, -1), new Block.DirectionType[] { Block.DirectionType.BACK, Block.DirectionType.RIGHT } },
+            //{ new Vector2Int(-1, 0), null },
             { new Vector2Int(0, 0), null },
-            { new Vector2Int(1, 0), null },
-            { new Vector2Int(-1, 1), new Block.DirectionType[] { Block.DirectionType.FRONT, Block.DirectionType.LEFT } },
-            { new Vector2Int(0, 1), null },
-            { new Vector2Int(1, 1), new Block.DirectionType[] { Block.DirectionType.FRONT, Block.DirectionType.RIGHT } },
+            //{ new Vector2Int(1, 0), null },
+            //{ new Vector2Int(-1, 1), new Block.DirectionType[] { Block.DirectionType.FRONT, Block.DirectionType.LEFT } },
+            //{ new Vector2Int(0, 1), null },
+            //{ new Vector2Int(1, 1), new Block.DirectionType[] { Block.DirectionType.FRONT, Block.DirectionType.RIGHT } },
         };
 
         private Vector2Int _fieldSize;
@@ -196,17 +196,6 @@ namespace DungeonBuilder
         {
             var mino = Mino.Create(shapeType);
             _pickableMinos[index] = mino;
-
-            if (!_isPutKey)
-            {
-                int blockCount = 0;
-                foreach (var block in Blocks) if (block != null) blockCount++;
-                if (blockCount > 48) // ミノ12個分
-                {
-                    mino.PutKey();
-                    _isPutKey = true;
-                }
-            }
 
             return mino;
         }
