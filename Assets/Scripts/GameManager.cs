@@ -57,7 +57,7 @@ namespace DungeonBuilder
         }
 
         //public int PlayerMaxHP => _playerHPViews.Length * PLAYER_HP_VIEW_PART;
-        public const int PlayerMaxHP = 10;
+        public const int PlayerMaxHP = 5;
 
         private int _playerStamina;
 
@@ -169,7 +169,7 @@ namespace DungeonBuilder
 
             _efBolts = new List<LightningBoltScript>();
 
-            CreateEnemies(6, startPos);
+            CreateEnemies(5, startPos);
 
             Fade(false);
 
@@ -635,7 +635,7 @@ namespace DungeonBuilder
                     ;
                 else
                     enemy = new Enemy(
-                        hp: 2,
+                        hp: 5,
                         power: 1,
                         moveDistance: 1,
                         searchRange: _fieldSize.x + _fieldSize.y,
