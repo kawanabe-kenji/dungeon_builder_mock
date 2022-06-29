@@ -70,7 +70,7 @@ namespace DungeonBuilder
 
             var view = EnemyViews[index];
 
-            _fieldHUDMgr.RemoveUnknownView(view.gameObject);
+            //_fieldHUDMgr.RemoveUnknownView(view.gameObject);
 
             Destroy(view.gameObject);
             EnemyViews.RemoveAt(index);
@@ -96,6 +96,16 @@ namespace DungeonBuilder
         {
             foreach (var enemy in Enemies) if (enemy.FieldPos == fieldPos) return enemy;
             return null;
+        }
+
+        public Vector2Int[] GetEnemyPositions()
+        {
+            var positions = new Vector2Int[_enemies.Count];
+            for(int i = 0; i < positions.Length; i++)
+            {
+                positions[i] = _enemies[i].FieldPos;
+            }
+            return positions;
         }
     }
 }

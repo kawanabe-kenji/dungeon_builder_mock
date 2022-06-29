@@ -29,7 +29,7 @@ namespace DungeonBuilder
             }
         }
 
-        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData, bool canMoveInWall = false)
+        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, Block[,] fieldData, bool isPlayer = false, params Vector2Int[] impossiblePos)
         {
             _nodes.ToList().ForEach(node => node.Initialize());
 
@@ -54,7 +54,7 @@ namespace DungeonBuilder
                     var offset = Block.AROUND_OFFSET[i];
                     Vector2Int targetPos = currentPos + offset;
 
-                    if (!canMoveInWall)
+                    if (isPlayer)
                     {
                         if (currentBlock == null)
                         {
@@ -74,6 +74,18 @@ namespace DungeonBuilder
                             continue;
                         }
                     }
+
+                    //if (impossiblePos.Contains(targetPos))
+                    //{
+                    //    if (isPlayer)
+                    //    {
+                    //        if(targetPos != goal) continue;
+                    //    }
+                    //    else
+                    //    {
+                    //        continue;
+                    //    }
+                    //}
 
                     // 計算済みのセルは対象外
                     if (passedPositions.Contains(targetPos))
@@ -131,9 +143,9 @@ namespace DungeonBuilder
             return route.ToArray();
         }
 
-        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, int maxMove, Block[,] fieldData, bool canMoveInWall = false)
+        public Vector2Int[] GetRoute(Vector2Int start, Vector2Int goal, int maxMove, Block[,] fieldData, bool isPlayer = false, params Vector2Int[] impossiblePos)
         {
-            var route = GetRoute(start, goal, fieldData, canMoveInWall);
+            var route = GetRoute(start, goal, fieldData, isPlayer, impossiblePos);
             if (route == null) return null;
 
             maxMove++; // GetRouteは移動開始地点もルートに含まれるため歩数を一歩増やす

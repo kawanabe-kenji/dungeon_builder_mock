@@ -233,7 +233,7 @@ namespace DungeonBuilder
             var block = _fieldMgr.GetBlock(fieldPos);
             if (block == null) return;
 
-            var route = _routeCalc.GetRoute(_playerPos, fieldPos, _fieldMgr.Blocks);
+            var route = _routeCalc.GetRoute(_playerPos, fieldPos, _fieldMgr.Blocks, true, _enemyMgr.GetEnemyPositions());
             _routeView.gameObject.SetActive(route != null);
             if (route == null) return;
 
@@ -247,8 +247,12 @@ namespace DungeonBuilder
             var seq = DOTween.Sequence();
             var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
             var playerRotate = _player.GetChild(0);
-            for(int i = 1; i < route.Length; i++)
+
+            AttackForEnemy(route[0], seq);
+
+            for (int i = 1; i < route.Length; i++)
             {
+                var currentPos = route[i - 1];
                 var nextPos = route[i];
 
                 var position = FieldView.GetWorldPosition(nextPos) + offset;
@@ -258,32 +262,7 @@ namespace DungeonBuilder
                     playerRotate.localEulerAngles = new Vector3(0f, angle, 0f);
                 });
 
-                bool isHitEnemy = false;
-                foreach(var enemy in _enemyMgr.Enemies)
-                {
-                    if(enemy.FieldPos != nextPos) continue;
-                    isHitEnemy = true;
-                    seq.AppendCallback(() =>
-                    {
-                        _routeView.gameObject.SetActive(false);
-                        var enemyView = _enemyMgr.GetView(enemy);
-                        //enemyView.IsVisible = true;
-                        // TODO: 攻撃演出
-                    });
-                    var prePos = FieldView.GetWorldPosition(route[i - 1]) + offset;
-                    var movePos = prePos + (position - prePos) * 0.5f;
-                    seq.Append(_player.DOMove(movePos, 0.1f));
-                    seq.AppendCallback(() =>
-                    {
-                        enemy.HP--;
-                        if(enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
-                    });
-                    seq.Append(_player.DOMove(prePos, 0.1f));
-                    break;
-                }
-                if(isHitEnemy) break;
-
-                seq.AppendCallback(() => PlayerStamina--);
+                //seq.AppendCallback(() => PlayerStamina--);
                 seq.Append(_player.DOMove(position, 0.1f).SetEase(Ease.Linear));
                 seq.AppendCallback(() => _playerPos = nextPos);
 
@@ -311,6 +290,8 @@ namespace DungeonBuilder
                         });
                     }
                 }
+
+                AttackForEnemy(nextPos, seq);
             }
             seq.OnComplete(() =>
             {
@@ -318,6 +299,40 @@ namespace DungeonBuilder
                 PlayEnemyTurn();
             });
             seq.Play();
+        }
+
+        private void AttackForEnemy(Vector2Int currentPos, Sequence seq)
+        {
+            var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
+            foreach (var enemy in _enemyMgr.Enemies)
+            {
+                bool isHitEnemy = false;
+                for (int j = 0; j < (int)Block.DirectionType.Max; j++)
+                {
+                    var targetPos = currentPos + Block.AROUND_OFFSET[j];
+                    if (enemy.FieldPos == targetPos)
+                    {
+                        isHitEnemy = true;
+                        break;
+                    }
+                }
+                if (!isHitEnemy) continue;
+                var enemyView = _enemyMgr.GetView(enemy);
+                seq.AppendCallback(() =>
+                {
+                    _routeView.gameObject.SetActive(false);
+                    //enemyView.IsVisible = true;
+                });
+                var prePos = FieldView.GetWorldPosition(currentPos) + offset;
+                var movePos = prePos + (enemyView.transform.position - prePos) * 0.5f;
+                seq.Append(_player.DOMove(movePos, 0.1f));
+                seq.AppendCallback(() =>
+                {
+                    enemy.HP--;
+                    if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
+                });
+                seq.Append(_player.DOMove(prePos, 0.1f));
+            }
         }
 
         #region Control Mino
@@ -434,7 +449,7 @@ namespace DungeonBuilder
                 if (FieldManager.Distance(enemy.FieldPos, _playerPos) > enemy.SearchRange) moveDistance = 1;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, moveDistance, _fieldMgr.Blocks, true);
+                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, moveDistance, _fieldMgr.Blocks);
                 if (route == null) continue;
 
                 var seq = DOTween.Sequence();
