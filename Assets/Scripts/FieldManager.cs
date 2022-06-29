@@ -45,6 +45,10 @@ namespace DungeonBuilder
 
         public List<int> LastAddHilightLine => _lastAddHilightLine;
 
+        private int _lastStickSideCount;
+
+        public int LastStickSideCount => _lastStickSideCount;
+
         public Block GetBlock(Vector2Int fieldPos)
         {
             if (fieldPos.x < 0 || fieldPos.x >= FieldSize.x || fieldPos.y < 0 || fieldPos.y >= FieldSize.y) return null;
@@ -99,6 +103,8 @@ namespace DungeonBuilder
 
         public void PutMino(Mino mino)
         {
+            _lastStickSideCount = 0;
+
             // ミノと隣接するブロックの壁チェック
             foreach (var kvp in mino.Blocks)
             {
@@ -128,6 +134,8 @@ namespace DungeonBuilder
                     {
                         block.Walls[i] = false;
                     }
+
+                    _lastStickSideCount++;
                 }
             }
 

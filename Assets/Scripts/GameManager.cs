@@ -190,6 +190,13 @@ namespace DungeonBuilder
             _enemyMgr.PutMino(mino);
             _fieldView.PutMino(mino);
             RefreshMino();
+
+            PlayerPower += _fieldMgr.LastStickSideCount;
+            int count = _fieldMgr.LastAddHilightLine.Count();
+            if(count >= 1)
+            {
+                PlayerPower *= _fieldMgr.LastAddHilightLine.Count() * 2;
+            }
         }
 
         private void RefreshField()
@@ -274,7 +281,7 @@ namespace DungeonBuilder
             var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
             var playerRotate = _player.GetChild(0);
 
-            AttackForEnemy(route[0], seq);
+            bool isAttacked = AttackForEnemy(route[0], seq);
 
             for (int i = 1; i < route.Length; i++)
             {
@@ -317,18 +324,21 @@ namespace DungeonBuilder
                     }
                 }
 
-                AttackForEnemy(nextPos, seq);
+                bool ret = AttackForEnemy(nextPos, seq);
+                if (ret) isAttacked = ret;
             }
             seq.OnComplete(() =>
             {
+                if(isAttacked) PlayerPower = 1;
                 HilightLine();
                 PlayEnemyTurn();
             });
             seq.Play();
         }
 
-        private void AttackForEnemy(Vector2Int currentPos, Sequence seq)
+        private bool AttackForEnemy(Vector2Int currentPos, Sequence seq)
         {
+            bool isAttacked = false;
             var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
             foreach (var enemy in _enemyMgr.Enemies)
             {
@@ -359,7 +369,9 @@ namespace DungeonBuilder
                     if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
                 });
                 seq.Append(_player.DOMove(prePos, 0.1f));
+                isAttacked = true;
             }
+            return isAttacked;
         }
 
         #region Control Mino
