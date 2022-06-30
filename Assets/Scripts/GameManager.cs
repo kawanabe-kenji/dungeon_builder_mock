@@ -488,7 +488,14 @@ namespace DungeonBuilder
                 if (FieldManager.Distance(enemy.FieldPos, _playerPos) > enemy.SearchRange) moveDistance = 1;
 
                 var enemyView = _enemyMgr.EnemyViews[i];
-                var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, moveDistance, _fieldMgr.Blocks);
+                //var route = _routeCalc.GetRoute(enemy.FieldPos, _playerPos, moveDistance, _fieldMgr.Blocks);
+
+                var diff = _playerPos - enemy.FieldPos;
+                var route = new Vector2Int[] {
+                    enemy.FieldPos,
+                    enemy.FieldPos + (Mathf.Abs(diff.x) >= Mathf.Abs(diff.y) ? new Vector2Int((int)Mathf.Sign(diff.x), 0) : new Vector2Int(0, (int)Mathf.Sign(diff.y)))
+                };
+
                 if (route == null) continue;
 
                 var seq = DOTween.Sequence();
