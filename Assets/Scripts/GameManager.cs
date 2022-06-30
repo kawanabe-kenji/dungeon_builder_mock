@@ -169,7 +169,7 @@ namespace DungeonBuilder
 
             _efBolts = new List<LightningBoltScript>();
 
-            CreateEnemies(5, startPos);
+            CreateEnemies(8, startPos);
 
             Fade(false);
 
@@ -647,8 +647,8 @@ namespace DungeonBuilder
                     ;
                 else
                     enemy = new Enemy(
-                        hp: 5,
-                        power: 1,
+                        hp: 15,
+                        power: 2,
                         moveDistance: 1,
                         searchRange: _fieldSize.x + _fieldSize.y,
                         looksType: 0
