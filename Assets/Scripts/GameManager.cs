@@ -80,7 +80,7 @@ namespace DungeonBuilder
             get => _playerPower;
             set
             {
-                _playerPower = value;
+                _playerPower = Mathf.Min(value, 10);
                 UpdatePlayerPowerView();
             }
         }
@@ -95,6 +95,9 @@ namespace DungeonBuilder
         private Text _playerPowerView;
 
         private StatusHUDView _playerHUD;
+
+        [SerializeField]
+        private ParticleSystem _efExplosionPrefab;
 
         private Node[] _possibleNodes;
 
@@ -327,6 +330,9 @@ namespace DungeonBuilder
                 bool ret = AttackForEnemy(nextPos, seq);
                 if (ret) isAttacked = ret;
             }
+
+            PlaySkill(route[route.Length - 1], seq);
+
             seq.OnComplete(() =>
             {
                 if(isAttacked) PlayerPower = 1;
@@ -372,6 +378,95 @@ namespace DungeonBuilder
                 isAttacked = true;
             }
             return isAttacked;
+        }
+
+        private void PlaySkill(Vector2Int currentPos, Sequence seq)
+        {
+            var stickCount = _fieldMgr.LastStickSideCount;
+            var effectInterval = 0.12f;
+
+            if (stickCount < 3) return;
+
+            var offset = Vector3.up * _fieldView.HeightFloor + Vector3.back;
+            var prePos = FieldView.GetWorldPosition(currentPos) + offset;
+            seq.Append(_player.DOMove(prePos + Vector3.up * 2, 0.1f));
+            seq.Append(_player.DOMove(prePos, 0.1f));
+
+            for (int i = 0; i < 2; i++)
+            {
+                seq.AppendInterval(effectInterval);
+                var offsetWeight = i + 1;
+                seq.AppendCallback(() =>
+                {
+                    for (int j = 0; j < (int)Block.DirectionType.Max; j++)
+                    {
+                        var offsetPos = currentPos + Block.AROUND_OFFSET[j] * offsetWeight;
+                        var offsetFieldPos = FieldView.GetWorldPosition(offsetPos);
+                        Instantiate(_efExplosionPrefab, offsetFieldPos, Quaternion.identity, _player.parent);
+                        var enemy = _enemyMgr.GetEnemy(offsetPos);
+                        if (enemy != null)
+                        {
+                            enemy.HP -= _playerPower;
+                            var enemyView = _enemyMgr.GetView(enemy);
+                            enemyView.HUDView.SetHP(enemy.HP);
+                            if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
+                        }
+                    }
+                });
+            }
+
+            if (stickCount < 4) return;
+
+            seq.AppendInterval(effectInterval);
+            seq.AppendCallback(() =>
+            {
+                for (int i = 0; i < (int)Block.DirectionType.Max; i++)
+                {
+                    var offsetPos = currentPos + Block.AROUND_OFFSET[i] * 3;
+                    var offsetFieldPos = FieldView.GetWorldPosition(offsetPos);
+                    Instantiate(_efExplosionPrefab, offsetFieldPos, Quaternion.identity, _player.parent);
+                    var enemy = _enemyMgr.GetEnemy(offsetPos);
+                    if (enemy != null)
+                    {
+                        enemy.HP -= _playerPower;
+                        var enemyView = _enemyMgr.GetView(enemy);
+                        enemyView.HUDView.SetHP(enemy.HP);
+                        if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
+                    }
+                }
+            });
+
+            if (stickCount < 5) return;
+
+            seq.AppendInterval(effectInterval);
+            seq.AppendCallback(() =>
+            {
+                var offsets = new Vector2Int[]
+                {
+                    new Vector2Int(0, 4),
+                    new Vector2Int(4, 0),
+                    new Vector2Int(0, -4),
+                    new Vector2Int(-4, 0),
+                    new Vector2Int(1, 1),
+                    new Vector2Int(1, -1),
+                    new Vector2Int(-1, -1),
+                    new Vector2Int(-1, 1)
+                };
+                for (int i = 0; i < offsets.Length; i++)
+                {
+                    var offsetPos = currentPos + offsets[i];
+                    var offsetFieldPos = FieldView.GetWorldPosition(offsetPos);
+                    Instantiate(_efExplosionPrefab, offsetFieldPos, Quaternion.identity, _player.parent);
+                    var enemy = _enemyMgr.GetEnemy(offsetPos);
+                    if (enemy != null)
+                    {
+                        enemy.HP -= _playerPower;
+                        var enemyView = _enemyMgr.GetView(enemy);
+                        enemyView.HUDView.SetHP(enemy.HP);
+                        if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
+                    }
+                }
+            });
         }
 
         #region Control Mino

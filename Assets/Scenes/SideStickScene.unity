@@ -13197,6 +13197,7 @@ MonoBehaviour:
   - {fileID: 1345219731}
   _playerHPView: {fileID: 836598287}
   _playerPowerView: {fileID: 1523008695}
+  _efExplosionPrefab: {fileID: 2818715415277566054, guid: e8a36309e94bc45f593f18c74b9ecd08, type: 3}
   _efBoltPrefab: {fileID: 7402294161568957506, guid: 66446857704984e02921a02d701e4dca, type: 3}
   _enemyMgr: {fileID: 1029538686}
   _loseLayerParent: {fileID: 1314372198}
