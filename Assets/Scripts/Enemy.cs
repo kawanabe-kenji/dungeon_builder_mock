@@ -26,6 +26,8 @@ namespace DungeonBuilder
 
         public int LooksType => _looksType;
 
+        public bool IsBuried = false;
+
         public Enemy(int hp, int power, int moveDistance, int searchRange, int looksType)
         {
             HP = hp;

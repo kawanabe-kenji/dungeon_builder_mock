@@ -39,13 +39,14 @@ namespace DungeonBuilder
             AddEnemy(enemy, fieldPos);
         }
 
-        public void AddEnemy(Enemy enemy, Vector2Int fieldPos)
+        public EnemyView AddEnemy(Enemy enemy, Vector2Int fieldPos)
         {
             enemy.FieldPos = fieldPos;
             Enemies.Add(enemy);
 
             var enemyView = CreateEnemyView(enemy);
             //enemyView.IsVisible = false;
+            return enemyView;
         }
 
         private EnemyView CreateEnemyView(Enemy enemy)
@@ -84,7 +85,7 @@ namespace DungeonBuilder
 			{
                 var fieldPos = Enemies[i].FieldPos;
                 var block = fieldData[fieldPos.x, fieldPos.y];
-                EnemyViews[i].IsVisible = block.IsIlluminated;
+                //EnemyViews[i].IsVisible = block.IsIlluminated;
 			}
         }
 

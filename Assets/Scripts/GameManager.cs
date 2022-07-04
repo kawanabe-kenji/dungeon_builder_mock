@@ -94,6 +94,11 @@ namespace DungeonBuilder
         [SerializeField]
         private Text _playerPowerView;
 
+        [SerializeField]
+        private Text _enemyCountView;
+
+        private int _enemyStartCount;
+
         private StatusHUDView _playerHUD;
 
         [SerializeField]
@@ -172,7 +177,13 @@ namespace DungeonBuilder
 
             _efBolts = new List<LightningBoltScript>();
 
-            CreateEnemies(8, startPos);
+            int enemyCount = 6;
+            int buriedEnemyCount = 4;
+            CreateEnemies(enemyCount, startPos);
+            CreateBuriedEnemies(buriedEnemyCount, startPos);
+
+            _enemyStartCount = enemyCount + buriedEnemyCount;
+            UpdateEnemyCountView();
 
             Fade(false);
 
@@ -192,6 +203,15 @@ namespace DungeonBuilder
             _fieldMgr.PutMino(mino);
             _enemyMgr.PutMino(mino);
             _fieldView.PutMino(mino);
+
+            foreach(var kvp in mino.Blocks)
+            {
+                var enemy =_enemyMgr.GetEnemy(mino.FieldPos + kvp.Key);
+                if (enemy == null || !enemy.IsBuried) continue;
+                enemy.IsBuried = false;
+                _enemyMgr.GetView(enemy).IsVisible = true;
+            }
+
             RefreshMino();
 
             PlayerPower += _fieldMgr.LastStickSideCount;
@@ -337,6 +357,7 @@ namespace DungeonBuilder
             {
                 if(isAttacked) PlayerPower = 1;
                 HilightLine();
+                UpdateEnemyCountView();
                 PlayEnemyTurn();
             });
             seq.Play();
@@ -352,7 +373,7 @@ namespace DungeonBuilder
                 for (int j = 0; j < (int)Block.DirectionType.Max; j++)
                 {
                     var targetPos = currentPos + Block.AROUND_OFFSET[j];
-                    if (enemy.FieldPos == targetPos)
+                    if (!enemy.IsBuried && enemy.FieldPos == targetPos)
                     {
                         isHitEnemy = true;
                         break;
@@ -373,6 +394,7 @@ namespace DungeonBuilder
                     enemy.HP -= _playerPower;
                     enemyView.HUDView.SetHP(enemy.HP);
                     if (enemy.HP <= 0) _enemyMgr.RemoveEnemy(enemy);
+                    UpdateEnemyCountView();
                 });
                 seq.Append(_player.DOMove(prePos, 0.1f));
                 isAttacked = true;
@@ -404,7 +426,7 @@ namespace DungeonBuilder
                         var offsetFieldPos = FieldView.GetWorldPosition(offsetPos);
                         Instantiate(_efExplosionPrefab, offsetFieldPos, Quaternion.identity, _player.parent);
                         var enemy = _enemyMgr.GetEnemy(offsetPos);
-                        if (enemy != null)
+                        if (enemy != null && !enemy.IsBuried)
                         {
                             enemy.HP -= _playerPower;
                             var enemyView = _enemyMgr.GetView(enemy);
@@ -426,7 +448,7 @@ namespace DungeonBuilder
                     var offsetFieldPos = FieldView.GetWorldPosition(offsetPos);
                     Instantiate(_efExplosionPrefab, offsetFieldPos, Quaternion.identity, _player.parent);
                     var enemy = _enemyMgr.GetEnemy(offsetPos);
-                    if (enemy != null)
+                    if (enemy != null && !enemy.IsBuried)
                     {
                         enemy.HP -= _playerPower;
                         var enemyView = _enemyMgr.GetView(enemy);
@@ -458,7 +480,7 @@ namespace DungeonBuilder
                     var offsetFieldPos = FieldView.GetWorldPosition(offsetPos);
                     Instantiate(_efExplosionPrefab, offsetFieldPos, Quaternion.identity, _player.parent);
                     var enemy = _enemyMgr.GetEnemy(offsetPos);
-                    if (enemy != null)
+                    if (enemy != null && !enemy.IsBuried)
                     {
                         enemy.HP -= _playerPower;
                         var enemyView = _enemyMgr.GetView(enemy);
@@ -704,6 +726,11 @@ namespace DungeonBuilder
             _playerHUD.SetPower(_playerPower);
         }
 
+        private void UpdateEnemyCountView()
+        {
+            _enemyCountView.text = string.Format("{0}/{1}", _enemyStartCount - _enemyMgr.Enemies.Count, _enemyStartCount);
+        }
+
         private void ResetScene()
         {
             var seq = Fade(true);
@@ -761,6 +788,48 @@ namespace DungeonBuilder
                 _enemyMgr.AddEnemy(enemy, fieldPos);
 
                 if (_fieldMgr.GetBlock(fieldPos) == null) _enemyMgr.GetView(enemy).transform.position += GetOnWallOffset();
+            }
+        }
+
+        private void CreateBuriedEnemies(int count, Vector2Int startPos)
+        {
+            var creatablePosList = new List<Vector2Int>();
+            for (int y = 3; y < _fieldSize.y; y++)
+            {
+                for (int x = 0; x < _fieldSize.x; x++)
+                {
+                    creatablePosList.Add(new Vector2Int(x, y));
+                }
+            }
+            creatablePosList.Remove(startPos);
+
+            foreach (var enemy in _enemyMgr.Enemies)
+            {
+                creatablePosList.Remove(enemy.FieldPos);
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                Enemy enemy = null;
+                if (ProbabilityCalclator.DetectFromPercent(0))
+                    ;
+                else
+                    enemy = new Enemy(
+                        hp: 15,
+                        power: 2,
+                        moveDistance: 1,
+                        searchRange: _fieldSize.x + _fieldSize.y,
+                        looksType: 0
+                    );
+
+                var fieldPos = creatablePosList[Random.Range(0, creatablePosList.Count)];
+                creatablePosList.Remove(fieldPos);
+                var view = _enemyMgr.AddEnemy(enemy, fieldPos);
+
+                if (_fieldMgr.GetBlock(fieldPos) == null) view.transform.position += GetOnWallOffset();
+
+                enemy.IsBuried = true;
+                view.IsVisible = false;
             }
         }
 

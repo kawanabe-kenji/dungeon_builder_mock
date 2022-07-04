@@ -20,7 +20,7 @@ namespace DungeonBuilder
             set
             {
                 _isVisible = value;
-                //SetVisible(value);
+                SetVisible(value);
             }
         }
 
@@ -33,7 +33,7 @@ namespace DungeonBuilder
         private void SetVisible(bool isVisible)
         {
             transform.GetChild(0).gameObject.SetActive(isVisible);
-            if (HUDView != null) HUDView.SetVisible(!isVisible);
+            if (HUDView != null) HUDView.SetVisible(isVisible);
         }
     }
 }
